@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f9f8f7;
+    background-color: #EFF3F2;
     font-family: 'Roboto','Times New Roman', Times, serif, sans-serif;
 }
 a,h1,h2,h3,h4,h5,h6{
@@ -73,13 +73,13 @@ a,h1,h2,h3,h4,h5,h6{
     color: white;
     text-decoration: none;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .desktop-nav a:hover {
     color: white;
     font-size: 18px;
-    font-weight: 550;
+    font-weight: 450;
 }
 
 /* AUTH BUTTONS*/
@@ -95,7 +95,7 @@ a,h1,h2,h3,h4,h5,h6{
     border-radius: 20px;
     text-decoration: none;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -215,39 +215,11 @@ a,h1,h2,h3,h4,h5,h6{
     .logo-section h3 {
         color: white;
         font-size: 17px;
-        font-weight: 600;
-        margin: 0;
-    }
-}
-
-@media (max-width: 350px) {
-
-    .auth-buttons a {
-        padding: 4px 8px;      
-        font-size: 10px;       
-        white-space: nowrap;    
-    }
-
-    .auth-buttons {
-        gap: 2px;             
-        flex-shrink: 1;        
-    }
-
-    .left-nav-group {
-        flex-shrink: 0;         
-    }
-
-    .navbar {
-        padding: 7px 7px;   
-    }
-
-    .logo-section h3 {
-        color: white;
-        font-size: 16px;
         font-weight: 500;
         margin: 0;
     }
 }
+
 /* NAVBAR POLISH */
 .navbar {
     position: sticky;
