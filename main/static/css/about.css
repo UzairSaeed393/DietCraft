@@ -1,218 +1,284 @@
-/* General Styling */
+
 body {
-    background-color: #f5f9f7;
+    background-color: #EFF3F2;
     font-family: 'Poppins', sans-serif;
 }
 
-/*PAGE HEAD */
+/*  SECTION SPACING  */
+.container > div {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+/*  PAGE HEADER  */
 .abouthead {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 30px;
 }
 
 .abouthead h2 {
     font-weight: 700;
-    color: #0A5C36;
+    color: #0A653A;
 }
 
-.abouthead p {
+/* .abouthead p {
     color: #555;
+    max-width: 600px;
+    margin: 10px auto;
+} */
+.abouthead p {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
     font-size: 16px;
+    color: #555;
+    line-height: 1.6;
 }
-
-/*  MISSION SECTION*/
+/*  MISSION SECTION  */
 .missionsection {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
+    max-width: 900px;
+    margin: auto;
     text-align: center;
 }
 
 .missionsection h3 {
+    color: #0A653A;
     font-weight: 600;
-    margin-bottom: 10px;
-    color: #0A5C36;
+    margin-bottom: 15px;
 }
 
 .missionsection p {
     color: #444;
-    font-size: 15px;
+    font-size: 16px;
 }
 
-/* VALUES SECTION  */
-.valuessection {
-    margin-top: 40px;
-}
-
+/*  VALUES SECTION  */
 .valuessection h3 {
     text-align: center;
-    font-weight: 600;
-    margin-bottom: 25px;
-    color: #0A5C36;
+    color: #0A653A;
+    margin-bottom: 30px;
 }
 
 .valuescardcontainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .valuescard {
     width: 250px;
+    background-color: #DDF5E4;
+    border-radius: 12px;
     padding: 20px;
-    background-color: #e8f7ef;
-    border-radius: 10px;
     text-align: center;
-    transition: 0.2s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+/* Card icon circle */
+.cardhead {
+    width: 55px;
+    height: 55px;
+    background-color: #0A653A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px auto;
+}
+
+.cardhead i {
+    color: white;
+    font-size: 24px;
 }
 
 .valuescard:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .cardname {
+    color: #0A653A;
+    font-size: 17px;
     font-weight: 600;
-    margin-top: 10px;
-    color: #0A5C36;
 }
 
 .cardcontent {
+    color: #444;
     font-size: 14px;
-    color: #555;
 }
 
-/* OFFER SECTION */
-.offersection {
-    margin-top: 50px;
-}
-
+/*  OFFER Section  */
 .offersection h3 {
     text-align: center;
-    color: #0A5C36;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.offerscontainer {
-    max-width: 800px;
-    margin: 0 auto;
+    color: #0A653A;
+    margin-bottom: 25px;
 }
 
 .offer {
-    background-color: #e8f7ef;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    background-color: #DDF5E4;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .offer h4 {
-    color: #0A5C36;
+    color: #0A653A;
+    font-size: 17px;
     font-weight: 600;
 }
 
-.offer p {
-    font-size: 14px;
+.offer:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+/*  COUNTER SECTION  */
+.countersection {
+    margin-top: 60px;
+}
+
+.countersection h3 {
+    color: #0A653A;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.countercontainer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.countercard {
+    background-color: #DDF5E4;
+    width: 200px;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.25s ease-in-out;
+}
+
+.countercard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.count-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0A653A;
+    margin-bottom: 5px;
+}
+
+.count-text {
+    font-size: 15px;
+    font-weight: 500;
     color: #555;
 }
 
-/*TEAM SECTION */
-.teamsection {
-    margin-top: 50px;
+/* Responsive */
+@media (max-width: 768px) {
+    .countercard {
+        width: 100%;
+    }
 }
 
+/*  TEAM SECTION  */
 .teamsection h3 {
     text-align: center;
-    font-weight: 600;
-    color: #0A5C36;
-    margin-bottom: 30px;
+    color: #0A653A;
+    margin-bottom: 25px;
 }
 
 .teamcardcontainer {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 25px;
+    flex-wrap: wrap;
 }
 
 .teamcard {
-    background-color: #e8f7ef;
-    width: 300px;
+    background-color: #DDF5E4;
+    width: 280px;
     border-radius: 12px;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
+    transition: 0.25s ease;
+}
+
+.teamcard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .teamcard .imgsection {
     width: 90px;
     height: 90px;
-    background-color: #cdeee0;
+    background-color: #0A653A;
     border-radius: 50%;
     margin: 0 auto;
 }
 
 .teamcard h3 {
     margin-top: 10px;
+    color: #0A653A;
+    font-size: 18px;
     font-weight: 600;
-    color: #0A5C36;
 }
 
 .teamcard h4 {
     font-size: 14px;
-    color: #777;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .teamcard p {
-    font-size: 13px;
-    color: #555;
-    margin-top: 5px;
+    font-size: 14px;
+    color: #444;
 }
 
-/*TECHNOLOGY SECTION  */
-.technonlogysection {
-    margin-top: 60px;
-    margin-bottom: 40px;
-}
-
+/* TECHNOLOGY SECTION */
 .technonlogysection h3 {
     text-align: center;
-    font-weight: 600;
-    color: #0A5C36;
-    margin-bottom: 20px;
+    color: #0A653A;
+    margin-bottom: 25px;
 }
 
 .techsection {
     display: flex;
     justify-content: center;
+    gap: 25px;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
 .techcard {
-    background-color: #e8f7ef;
-    padding: 20px;
+    background-color: #DDF5E4;
     width: 250px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.25s ease;
     text-align: center;
 }
 
+.techcard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
 .techcard h4 {
-    color: #0A5C36;
+    color: #0A653A;
     font-weight: 600;
 }
 
 .techcard p {
+    color: #444;
     font-size: 14px;
-    color: #555;
 }
 
-/*  RESPONSIVE  */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .valuescard, .teamcard, .techcard {
         width: 100%;
-    }
-
-    .missionsection {
-        padding: 0 15px;
     }
 }

@@ -5,121 +5,181 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block content %}
-<div class="container ">
-    
-    <div class="abouthead">
-        <h2>About DietCraft</h2>
-        <p>Empowering individuals to achieve their health goals through personalized diet and exercise planning</p>
-    </div>
-    <div class="missionsection">
-        <h3>Our Mission</h3>
-        <p>Many people struggle to maintain a healthy lifestyle because they lack knowledge about nutrition, calorie intake, and personalized diet & exercise plans. Existing solutions are either too generic or require paid subscriptions. Diet Craft aims to bridge this gap by providing a personalized, accessible, and intelligent diet & exercise planning system that adjusts based on user goals, health conditions, and food preferences.</p>
-    </div>
-    <div class="valuessection">
-        <h3>Our Values</h3>
-        <div class="valuescardcontainer">
-            <div class="valuescard">
-                <div class="cardhead">
+<div class="container">
 
-                </div>
-                <h4 class="cardname">Personalized</h4>
-                <p class="cardcontent">Every individual is unique. We create customized plans that adapt to your specific needs and goals.</p>
-            </div>
-            <div class="valuescard">
-                <div class="cardhead"></div>
-                <h4 class="cardname">Holistic Health</h4>
-                <p class="cardcontent">We believe in a balanced approach combining nutrition,exercise, and mental wellness.</p>
-            </div>
-            <div class="valuescard">
-                <div class="cardhead"></div>
-                <h4 class="cardname">Community</h4>
-                <p class="cardcontent">Building a supportive community where everyone can share their journey and inspire others.</p>
-            </div>
-            <div class="valuescard">
-                <div class="cardhead"></div>
-                <h4 class="cardname">Excellence</h4>
-                <p class="cardcontent">Committed to providing the highest quality recommendations based on scientific research.</p>
-            </div>
+    <div class="abouthead bg2">
+        <h2>About DietCraft</h2>
+        <p>Empowering individuals to achieve their health goals through personalized diet and exercise planning.</p>
+        <div class=" mt-3 mb-5">
+            <p>
+                DietCraft is a handy health companian that makes leading a healthy lifestyle easier. By combining personalized meal planning, guided exercise routines with videos, and professional nutritionist support, DietCraft helps users create sustainable habits suited to their body, goals, and lifestyle. Whether someone wants to lose weight, gain muscle, or simply eat better, DietCraft provides clear, data-driven guidance in one easy-to-use platform.
+            </p>
         </div>
     </div>
-    <div class="offersection">
+
+
+    <div class="missionsection bg2">
+        <h3>Our Mission</h3>
+        <p>At DietCraft, our mission is to make healthy living simple, accessible, and sustainable for everyone. Many people struggle with nutrition, calorie management, and workout planning due to lack of knowledge or overwhelming information online. DietCraft bridges this gap by offering personalized diet plans, guided exercise routines with instructional videos, and expert nutritionist support — all in one platform. Our mission is to empower individuals with tools, knowledge, and guidance to build long-term healthy habits.
+        </p>
+    </div>
+
+    <div class="valuessection bg2">
+        <h3>Our Values</h3>
+
+        <div class="valuescardcontainer">
+
+            <div class="valuescard">
+                <div class="cardhead"><i class="bi bi-person-check"></i></div>
+                <h4 class="cardname">Personalization</h4>
+                <p class="cardcontent">Every individual is unique. We create customized plans tailored to your needs and goals.</p>
+            </div>
+
+            <div class="valuescard">
+                <div class="cardhead"><i class="bi bi-heart-pulse"></i></div>
+                <h4 class="cardname">Holistic Health</h4>
+                <p class="cardcontent">We believe in balanced wellness combining nutrition, exercise, and mental strength.</p>
+            </div>
+
+            <div class="valuescard">
+                <div class="cardhead"><i class="bi bi-people"></i></div>
+                <h4 class="cardname">Community</h4>
+                <p class="cardcontent">Building a supportive environment where everyone can grow and inspire one another.</p>
+            </div>
+
+            <div class="valuescard">
+                <div class="cardhead"><i class="bi bi-award"></i></div>
+                <h4 class="cardname">Excellence</h4>
+                <p class="cardcontent">We deliver high-quality, research-based recommendations for better results.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- WHAT WE OFFER -->
+    <div class="offersection bg2">
         <h3>What We Offer</h3>
+
         <div class="offerscontainer">
+
             <div class="offer">
-                <h4>Meal Planning</h4>
-                <p></p>
+                <h4>Meal Engine</h4>
+                <p>Generates personalized meal plans based on age, weight, height, and activity level.</p>
             </div>
+
             <div class="offer">
-                <h4>Exercise Planning</h4>
-                <p></p>
+                <h4>Exercise Recommendations</h4>
+                <p>Provides guided workout plans along with instructional exercise videos.</p>
             </div>
+
             <div class="offer">
                 <h4>Progress Tracking</h4>
-                <p></p>
+                <p>Track daily calorie intake, meal logs, progress charts, and more.</p>
             </div>
+
             <div class="offer">
                 <h4>Expert Guidance</h4>
-                <p></p>
+                <p>Access certified nutritionists for personalized health support.</p>
             </div>
+
         </div>
     </div>
-    <div class="teamsection">
-        <h3></h3>
+    <!-- STATIC COUNTERS -->
+    <div class="countersection text-center">
+        <h3 class="mb-4">DietCraft At a Glance</h3>
+
+        <div class="countercontainer">
+
+            <div class="countercard">
+                <h2 class="count-number">50+</h2>
+                <p class="count-text">Healthy Meals</p>
+            </div>
+
+            <div class="countercard">
+                <h2 class="count-number">30+</h2>
+                <p class="count-text">Exercise Videos</p>
+            </div>
+
+            <div class="countercard">
+                <h2 class="count-number">10+</h2>
+                <p class="count-text">Nutritionists</p>
+            </div>
+
+            <div class="countercard">
+                <h2 class="count-number">500+</h2>
+                <p class="count-text">Active Users</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="teamsection bg2">
+        <h3>Our Team</h3>
+
         <div class="teamcardcontainer">
+
             <div class="teamcard">
                 <div class="imgsection"></div>
                 <div class="textsection">
                     <h3>Uzair Saeed</h3>
-                    <h4>Frontend & Backend Developer</h4>
-                    <p>
-                        Our Lead Developer bulid frontend and backend of website.Also contribute in bulid meal planning and exercise planning modules.
-                    </p>
+                    <h4>Full-Stack Developer</h4>
+                    <p>Builds frontend and backend architecture and develops core modules for diet & exercise planning.</p>
                 </div>
             </div>
+
             <div class="teamcard">
                 <div class="imgsection"></div>
                 <div class="textsection">
                     <h3>Ali Sheraz</h3>
                     <h4>Python Developer</h4>
-                    <p>Our python developer assits in buliding our core meal planning and exercise planning.</p>
+                    <p>Works on Python logic, Meal Engine formulas, and exercise recommendation algorithms.</p>
                 </div>
             </div>
+
             <div class="teamcard">
                 <div class="imgsection"></div>
                 <div class="textsection">
                     <h3>Huzaifa Tariq</h3>
-                    <h4>Web Designer</h4>
-                    <p>Our web designer and researcher.Makes web design and do all reasearch </p>
+                    <h4>Designer & Researcher</h4>
+                    <p>Designs the UI and performs research for diet, meal planning, and exercise content.</p>
                 </div>
             </div>
+
         </div>
     </div>
-    <div class="technonlogysection">
-        <h3></h3>
-        <p></p>
+
+    <div class="technonlogysection bg2">
+        <h3>Built With Modern Technology</h3>
+
         <div class="techsection">
+
             <div class="techcard">
                 <h4>Frontend</h4>
-                <p>DietCraft frontend is build using django templates.</p>
+                <p>Built using Django Templates, HTML, CSS, JavaScript, and Bootstrap.</p>
             </div>
+
             <div class="techcard">
                 <h4>Backend</h4>
-                <p>DietCraft backend is bulid using django</p>
+                <p>Powered by the Django Framework written in Python.</p>
             </div>
+
             <div class="techcard">
                 <h4>Database</h4>
-                <p>PostgreSQL is used for storing data of users </p>
+                <p>PostgreSQL stores user data, meal plans, and exercise information.</p>
             </div>
+
             <div class="techcard">
-                <h4>Bootstrap</h4>
-                <p>Bootstrap is used along css for beautiful and responsive design</p>
+                <h4>UI Design</h4>
+                <p>Designed using Figma to ensure a clean and user-friendly experience.</p>
             </div>
+
         </div>
     </div>
-    
+
 </div>
 {% endblock %}
 
