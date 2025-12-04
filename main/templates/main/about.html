@@ -1,6 +1,128 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}About{% endblock %}
 
-{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 
-{% endblock content %}
+{% block content %}
+<div class="container ">
+    
+    <div class="abouthead">
+        <h2>About DietCraft</h2>
+        <p>Empowering individuals to achieve their health goals through personalized diet and exercise planning</p>
+    </div>
+    <div class="missionsection">
+        <h3>Our Mission</h3>
+        <p>Many people struggle to maintain a healthy lifestyle because they lack knowledge about nutrition, calorie intake, and personalized diet & exercise plans. Existing solutions are either too generic or require paid subscriptions. Diet Craft aims to bridge this gap by providing a personalized, accessible, and intelligent diet & exercise planning system that adjusts based on user goals, health conditions, and food preferences.</p>
+    </div>
+    <div class="valuessection">
+        <h3>Our Values</h3>
+        <div class="valuescardcontainer">
+            <div class="valuescard">
+                <div class="cardhead">
+
+                </div>
+                <h4 class="cardname">Personalized</h4>
+                <p class="cardcontent">Every individual is unique. We create customized plans that adapt to your specific needs and goals.</p>
+            </div>
+            <div class="valuescard">
+                <div class="cardhead"></div>
+                <h4 class="cardname">Holistic Health</h4>
+                <p class="cardcontent">We believe in a balanced approach combining nutrition,exercise, and mental wellness.</p>
+            </div>
+            <div class="valuescard">
+                <div class="cardhead"></div>
+                <h4 class="cardname">Community</h4>
+                <p class="cardcontent">Building a supportive community where everyone can share their journey and inspire others.</p>
+            </div>
+            <div class="valuescard">
+                <div class="cardhead"></div>
+                <h4 class="cardname">Excellence</h4>
+                <p class="cardcontent">Committed to providing the highest quality recommendations based on scientific research.</p>
+            </div>
+        </div>
+    </div>
+    <div class="offersection">
+        <h3>What We Offer</h3>
+        <div class="offerscontainer">
+            <div class="offer">
+                <h4>Meal Planning</h4>
+                <p></p>
+            </div>
+            <div class="offer">
+                <h4>Exercise Planning</h4>
+                <p></p>
+            </div>
+            <div class="offer">
+                <h4>Progress Tracking</h4>
+                <p></p>
+            </div>
+            <div class="offer">
+                <h4>Expert Guidance</h4>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="teamsection">
+        <h3></h3>
+        <div class="teamcardcontainer">
+            <div class="teamcard">
+                <div class="imgsection"></div>
+                <div class="textsection">
+                    <h3>Uzair Saeed</h3>
+                    <h4>Frontend & Backend Developer</h4>
+                    <p>
+                        Our Lead Developer bulid frontend and backend of website.Also contribute in bulid meal planning and exercise planning modules.
+                    </p>
+                </div>
+            </div>
+            <div class="teamcard">
+                <div class="imgsection"></div>
+                <div class="textsection">
+                    <h3>Ali Sheraz</h3>
+                    <h4>Python Developer</h4>
+                    <p>Our python developer assits in buliding our core meal planning and exercise planning.</p>
+                </div>
+            </div>
+            <div class="teamcard">
+                <div class="imgsection"></div>
+                <div class="textsection">
+                    <h3>Huzaifa Tariq</h3>
+                    <h4>Web Designer</h4>
+                    <p>Our web designer and researcher.Makes web design and do all reasearch </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="technonlogysection">
+        <h3></h3>
+        <p></p>
+        <div class="techsection">
+            <div class="techcard">
+                <h4>Frontend</h4>
+                <p>DietCraft frontend is build using django templates.</p>
+            </div>
+            <div class="techcard">
+                <h4>Backend</h4>
+                <p>DietCraft backend is bulid using django</p>
+            </div>
+            <div class="techcard">
+                <h4>Database</h4>
+                <p>PostgreSQL is used for storing data of users </p>
+            </div>
+            <div class="techcard">
+                <h4>Bootstrap</h4>
+                <p>Bootstrap is used along css for beautiful and responsive design</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}
