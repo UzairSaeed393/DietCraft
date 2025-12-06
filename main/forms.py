@@ -13,4 +13,5 @@ class ContactForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone (Optional)'}),
             'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Subject'}),
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your Message...', 'rows': 5}),
+            # 'image': forms.ImageField(attrs={'class': 'form-control', }),
         }

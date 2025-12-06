@@ -11,65 +11,187 @@
 {% block content %}
 <div class="container">
 
+    <!-- HERO SECTION -->
     <div class="herosection">
         <div class="textsection">
             <div class="heroheading">
-                <h1>Transfor Your</h1>
-                <h1>Health Journey</h1>
+                <h1>Transform Your</h1>
+                <h1 style="color:  #0A5C36;">Health Journey</h1>
+            
             </div>
+
             <p class="herotext">
-                Get personalized meal plans and exercise routines powered by strong meal and exercise engine. Track your progress and achieve your health goals faster than ever before.
+                Get personalized meal plans and exercise routines powered by strong meal and 
+                exercise engines. Track your progress and achieve your goals faster than ever before.
             </p>
+
             <div class="herobutton">
-                <div class="btn btn1">
-                    <a href="/meal plan">
-                        <h4>Get Plan</h4>
-                    </a>
-                </div>
-                <div class="btn btn2">
-                    <a href="/about">
-                        <h4>Learn more</h4>
-                    </a>
-                </div>
+                <a href="/meal/" class="btn1">Get Plan</a>
+                <a href="/about/" class="btn2">Learn More</a>
             </div>
         </div>
+
         <div class="imagesection">
-            <img src="" alt="Hero Image">
+            <img src="{% static 'images/Hero image.png' %}" alt="Hero Image">
         </div>
     </div>
+
+
+    <!-- FEATURE SECTION -->
+    <div class="featuresection">
+        <div class="featuretextsection">
+            <h2>Everything You Need to Succeed</h2>
+            <p>Our platform combines intelligent meal planning, personalized workouts, and progress tracking.</p>
+        </div>
+
+        <div class="featurecardsection">
+
+            <div class="featurecard">
+                <img src="{% static 'images/Meal Card.png' %}" class="cardimage">
+                <div class="cardicon"><i class="bi bi-egg-fried"></i></div>
+                <h3>Meal Plan</h3>
+                <p>Auto-generated weekly plans tailored to your nutritional needs.</p>
+            </div>
+
+            <div class="featurecard">
+                <img src="{% static 'images/Fitness Card.png' %}" class="cardimage">
+                <div class="cardicon"><i class="bi bi-bicycle"></i></div>
+                <h3>Exercise Plan</h3>
+                <p>Daily routines matched to your fitness level and goals.</p>
+            </div>
+
+            <div class="featurecard">
+                <img src="{% static 'images/Dashboard Card.png' %}" class="cardimage">
+                <div class="cardicon"><i class="bi bi-bar-chart-line"></i></div>
+                <h3>Dashboard</h3>
+                <p>Charts and analytics to monitor your health journey.</p>
+            </div>
+
+            <div class="featurecard">
+                <img src="{% static 'images/Nutritionists Card.png' %}" class="cardimage">
+                <div class="cardicon"><i class="bi bi-person-heart"></i></div>
+                <h3>Nutritionist Info</h3>
+                <p>Learn from certified experts for better guidance.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- HOW IT WORKS -->
+    <div class="worksection">
+        <div class="worktextsection">
+            <h2>How It Works</h2>
+            <p>Start your health journey in four simple steps</p>
+        </div>
+
+        <div class="workwrapper">
+
+            <div class="workstep">
+                <div class="workicon">
+                    <i class="bi bi-person-plus"></i>
+                </div>
+                <h4>Register & Input Data</h4>
+                <p>Create your account and share your health goals, preferences, and current stats.</p>
+            </div>
+
+            <div class="arrow"><i class="bi bi-arrow-right-circle-fill"></i></div>
+
+            <div class="workstep">
+                <div class="workicon">
+                    <i class="bi bi-clipboard-check"></i>
+                </div>
+                <h4>Get Your Plan</h4>
+                <p>Receive personalized meal and exercise recommendations based on your profile.</p>
+            </div>
+
+            <div class="arrow"><i class="bi bi-arrow-right-circle-fill"></i></div>
+
+            <div class="workstep">
+                <div class="workicon">
+                    <i class="bi bi-journal-check"></i>
+                </div>
+                <h4>Log & Track</h4>
+                <p>Record your meals and completed exercises throughout your journey.</p>
+            </div>
+
+            <div class="arrow"><i class="bi bi-arrow-right-circle-fill"></i></div>
+
+            <div class="workstep">
+                <div class="workicon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <h4>Monitor Progress</h4>
+                <p>View detailed analytics showing your improvements and achievements.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+
     <!-- STATIC COUNTERS -->
-    <div class="countersection text-center">
-        <h3 class="mb-4">DietCraft At a Glance</h3>
+    <div class="countersection">
+        <h3>DietCraft At a Glance</h3>
 
         <div class="countercontainer">
 
             <div class="countercard">
-                <h2 class="count-number">50+</h2>
-                <p class="count-text">Healthy Meals</p>
+                <h2>50+</h2>
+                <p>Healthy Meals</p>
             </div>
 
             <div class="countercard">
-                <h2 class="count-number">30+</h2>
-                <p class="count-text">Exercise Videos</p>
+                <h2>30+</h2>
+                <p>Exercise Videos</p>
             </div>
 
             <div class="countercard">
-                <h2 class="count-number">10+</h2>
-                <p class="count-text">Nutritionists</p>
+                <h2>10+</h2>
+                <p>Nutritionists</p>
             </div>
 
             <div class="countercard">
-                <h2 class="count-number">500+</h2>
-                <p class="count-text">Active Users</p>
+                <h2>500+</h2>
+                <p>Active Users</p>
             </div>
 
         </div>
     </div>
 
 
-</div>
-{% endblock %}
+    <!-- SUCCESS STORIES -->
+    <div class="sucessstorysection">
+        <div class="successtextsection">
+            <h2>Success Stories</h2>
+            <p>Real results from real people achieving their goals</p>
+        </div>
 
-{% block extra_js %}
-<script src="{% static 'js/about.js' %}"></script>
+        <div class="successcardscetion">
+
+            <div class="successcard">
+                <img src="{% static 'images/user1.jpg' %}" alt="">
+                <h4>Hanzala Aness</h4>
+                <h5>Lost 15kg in 3 months</h5>
+                <p>"The personalized meal plans made all the difference!"</p>
+            </div>
+
+            <div class="successcard">
+                <img src="{% static 'images/user2.jpg' %}" alt="">
+                <h4>Rajab Nasir</h4>
+                <h5>Gained 8% Muscle in 2 months</h5>
+                <p>"The exercise recommendations matched my fitness level perfectly."</p>
+            </div>
+
+            <div class="successcard">
+                <img src="{% static 'images/user3.jpg' %}" alt="">
+                <h4>M Moazam</h4>
+                <h5>Lost 25kg in 3 months</h5>
+                <p>"Tracking my progress kept me motivated every day."</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 {% endblock %}

@@ -1,3 +1,330 @@
+/* HERO SECTION */
+.herosection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F9F8F7;
+    padding: 60px 40px;
+    border-radius: 16px;
+    margin-top: 30px;
+    gap: 25px;
+}
+
+.textsection {
+    width: 55%;
+}
+
+.heroheading h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.herotext {
+    margin: 18px 0 32px 0;
+    font-size: 17px;
+    color: #333;
+}
+
+.herobutton {
+    display: flex;
+    gap: 18px;
+}
+
+.btn1, .btn2 {
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.btn1 {
+    background-color: #0A653A;
+    color: white;
+}
+.btn1:hover {
+    background-color: #084f2d;
+}
+
+.btn2 {
+    background-color: #ff9f1c;
+    color: white;
+}
+.btn2:hover {
+    background-color: #e68f18;
+}
+
+.imagesection img {
+    width: 460px;
+    height: auto;
+    border-radius: 18px;
+    object-fit: cover;
+}
+/* FEATURES SECTION */
+.featuresection {
+    padding: 70px 0;
+    background-color: #EFF3F2;
+    text-align: center;
+}
+
+.featuretextsection h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.featuretextsection p {
+    margin-bottom: 45px;
+    color: #555;
+}
+
+.featurecardsection {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.featurecard {
+    width: 23%;
+    background-color: #DDF5E4;
+    padding: 22px;
+    border-radius: 16px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.06);
+}
+
+.featurecard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.1);
+}
+
+.featurecard img {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.featurecard h3 {
+    margin-top: 18px;
+    font-size: 20px;
+}
+
+.cardicon {
+    font-size: 36px;
+    margin-top: 12px;
+    color: #0A653A;
+}
+/*HOW IT WORKS */
+.worksection {
+    background-color: #DDF5E4;
+    padding: 80px 20px;
+    border-radius: 16px;
+    margin-top: 30px;
+}
+
+.worktextsection {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.worktextsection h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0A653A;
+}
+
+.worktextsection p {
+    color: #444;
+    font-size: 16px;
+}
+
+/* Steps Wrapper */
+.workwrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Each Step Card */
+.workstep {
+    width: 18%;
+    background-color: #f9f7f8;
+    padding: 20px 15px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+}
+
+.workstep:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Icon Circle */
+.workicon {
+    width: 40px;
+    height: 40px;
+    background-color: #0A653A;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 10px auto;
+}
+
+/* Text */
+.workstep h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #0A653A;
+}
+
+.workstep p {
+    font-size: 15px;
+    color: #444;
+}
+
+/* Arrow Icons Between Steps */
+.arrow i {
+    font-size: 30px;
+    color: #0A653A;
+}
+
+/* RESPONSIVE*/
+@media (max-width: 992px) {
+    .workwrapper {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .workstep {
+        width: 100%;
+    }
+
+    .arrow {
+        display: none;
+    }
+}
+
+/* SUCCESS STORIES */
+.sucessstorysection {
+    padding: 70px 20px;
+    background-color: #F9F8F7;
+    margin-top: 50px;
+    border-radius: 16px;
+}
+.featuretextsection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.worktextsection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.successtextsection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.successtextsection h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.successtextsection p {
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.successcardscetion {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.successcard {
+    width: 32%;
+    background-color: #DDF5E4;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.successcard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.successcard img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    object-fit: cover;
+}
+
+.successcard h4 {
+    margin: 5px 0;
+    font-weight: 700;
+}
+
+.successcard h5 {
+    font-size: 15px;
+    color: #0A653A;
+    margin-bottom: 12px;
+}
+
+.successcard p {
+    color: #444;
+    font-size: 15px;
+}
+@media (max-width: 900px) {
+    .herosection {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .textsection {
+        width: 100%;
+    }
+
+    .featurecard {
+        width: 46%;
+    }
+
+    .workcardsection {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .successcardscetion {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .successcard {
+        width: 100%;
+    }
+}
 /*  COUNTER SECTION  */
 .countersection {
     margin-top: 60px;
@@ -28,6 +355,7 @@
 .countercard:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    color: #0A653A;
 }
 
 .count-number {
@@ -48,4 +376,7 @@
     .countercard {
         width: 100%;
     }
+}
+.Nostyle{
+    list-style: none;
 }
