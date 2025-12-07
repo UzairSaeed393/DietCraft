@@ -1,3 +1,4 @@
+
 /* HERO SECTION */
 .herosection {
     display: flex;
@@ -156,7 +157,7 @@
 .workstep {
     width: 18%;
     background-color: #f9f7f8;
-    padding: 20px 15px;
+    padding: 15px;
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.06);
@@ -327,7 +328,7 @@
 }
 /*  COUNTER SECTION  */
 .countersection {
-    margin-top: 60px;
+    margin: 20px;
 }
 
 .countersection h3 {

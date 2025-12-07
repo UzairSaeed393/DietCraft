@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+
+    <div class="auth-box">
+        <img src="{% static 'images/DietCraft Logo.png' %}" class="auth-logo">
+
+        <h2>Welcome Back</h2>
+        <p>Login to continue your diet & fitness journey</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.email }}
+            {{ form.password }}
+
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+
+        <div class="divider">OR</div>
+
+        <a href="{% url 'signup' %}" class="outline-btn">Sign Up</a>
+
+        <p class="auth-footer">
+            Don't have an account? <a href="{% url 'signup' %}">Create Account</a>
+        </p>
+    </div>
+
+</div>
+{% endblock %}
