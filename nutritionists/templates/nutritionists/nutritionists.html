@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nutritionists{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/nutritionists.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2>Expert Nutritionists</h2>
+    <p>Connect with certified nutrition professionals for expert guidance and support</p>
+
+    <!-- NOTE SECTION -->
+    <div class="alert alert-success mt-3">
+        <strong>Note:</strong> The following nutritionists are available for informational purposes.
+        Contact them directly for consultations and appointments.
+    </div>
+
+    <!-- SEARCH & FILTERS -->
+    <div class="search-filter-box mt-4">
+
+        <form method="get" class="d-flex gap-3">
+
+            <!-- SEARCH -->
+            <input type="text" name="search" value="{{ search }}" 
+                   placeholder="Search by name, specialty, or degree..."
+                   class="form-control">
+
+            <!-- CATEGORY FILTER -->
+            <select name="category" class="form-select">
+                <option value="">All Categories</option>
+                <option value="sports" {% if category == 'sports' %}selected{% endif %}>Sports Nutrition</option>
+                <option value="weight" {% if category == 'weight' %}selected{% endif %}>Weight Management</option>
+                <option value="pediatric" {% if category == 'pediatric' %}selected{% endif %}>Pediatric Nutrition</option>
+                <option value="clinical" {% if category == 'clinical' %}selected{% endif %}>Clinical Nutrition</option>
+                <option value="general" {% if category == 'general' %}selected{% endif %}>General Nutrition</option>
+            </select>
+
+            <button class="btn btn-success px-4">Search</button>
+        </form>
+
+    </div>
+
+    <!-- CARDS SECTION -->
+    <div class="row mt-4">
+
+        {% for n in nutritionists %}
+<div class="col-md-6 mb-4">
+    <div class="nutri-card">
+
+        <div class="nutri-header">
+
+            <!-- IMAGE -->
+            <div class="nutri-header-img">
+                {% if n.image %}
+                    <img src="{{ n.image.url }}" alt="Nutritionist Photo">
+                {% else %}
+                    <div class="nutri-header-placeholder"></div>
+                {% endif %}
+            </div>
+
+            <!-- NAME + BADGE -->
+            <div class="nutri-header-info">
+                <h3 class="nutri-name">{{ n.name }}</h3>
+                <span class="nutri-badge">{{ n.specialty }}</span>
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <p class="nutri-description">
+            {{ n.description }}
+        </p>
+
+        <!-- DETAILS -->
+        <div class="nutri-detail">
+            <i class="bi bi-geo-alt-fill"></i>
+            <strong>{{ n.clinic_name }}</strong><br>
+            <span class="subtext">{{ n.clinic_address }}</span>
+        </div>
+
+        <div class="nutri-detail">
+            <i class="bi bi-telephone-fill"></i> {{ n.phone }}
+        </div>
+
+        <div class="nutri-detail">
+            <i class="bi bi-envelope-fill"></i> {{ n.email }}
+        </div>
+
+        <div class="nutri-detail">
+            <i class="bi bi-calendar-check"></i>
+            <strong>Experience:</strong> {{ n.experience_years }} years
+        </div>
+
+        <!-- DEGREES -->
+        <div class="degree-container">
+            {% for d in n.degrees_list %}
+                <span class="degree-tag">{{ d }}</span>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+        {% empty %}
+        <p>No nutritionists match your search.</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

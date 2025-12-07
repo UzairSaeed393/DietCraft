@@ -1,0 +1,113 @@
+/* MAIN CARD */
+.nutri-card {
+    background: #F6FAF8;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid #E4ECE8;
+}
+
+/* HEADER ROW */
+.nutri-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* CIRCLE IMAGE */
+.nutri-header-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0A653A;
+    flex-shrink: 0;
+}
+
+.nutri-header-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nutri-header-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #0A653A;
+}
+
+/* NAME + BADGE */
+.nutri-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nutri-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #0A2E1A;
+}
+
+.nutri-badge {
+    display: inline-block;
+    background: #0A653A;
+    color: white;
+    padding: 4px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+    margin-top: 6px;
+}
+
+/* DESCRIPTION */
+.nutri-description {
+    margin-top: 18px;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* DETAILS SECTION */
+.nutri-detail {
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #1A1A1A;
+}
+
+.nutri-detail i {
+    margin-right: 8px;
+    color: #0A653A;
+    font-size: 18px;
+}
+
+.subtext {
+    color: #6B6B6B;
+    font-size: 14px;
+}
+
+/* DEGREE TAGS */
+.degree-container {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.degree-tag {
+    padding: 5px 14px;
+    background: #0A653A;
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+/* MOBILE FIX */
+@media(max-width: 768px) {
+    .nutri-card {
+        padding: 20px;
+    }
+
+    .nutri-header {
+        flex-direction: row;
+    }
+}
