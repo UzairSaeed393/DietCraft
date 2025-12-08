@@ -76,3 +76,16 @@
     color: #0A5C36;
     font-weight: 600;
 }
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #0A5C36;
+}

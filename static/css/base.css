@@ -86,23 +86,74 @@ a,h1,h2,h3,h4,h5,h6{
 
 .auth-buttons {
     display: flex;
-    gap: 10px;
-    flex-shrink: 0;
+    align-items: center;
+    gap: 15px;
 }
 
-.auth-buttons a {
-    padding: 7px 15px;
-    border-radius: 20px;
+/* Username  */
+.username-link {
+    color: white;                     
+    font-size: 15px;
+    font-weight: 600;
     text-decoration: none;
-    color: white;
-    font-weight: 500;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.2s ease;
 }
 
-.login-btn { background-color: #FF8A3D; }
-.signup-btn { background-color: #257CFF; }
-.logout-btn { background-color: #E63946; }
+.username-link:hover {
+    background-color: rgba(255,255,255,0.15);
+}
 
+/* Logout button */
+.logout-btn {
+    background-color: white;
+    color: #0A5C36;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+     transform: translateY(-8px);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.1);
+}
+
+/* Login button */
+.login-btn {
+    background-color: #FF8A3D;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+     transform: translateY(-8px);
+    box-shadow: 0px 8px 18px rgba(0,0,0,0.1);
+}
+
+/* Signup button */
+.signup-btn {
+    background-color: gold;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.signup-btn:hover {
+     transform: translateY(-8px);
+    box-shadow: 0px 8px 18px rgba(228, 191, 9, 0.1);
+}
 
 .sidebar {
     position: fixed;
