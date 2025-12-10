@@ -1,3 +1,7 @@
+.container{
+    background: url('/static/images/Login_bg.png') center/cover no-repeat;
+    padding: 40px 0;
+}
 .auth-container {
     display: flex;
     justify-content: center;
@@ -88,4 +92,11 @@
     cursor: pointer;
     font-size: 20px;
     color: #0A5C36;
+}
+.password-wrapper input {
+    width: 100%;
+    padding: 14px 45px 14px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
 }

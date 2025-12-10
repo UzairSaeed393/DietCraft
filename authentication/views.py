@@ -39,7 +39,8 @@ def signup_view(request):
             user = User.objects.create_user(
                 username=name,
                 email=email,
-                password=password
+                password=password,
+                is_active = False
             )
 
             messages.success(request, "Account created successfully! Please log in.")
@@ -72,7 +73,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "Logged in successfully!","Welcome {{user.username}}")
-                messages.success(request, "Welcome {{user.username}}")
+                # messages.success(request, "Welcome {{user.username}}")
                 return redirect("/")  
             else:
                 messages.error(request, "Incorrect password.")
@@ -85,6 +86,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, "Logged out successfully.")
-    messages.success(request, "Good bye {{user.username}}")
+    # messages.success(request, "Good bye {{user.username}}")
 
     return redirect("/")

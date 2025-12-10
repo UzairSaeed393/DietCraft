@@ -36,10 +36,10 @@
             <!-- NAV LINKS (DESKTOP) -->
             <div class="nav-links desktop-nav">
                 <a href="/">Home</a>
-                <a href="/meal/">Meal Plans</a>
-                <a href="/exercise/">Exercises</a>
+                <a href="/meals/">Meal Plans</a>
+                <a href="/exercises/">Exercises</a>
                 <a href="/nutritionists/">Nutritionists</a>
-                <a href="/user/dashboard/">Dashboard</a>
+                <a href="/users/">Dashboard</a>
                 <a href="/about/">About</a>
                 <a href="/contact/">Contact</a>
             </div>
@@ -47,7 +47,7 @@
             <!-- AUTH BUTTONS -->
             <div class="auth-buttons">
                 {% if user.is_authenticated %}
-                    <a href="/profile/" class="username-link">
+                    <a href="/users/profile/" class="username-link">
                         <i class="bi bi-person-circle me-1"></i> {{ user.username }}
                     </a>
                     <a href="/auth/logout/" class="logout-btn">Logout</a>
@@ -65,8 +65,8 @@
             <div class="close-btn" id="closeSidebar">&times;</div>
                 <div class="nav-links mobile-nav">
                     <a href="/">Home</a>
-                    <a href="/meal/">Meal Plans</a>
-                    <a href="/exercise/">Exercises</a>
+                    <a href="/meals/">Meal Plans</a>
+                    <a href="/exercises/">Exercises</a>
                     <a href="/nutritionists/">Nutritionists</a>
                     <a href="/user/dashboard/">Dashboard</a>
                     <a href="/about/">About</a>
