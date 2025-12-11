@@ -2,51 +2,93 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .forms import RegisterForm, LoginForm
-
-
+from .models import UserOTP
 #   SIGNUP VIEW
+
 
 def signup_view(request):
     form = RegisterForm()
+    # form = RegisterForm()
+    if request.method == "POST":
+        user_name = request.POST.get("user_name")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
+
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return redirect("signup")
+
+        if User.objects.filter(username=user_name).exists():
+            messages.error(request, "Username already exists.")
+            return redirect("signup")
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered.")
+            return redirect("signup")
+
+        # Create inactive user
+        user = User.objects.create_user(
+            username=user_name,
+            email=email,
+            password=password,
+            is_active=False
+        )
+
+        # Create OTP
+        otp_obj = UserOTP.objects.create(user=user)
+        otp_obj.generate_otp()
+
+        # Send OTP email
+        send_mail(
+            subject="Your DietCraft Verification Code",
+            message=f"Your OTP is {otp_obj.otp_code}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+        )
+
+        messages.success(request, "OTP sent to your email. Please verify your account.")
+        return redirect("verify", user_id=user.id)
+    return render(request, "auth/register.html", {"form": form})
+
+def verify_otp_view(request, user_id):
+    user = User.objects.get(id=user_id)
+    otp_obj = UserOTP.objects.get(user=user)
 
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        entered_otp = request.POST.get("otp")
 
-        if form.is_valid():
-            name = form.cleaned_data["user_name"]
-            email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
-            confirm_password = form.cleaned_data["confirm_password"]
+        if entered_otp == otp_obj.otp_code:
+            user.is_active = True
+            user.save()
+            otp_obj.delete()
 
-            # Check passwords match
-            if password != confirm_password:
-                messages.error(request, "Passwords do not match.")
-                return render(request, "auth/register.html", {"form": form})
-
-            # Check if email already exists
-            if User.objects.filter(email=email).exists():
-                messages.error(request, "Email is already registered.")
-                return render(request, "auth/register.html", {"form": form})
-
-            # Check if username already exists
-            if User.objects.filter(username=name).exists():
-                messages.error(request, "Username already exists.")
-                return render(request, "auth/register.html", {"form": form})
-
-            # Create the user
-            user = User.objects.create_user(
-                username=name,
-                email=email,
-                password=password,
-                is_active = False
-            )
-
-            messages.success(request, "Account created successfully! Please log in.")
+            messages.success(request, "Account verified! You can now log in.")
             return redirect("login")
 
-    return render(request, "auth/register.html", {"form": form})
+        messages.error(request, "Invalid OTP. Try again.")
+
+    return render(request, "auth/verify.html", {"user_id": user_id})
+def resend_otp(request, user_id):
+    user = User.objects.get(id=user_id)
+    otp_obj = UserOTP.objects.get(user=user)
+
+    otp_obj.generate_otp()
+
+    send_mail(
+        subject="Your New DietCraft Verification Code",
+        message=f"Your new OTP is {otp_obj.otp_code}. It expires in 5 minutes.",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[user.email],
+    )
+
+    messages.success(request, "A new OTP has been sent to your email.")
+    return redirect("verify", user_id=user_id)
+
 
 #   LOGIN VIEW
 
@@ -66,7 +108,10 @@ def login_view(request):
             except User.DoesNotExist:
                 messages.error(request, "User with this email does not exist.")
                 return render(request, "auth/login.html", {"form": form})
-
+                
+            if not user.is_active:
+                messages.error(request, "Account inactive. Please verify your email.")
+                return redirect("login")
             # Authenticate using username 
             user = authenticate(request, username=user.username, password=password)
 

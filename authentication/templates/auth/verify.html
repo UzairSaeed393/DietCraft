@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <img src="{% static 'images/DietCraft Logo.png' %}" class="auth-logo">
+        <h2>Email Verification</h2>
+        <p>Enter the 6-digit OTP sent to your email.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="otp" maxlength="6" class="auth-input" placeholder="Enter OTP">
+            <button type="submit" class="auth-btn">Verify</button>
+        </form>
+        
+        <a class="outline-btn" href="{% url 'resend_otp' user_id %}">
+            Resend OTP
+        </a>
+    </div>
+</div>
+{% endblock %}

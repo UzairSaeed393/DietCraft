@@ -1,6 +1,6 @@
-.container{
+body{
     background: url('/static/images/Login_bg.png') center/cover no-repeat;
-    padding: 40px 0;
+    /* padding: 40px 0; */
 }
 .auth-container {
     display: flex;
@@ -21,6 +21,7 @@
 .auth-logo {
     width: 70px;
     margin-bottom: 15px;
+    border-radius: 50px;
 }
 
 .auth-box h2 {

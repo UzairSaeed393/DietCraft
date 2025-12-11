@@ -11,17 +11,9 @@
 {% block content %}
 <div class="auth-container">
 
-    {% if messages %}
-    <div class="alert-container">
-        {% for message in messages %}
-            <p class="alert alert-warning">{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
-
     <div class="auth-box">
+        
         <img src="{% static 'images/DietCraft Logo.png' %}" class="auth-logo">
-
         <h2>Create an Account</h2>
         <p>Sign up to start your diet & fitness journey</p>
 
@@ -32,16 +24,19 @@
             {{ form.email }}
 
             <div class="password-wrapper">
-                {{ form.password }}
+                <input type="password" name="password" class="auth-input"
+                    placeholder="Password" id="id_password">
                 <i class="bi bi-eye-slash toggle-password"
-                   onclick="togglePassword('id_password', this)"></i>
+                onclick="togglePassword('id_password', this)"></i>
             </div>
 
             <div class="password-wrapper">
-                {{ form.confirm_password }}
+                <input type="password" name="confirm_password" class="auth-input"
+                    placeholder="Confirm Password" id="id_confirm_password">
                 <i class="bi bi-eye-slash toggle-password"
-                   onclick="togglePassword('id_confirm_password', this)"></i>
+                onclick="togglePassword('id_confirm_password', this)"></i>
             </div>
+
 
             <button type="submit" class="auth-btn">Sign Up</button>
         </form>

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #F9F8F7;
+    background-color: #DDF5f4;
     padding: 60px 40px;
     border-radius: 16px;
     margin-top: 30px;
@@ -156,7 +156,7 @@
 /* Each Step Card */
 .workstep {
     width: 18%;
-    background-color: #f9f7f8;
+    background-color: #DDF5f4;
     padding: 15px;
     border-radius: 16px;
     text-align: center;
@@ -221,7 +221,7 @@
 /* SUCCESS STORIES */
 .sucessstorysection {
     padding: 70px 20px;
-    background-color: #F9F8F7;
+    background-color: #DDF5f4;
     margin-top: 50px;
     border-radius: 16px;
 }
