@@ -24,7 +24,11 @@ def signup_view(request):
             return redirect("signup")
                 
         if len(password) < 5:
-            messages.error(request, "Password must be at least 5 characters long.")
+            messages.error(request, "Password must contain at least one number & 5 characters long.")
+            return redirect("signup")
+        
+        if not any(char.isdigit() for char in password):
+            messages.error(request, "Password must contain at least one number & 5 characters long.")
             return redirect("signup")
         
         if User.objects.filter(username=user_name).exists():
@@ -50,7 +54,7 @@ def signup_view(request):
         # Send OTP email
         send_mail(
             subject="Your DietCraft Verification Code",
-            message=f"Your OTP is {otp_obj.otp_code}",
+            message=f"Your OTP is {otp_obj.otp_code}.If you did not ask for otp ignore it",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[email],
         )
@@ -138,3 +142,73 @@ def logout_view(request):
     # messages.success(request, "Good bye {{user.username}}")
 
     return redirect("/")
+def forgot_password_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(request, "Email not registered.")
+            return redirect("forgot_password")
+
+        otp_obj, created = UserOTP.objects.get_or_create(user=user)
+        otp_obj.generate_otp()
+
+        send_mail(
+            subject="DietCraft Password Reset OTP",
+            message=f"Your password reset OTP is {otp_obj.otp_code}.If you did not ask for otp ignore it",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+        )
+
+        messages.success(request, "OTP sent to your email.")
+        return redirect("forgot_verify", user_id=user.id)
+
+    return render(request, "auth/forgot_password.html")
+def forgot_verify_view(request, user_id):
+    user = User.objects.get(id=user_id)
+    otp_obj = UserOTP.objects.get(user=user)
+
+    if request.method == "POST":
+        entered_otp = request.POST.get("otp")
+
+        if otp_obj.is_expired():
+            messages.error(request, "OTP expired.")
+            return redirect("forgot_password")
+
+        if entered_otp == otp_obj.otp_code:
+            return redirect("reset_password", user_id=user.id)
+
+        messages.error(request, "Invalid OTP.")
+
+    return render(request, "auth/verify.html", {"user_id": user_id})
+
+def reset_password_view(request, user_id):
+    user = User.objects.get(id=user_id)
+
+    if request.method == "POST":
+        password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
+
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return redirect("reset_password", user_id=user.id)
+
+        if len(password) < 5:
+            messages.error(request, "Password must be at least 5 characters.")
+            return redirect("reset_password", user_id=user.id)
+        if not any(char.isdigit() for char in password):
+            messages.error(request, "Password must contain at least one number & 5 characters long.")
+            return redirect("signup")
+        # IMPORTANT: This hashes the password
+        user.set_password(password)
+        user.save()
+
+        # Cleanup OTP
+        UserOTP.objects.filter(user=user).delete()
+
+        messages.success(request, "Password updated successfully. You can now log in.")
+        return redirect("login")
+
+    return render(request, "auth/new_password.html")

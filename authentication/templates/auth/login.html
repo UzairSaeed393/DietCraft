@@ -27,6 +27,9 @@
                 <i class="bi bi-eye-slash toggle-password"
                    onclick="togglePassword('id_password', this)"></i>
             </div>
+            <p class="auth-footer d-flex justify-content-end">
+                <a href="{% url 'forgot_password' %}">Forgot Password?</a>
+            </p>
 
             <button type="submit" class="auth-btn">Login</button>
         </form>
