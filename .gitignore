@@ -16,6 +16,7 @@ ENV/
 staticfiles/
 media/
 *.log
+*settings.py
 
 # IDE
 .vscode/

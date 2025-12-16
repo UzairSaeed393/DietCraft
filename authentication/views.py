@@ -22,7 +22,11 @@ def signup_view(request):
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return redirect("signup")
-
+                
+        if len(password) < 5:
+            messages.error(request, "Password must be at least 5 characters long.")
+            return redirect("signup")
+        
         if User.objects.filter(username=user_name).exists():
             messages.error(request, "Username already exists.")
             return redirect("signup")
