@@ -1,11 +1,25 @@
+:root {
+    --primary: #0A653A;
+    --primary-dark: #084f2d;
+    --secondary: rgb(166, 248, 166);
+    --mainbg: #d1e7dd;
+    --bg1: rgb(148, 215, 237);
+    --bg2: #91db91;
+    --btn1: #ff9f1c;
+    --btn2: rgb(30, 60, 85);
+    --lighttext: white;
+    --darkgreentext: #0A653A;
+    --darktext: black;
+    --font1: 'Poppins', sans-serif;
+    --font2: 'Roboto', sans-serif;
+}
 
 body {
-    background-color: #EFF3F2;
     font-family: 'Poppins', sans-serif;
 }
 
 /*  SECTION SPACING  */
-.container > div {
+.container>div {
     margin-top: 60px;
     margin-bottom: 60px;
 }
@@ -18,7 +32,7 @@ body {
 
 .abouthead h2 {
     font-weight: 700;
-    color: #0A653A;
+    color: var(--primary);
 }
 
 /* .abouthead p {
@@ -31,9 +45,11 @@ body {
     margin: 0 auto;
     text-align: center;
     font-size: 16px;
-    color: #555;
+    color: var(--darktext);
+    ;
     line-height: 1.6;
 }
+
 /*  MISSION SECTION  */
 .missionsection {
     max-width: 900px;
@@ -42,20 +58,23 @@ body {
 }
 
 .missionsection h3 {
-    color: #0A653A;
+    color: var(--primary);
+    ;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .missionsection p {
-    color: #444;
+    color: var(--darktext);
+    ;
     font-size: 16px;
 }
 
 /*  VALUES SECTION  */
 .valuessection h3 {
     text-align: center;
-    color: #0A653A;
+    color: var(--primary);
+    ;
     margin-bottom: 30px;
 }
 
@@ -68,7 +87,8 @@ body {
 
 .valuescard {
     width: 250px;
-    background-color: #DDF5E4;
+    background-color: var(--bg2);
+    ;
     border-radius: 12px;
     padding: 20px;
     text-align: center;
@@ -79,7 +99,8 @@ body {
 .cardhead {
     width: 55px;
     height: 55px;
-    background-color: #0A653A;
+    background-color: var(--primary);
+    ;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -88,7 +109,8 @@ body {
 }
 
 .cardhead i {
-    color: white;
+    color: var(--lighttext);
+    ;
     font-size: 24px;
 }
 
@@ -98,32 +120,37 @@ body {
 }
 
 .cardname {
-    color: #0A653A;
+    color: var(--primary);
+    ;
     font-size: 17px;
     font-weight: 600;
 }
 
 .cardcontent {
-    color: #444;
+    color: var(--darktext);
+    ;
     font-size: 14px;
 }
 
 /*  OFFER Section  */
 .offersection h3 {
     text-align: center;
-    color: #0A653A;
+    color: var(--primary);
+    ;
     margin-bottom: 25px;
 }
 
 .offer {
-    background-color: #DDF5E4;
+    background-color: var(--bg1);
+    ;
     padding: 18px 20px;
     border-radius: 10px;
     margin-bottom: 15px;
 }
 
 .offer h4 {
-    color: #0A653A;
+    color: var(--primary);
+    ;
     font-size: 17px;
     font-weight: 600;
 }
@@ -132,42 +159,57 @@ body {
     transform: translateY(-6px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
-/*  COUNTER SECTION  */
+
+/*  COUNTER SECTION */
+
 .countersection {
-    margin-top: 60px;
+    border-radius: 16px;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+    background-color: var(--primary-dark);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .countersection h3 {
-    color: #0A653A;
+    color: var(--darktext);
     font-weight: 600;
     margin-bottom: 25px;
 }
 
 .countercontainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 25px;
     flex-wrap: wrap;
 }
 
 .countercard {
-    background-color: #DDF5E4;
-    width: 200px;
+    background-color: var(--bg2);
+    width: 145px;
+    height: 145px;
     padding: 25px 15px;
-    border-radius: 12px;
-    text-align: center;
+    border-radius: 75px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     transition: 0.25s ease-in-out;
 }
 
 .countercard:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    color: var(--primary);
 }
 
 .count-number {
     font-size: 32px;
     font-weight: 700;
-    color: #0A653A;
+    color: var(--primary);
     margin-bottom: 5px;
 }
 
@@ -180,14 +222,33 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .countercard {
-        width: 100%;
+        max-width: 80px;
+        max-height: 100px;
     }
+
+    .count-number {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--primary);
+        margin-bottom: 3px;
+    }
+
+    .count-text {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--darktext);
+    }
+}
+
+.Nostyle {
+    list-style: none;
 }
 
 /*  TEAM SECTION  */
 .teamsection h3 {
     text-align: center;
-    color: #0A653A;
+    color: var(--primary);
+    ;
     margin-bottom: 25px;
 }
 
@@ -199,7 +260,8 @@ body {
 }
 
 .teamcard {
-    background-color: #DDF5E4;
+    background-color: var(--bg1);
+    ;
     width: 280px;
     border-radius: 12px;
     padding: 20px;
@@ -215,33 +277,38 @@ body {
 .teamcard .imgsection {
     width: 90px;
     height: 90px;
-    background-color: #0A653A;
+    background-color: var(--primary);
+    ;
     border-radius: 50%;
     margin: 0 auto;
 }
 
 .teamcard h3 {
     margin-top: 10px;
-    color: #0A653A;
+    color: var(--primary);
+    ;
     font-size: 18px;
     font-weight: 600;
 }
 
 .teamcard h4 {
     font-size: 14px;
-    color: #666;
+    color: var(--darktext);
+    ;
     margin-bottom: 10px;
 }
 
 .teamcard p {
     font-size: 14px;
-    color: #444;
+    color: var(--darktext);
+    ;
 }
 
 /* TECHNOLOGY SECTION */
 .technonlogysection h3 {
     text-align: center;
-    color: #0A653A;
+    color: var(--primary);
+    ;
     margin-bottom: 25px;
 }
 
@@ -253,7 +320,8 @@ body {
 }
 
 .techcard {
-    background-color: #DDF5E4;
+    background-color: var(--bg2);
+    ;
     width: 250px;
     padding: 20px;
     border-radius: 12px;
@@ -267,18 +335,23 @@ body {
 }
 
 .techcard h4 {
-    color: #0A653A;
+    color: var(--primary);
+    ;
     font-weight: 600;
 }
 
 .techcard p {
-    color: #444;
+    color: var(--darktext);
+    ;
     font-size: 14px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .valuescard, .teamcard, .techcard {
+
+    .valuescard,
+    .teamcard,
+    .techcard {
         width: 100%;
     }
 }

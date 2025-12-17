@@ -1,5 +1,15 @@
-body {
-    background-color: #EFF3F2;
+:root{
+    --primary:#0A653A;
+    --primary-dark: #084f2d;
+    --secondary: rgb(166, 248, 166);
+    --mainbg: #d1e7dd;
+    --bg1: rgb(148, 215, 237);
+    --bg2:#91db91;
+    --btn1: #ff9f1c;
+    --btn2: rgb(30, 60, 85);
+    --lighttext: white;
+    --darkgreentext: #0A653A;
+    --darktext: black;
 }
 
 /* Contact head Section */
@@ -20,7 +30,7 @@ body {
 /* Contact info Section */
 .infosection {
     border-radius: 20px;
-    background-color: #DDF5E4;
+    background-color: var(--bg1);
     margin: 20px;
     width: 80vw;
 }
@@ -28,15 +38,15 @@ body {
 .info-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    color: #0A5C36;
+    color: var(--primary);
 }
 
 /* Icon box style */
 .icon-box {
     width: 45px;
     height: 45px;
-    background-color: #0A5C36;
-    color: white;
+    background-color:  var(--primary);
+    color:  var(--lighttext);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,12 +58,12 @@ body {
 .info-heading {
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    color: #0A5C36;
+    color: var(--primary);
     margin-bottom: 3px;
 }
 
 .info-text {
-    color: #444;
+    color: var(var(--darktext));
     font-family: 'Roboto', sans-serif;
 }
 
@@ -68,7 +78,7 @@ body {
 /* Contact form Section */
 
 .formsection {
-    background-color: #DDF5E4;
+    background-color: var(--bg2);
     border-radius: 20px;
     border: 10px;
     width: 80vw;
@@ -78,14 +88,15 @@ body {
 .form-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    color: #0A5C36;
+    color: var(--darktext);
+    text-align: center;
 }
 
 /* Input Styling */
 .formsection input,
 .formsection textarea {
-    background-color: white;
-    border: 1px solid #dcdcdc;
+    background-color:  var(--lighttext);
+    border: 1px solid  var(--bg2);
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
@@ -94,8 +105,8 @@ body {
 
 /* Submit Button */
 .submit-btn {
-    background-color: #FF8A3D;
-    color: white;
+    background-color:  var(--btn1);
+    color:  var(--lighttext);
     font-weight: 500;
     padding: 12px;
     border-radius: 30px;

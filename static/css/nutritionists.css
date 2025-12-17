@@ -1,9 +1,31 @@
+:root{
+    --primary:#0A653A;
+    --primary-dark: #084f2d;
+    --secondary: rgb(166, 248, 166);
+    --mainbg: #d1e7dd;
+    --bg1: rgb(148, 215, 237);
+    --bg2:#91db91;
+    --btn1: #ff9f1c;
+    --btn2: rgb(30, 60, 85);
+    --lighttext: white;
+    --darkgreentext: #0A653A;
+    --darktext: black;
+}
+.alert{
+    background-color: var(--bg2);
+}
+.nutritionistspagecontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 /* MAIN CARD */
 .nutri-card {
-    background: #F6FAF8;
+    background:var(--bg1);
     border-radius: 18px;
     padding: 30px;
-    border: 1px solid #E4ECE8;
+    border: 1px solid var(--bg2);
 }
 
 /* HEADER ROW */
@@ -19,7 +41,7 @@
     height: 70px;
     border-radius: 50%;
     overflow: hidden;
-    background: #0A653A;
+    background: var(--btn1);
     flex-shrink: 0;
 }
 
@@ -33,7 +55,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #0A653A;
+    background: var(--primary);
 }
 
 /* NAME + BADGE */
@@ -46,12 +68,12 @@
     font-size: 20px;
     font-weight: 600;
     margin: 0;
-    color: #0A2E1A;
+    color: var(--darktext);
 }
 
 .nutri-badge {
     display: inline-block;
-    background: #0A653A;
+    background:  var(--primary);
     color: white;
     padding: 4px 12px;
     font-size: 13px;
@@ -63,7 +85,7 @@
 .nutri-description {
     margin-top: 18px;
     margin-bottom: 20px;
-    color: #4a5568;
+    color: var(--bg1);
     font-size: 15px;
     line-height: 1.6;
 }
@@ -72,17 +94,17 @@
 .nutri-detail {
     margin-bottom: 12px;
     font-size: 15px;
-    color: #1A1A1A;
+    color:  var(--darktext);
 }
 
 .nutri-detail i {
     margin-right: 8px;
-    color: #0A653A;
+    color:  var(--primary);
     font-size: 18px;
 }
 
 .subtext {
-    color: #6B6B6B;
+    color:  var(--darktext);
     font-size: 14px;
 }
 
@@ -95,8 +117,8 @@
 
 .degree-tag {
     padding: 5px 14px;
-    background: #0A653A;
-    color: white;
+    background:  var(--primary);
+    color:  var(--darktext);
     border-radius: 20px;
     font-size: 13px;
 }

@@ -1,24 +1,34 @@
 :root{
     --primary:#0A653A;
     --primary-dark: #084f2d;
-    --secondary: lightgreen;
-    --bg1:lightblue;
-    --bg2:#DDF5f4;
+    --secondary: rgb(166, 248, 166);
+    --mainbg: #d1e7dd;
+    --bg1: rgb(148, 215, 237);
+    --bg2:#91db91;
     --btn1: #ff9f1c;
-    --btn2: rgb(11, 42, 67);
-    --lighttext: whitesmoke;
+    --btn2: rgb(30, 60, 85);
+    --lighttext: white;
     --darkgreentext: #0A653A;
     --darktext: black;
+    --font1: 'Poppins', sans-serif;
+    --font2: 'roboto', sans-serif;
 }
-/* HERO SECTION */
+body{
+    /* background-color: var(--primary-dark); */
+    background-color: var(--mainbg);
+    padding: 0px;
+}
+/*HERO SECTION */
+
 .herosection {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #DDF5f4;
+    background-color: var(--bg2);
     padding: 60px 40px;
     border-radius: 16px;
-    margin-top: 30px;
+    margin: 20px;
+    width: 100%;
     gap: 25px;
 }
 
@@ -35,7 +45,7 @@
 .herotext {
     margin: 18px 0 32px 0;
     font-size: 17px;
-    color: #333;
+    color: var(--darktext); 
 }
 
 .herobutton {
@@ -53,19 +63,19 @@
 }
 
 .btn1 {
-    background-color: #0A653A;
-    color: white;
+    background-color: var(--btn2);
+    color: var(--lighttext);
 }
 .btn1:hover {
-    background-color: #084f2d;
+    background-color: var( rgb(5, 27, 45));
 }
 
 .btn2 {
-    background-color: #ff9f1c;
-    color: white;
+    background-color: var(--btn1);
+    color: var(--lighttext);
 }
 .btn2:hover {
-    background-color: #e68f18;
+    background-color: #e68f18; 
 }
 
 .imagesection img {
@@ -74,48 +84,46 @@
     border-radius: 18px;
     object-fit: cover;
 }
-/* FEATURES SECTION */
+
+/* FEATURES SECTION*/
 
 .featuresection {
-    padding: 70px 0;
-    background-color: #EFF3F2;
+    padding: 30px ;
+    background-color: var(--bg1);
     text-align: center;
-}
+    border-radius: 16px;
+    margin: 20px;
+    width: 100%;}
 
 .featuretextsection h2 {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: #0A653A;
+    color: var(--primary);
 }
 
 .featuretextsection p {
-    margin-bottom: 45px;
-    color: #555;
+    margin-bottom: 20px;
+    color: var(--darktext);
 }
 
 .featurecardsection {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 20px;
     perspective: 1200px;
 }
 
 .featurecard {
     width: 21%;
-    /* min-width: 260px; */
+    min-width: 150px;
     height: 420px;
     cursor: pointer;
     perspective: 1200px;
 }
 
-/* Hover lift (original behavior preserved)
-.featurecard:hover {
-    transform: translateY(-8px);
-} */
-
-/* FLIP  */
+/* FLIP */
 
 .featurecard-inner {
     position: relative;
@@ -125,7 +133,6 @@
     transition: transform 0.85s cubic-bezier(.4,.2,.2,1);
 }
 
-/* Desktop hover → 1s delay */
 @media (hover: hover) {
     .featurecard:hover .featurecard-inner {
         transition-delay: 1s;
@@ -138,13 +145,12 @@
     }
 }
 
-/* Mobile tap → instant */
 .featurecard.flip .featurecard-inner {
     transition-delay: 0s;
     transform: rotateY(180deg);
 }
 
-/*FRONT & BACK*/
+/* FRONT & BACK */
 
 .featurecard-front,
 .featurecard-back {
@@ -160,73 +166,79 @@
     text-align: center;
 }
 
-/* FRONT  */
-.featurecard-front {
-    background-color: #0A653A;
-    color: #eafff1;
-}
+/* FRONT */
 
+.featurecard-front {
+    background-color: var(--primary);
+    color: var(--lighttext);
+}
 
 .featurecard-front img {
     width: 100%;
     height: 170px;
     border-radius: 12px;
     object-fit: cover;
+    background-color: goldenrod;
 }
-
 
 .cardicon {
     font-size: 36px;
     margin-top: 12px;
-    color: whitesmoke;
+    color: var(--lighttext);
 }
 
 .featurecard-front h3 {
     margin-top: 18px;
     font-size: 20px;
-    color: #eafff1;
+    color: var(--lighttext);
 }
 
 .featurecard-front p {
     font-size: 14px;
-    color: #d1fae5;
+    color: var(--lighttext);
 }
 
-/*USER HINT */
+/* USER HINT */
+
 .featurecard-front::after {
     content: "Tap to view details";
     position: absolute;
     bottom: 14px;
     font-size: 12px;
-    color: #c7f9e3;
+    color: var(--lighttext);
     opacity: 0.85;
 }
 
-/* Hide hint on desktop hover devices */
 @media (hover: hover) {
     .featurecard-front::after {
         content: "Hover to view details";
     }
 }
 
-/*  BACK SIDE */
+/* BACK */
+
 .featurecard-back {
-    background: linear-gradient(145deg, #064d2b, #043b22);
-    color: #eafff1;
+    background: linear-gradient(
+        145deg,
+        var(--primary-dark),
+        var(--primary)
+    );
+    color: var(--lighttext);
     transform: rotateY(180deg);
     justify-content: center;
+    padding: 5px;
 }
 
 .featurecard-back h3 {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 14px;
-    color: #b7f5d8;
+    color: var(--lighttext);
 }
 
 .featurecard-back p {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
-    color: #eafff1;
+    color: var(--lighttext);
 }
 
 /* RESPONSIVE */
@@ -234,22 +246,26 @@
 @media (max-width: 1024px) {
     .featurecard {
         width: 45%;
+        min-width: 250px;
     }
 }
 
 @media (max-width: 600px) {
     .featurecard {
         width: 100%;
+        min-width: 250px;
+
     }
 }
 
+/* HOW IT WORKS */
 
-/*HOW IT WORKS */
 .worksection {
-    background-color: #DDF5E4;
-    padding: 80px 20px;
+    background-color: var(--bg2);
+    padding: 60px 20px;
     border-radius: 16px;
-    margin-top: 30px;
+    margin: 20px;
+    width: 100%;
 }
 
 .worktextsection {
@@ -260,11 +276,11 @@
 .worktextsection h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #0A653A;
+    color: var(--primary);
 }
 
 .worktextsection p {
-    color: #444;
+    color: var(--darktext);
     font-size: 16px;
 }
 
@@ -280,12 +296,13 @@
 /* Each Step Card */
 .workstep {
     width: 18%;
-    background-color: #DDF5f4;
+    background-color: var(--primary);
     padding: 15px;
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     transition: 0.3s ease;
+    height: 230px;
 }
 
 .workstep:hover {
@@ -297,8 +314,8 @@
 .workicon {
     width: 40px;
     height: 40px;
-    background-color: #0A653A;
-    color: white;
+    background-color: var(--lighttext);
+    color: var(--lighttext);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -312,21 +329,21 @@
     font-size: 18px;
     margin-bottom: 10px;
     font-weight: 500;
-    color: #0A653A;
+    color: var(--lighttext);
 }
 
 .workstep p {
     font-size: 15px;
-    color: #444;
+    color: var(--lighttext);
 }
 
 /* Arrow Icons Between Steps */
 .arrow i {
     font-size: 30px;
-    color: #0A653A;
+    color: var(--primary);
 }
 
-/* RESPONSIVE*/
+/* RESPONSIVE */
 @media (max-width: 992px) {
     .workwrapper {
         flex-direction: column;
@@ -342,39 +359,34 @@
     }
 }
 
-/* SUCCESS STORIES */
+/* SUCCESS STORIES*/
+
 .sucessstorysection {
     padding: 70px 20px;
-    background-color: #DDF5f4;
-    margin-top: 50px;
+    background-color: var(--bg1);
     border-radius: 16px;
+    margin: 20px;
+    width: 100%;
 }
-.featuretextsection{
+
+.featuretextsection,
+.worktextsection,
+.successtextsection {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.worktextsection{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.successtextsection{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+
 .successtextsection h2 {
     font-size: 32px;
     margin-bottom: 10px;
+    color: var(--darkgreentext);
 }
 
 .successtextsection p {
     margin-bottom: 40px;
-    color: #555;
+    color: var(--darktext);
 }
 
 .successcardscetion {
@@ -385,7 +397,7 @@
 
 .successcard {
     width: 32%;
-    background-color: #DDF5E4;
+    background-color: var(--primary);
     padding: 30px;
     border-radius: 16px;
     text-align: center;
@@ -413,14 +425,15 @@
 
 .successcard h5 {
     font-size: 15px;
-    color: #0A653A;
+    color: var(--lighttext);
     margin-bottom: 12px;
 }
 
 .successcard p {
-    color: #444;
+    color: var(--lighttext);
     font-size: 15px;
 }
+
 @media (max-width: 900px) {
     .herosection {
         flex-direction: column;
@@ -450,43 +463,56 @@
         width: 100%;
     }
 }
-/*  COUNTER SECTION  */
+
+/*  COUNTER SECTION */
+
 .countersection {
+    border-radius: 16px;
     margin: 20px;
+    padding: 20px;
+    width: 100%;
+    background-color: var(--primary-dark);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .countersection h3 {
-    color: #0A653A;
+    color: var(--darktext);
     font-weight: 600;
     margin-bottom: 25px;
 }
 
 .countercontainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 25px;
     flex-wrap: wrap;
 }
 
 .countercard {
-    background-color: #DDF5E4;
-    width: 200px;
+    background-color: var(--bg2);
+    width: 145px;
+    height: 145px;
     padding: 25px 15px;
-    border-radius: 12px;
-    text-align: center;
-    transition: 0.25s ease-in-out;
+    border-radius: 75px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;    transition: 0.25s ease-in-out;
 }
 
 .countercard:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    color: #0A653A;
+    color: var(--primary);
 }
 
 .count-number {
     font-size: 32px;
     font-weight: 700;
-    color: #0A653A;
+    color: var(--primary);
     margin-bottom: 5px;
 }
 
@@ -498,10 +524,26 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    
     .countercard {
-        width: 100%;
+        max-width: 80px;
+        max-height: 100px;
+    }
+
+    .count-number {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--primary);
+        margin-bottom: 3px;
+    }
+
+    .count-text {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--darktext);
     }
 }
+
 .Nostyle{
     list-style: none;
 }
