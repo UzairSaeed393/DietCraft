@@ -1,4 +1,15 @@
-
+:root{
+    --primary:#0A653A;
+    --primary-dark: #084f2d;
+    --secondary: lightgreen;
+    --bg1:lightblue;
+    --bg2:#DDF5f4;
+    --btn1: #ff9f1c;
+    --btn2: rgb(11, 42, 67);
+    --lighttext: whitesmoke;
+    --darkgreentext: #0A653A;
+    --darktext: black;
+}
 /* HERO SECTION */
 .herosection {
     display: flex;
@@ -64,6 +75,7 @@
     object-fit: cover;
 }
 /* FEATURES SECTION */
+
 .featuresection {
     padding: 70px 0;
     background-color: #EFF3F2;
@@ -74,6 +86,7 @@
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
+    color: #0A653A;
 }
 
 .featuretextsection p {
@@ -86,40 +99,151 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 28px;
+    perspective: 1200px;
 }
 
 .featurecard {
-    width: 23%;
-    background-color: #DDF5E4;
-    padding: 22px;
-    border-radius: 16px;
-    transition: 0.3s ease;
+    width: 21%;
+    /* min-width: 260px; */
+    height: 420px;
     cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.06);
+    perspective: 1200px;
 }
 
+/* Hover lift (original behavior preserved)
 .featurecard:hover {
     transform: translateY(-8px);
-    box-shadow: 0px 8px 18px rgba(0,0,0,0.1);
+} */
+
+/* FLIP  */
+
+.featurecard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(.4,.2,.2,1);
 }
 
-.featurecard img {
+/* Desktop hover → 1s delay */
+@media (hover: hover) {
+    .featurecard:hover .featurecard-inner {
+        transition-delay: 1s;
+        transform: rotateY(180deg);
+    }
+
+    .featurecard:not(:hover) .featurecard-inner {
+        transition-delay: 0s;
+        transform: rotateY(0deg);
+    }
+}
+
+/* Mobile tap → instant */
+.featurecard.flip .featurecard-inner {
+    transition-delay: 0s;
+    transform: rotateY(180deg);
+}
+
+/*FRONT & BACK*/
+
+.featurecard-front,
+.featurecard-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* FRONT  */
+.featurecard-front {
+    background-color: #0A653A;
+    color: #eafff1;
+}
+
+
+.featurecard-front img {
     width: 100%;
     height: 170px;
     border-radius: 12px;
     object-fit: cover;
 }
 
-.featurecard h3 {
-    margin-top: 18px;
-    font-size: 20px;
-}
 
 .cardicon {
     font-size: 36px;
     margin-top: 12px;
-    color: #0A653A;
+    color: whitesmoke;
 }
+
+.featurecard-front h3 {
+    margin-top: 18px;
+    font-size: 20px;
+    color: #eafff1;
+}
+
+.featurecard-front p {
+    font-size: 14px;
+    color: #d1fae5;
+}
+
+/*USER HINT */
+.featurecard-front::after {
+    content: "Tap to view details";
+    position: absolute;
+    bottom: 14px;
+    font-size: 12px;
+    color: #c7f9e3;
+    opacity: 0.85;
+}
+
+/* Hide hint on desktop hover devices */
+@media (hover: hover) {
+    .featurecard-front::after {
+        content: "Hover to view details";
+    }
+}
+
+/*  BACK SIDE */
+.featurecard-back {
+    background: linear-gradient(145deg, #064d2b, #043b22);
+    color: #eafff1;
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.featurecard-back h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #b7f5d8;
+}
+
+.featurecard-back p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #eafff1;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+    .featurecard {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .featurecard {
+        width: 100%;
+    }
+}
+
+
 /*HOW IT WORKS */
 .worksection {
     background-color: #DDF5E4;

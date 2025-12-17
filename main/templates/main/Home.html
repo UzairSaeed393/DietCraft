@@ -17,11 +17,11 @@
             <div class="heroheading">
                 <h1>Transform Your</h1>
                 <h1 style="color:  #0A5C36;">Health Journey</h1>
-            
+
             </div>
 
             <p class="herotext">
-                Get personalized meal plans and exercise routines powered by strong meal and 
+                Get personalized meal plans and exercise routines powered by strong meal and
                 exercise engines. Track your progress and achieve your goals faster than ever before.
             </p>
 
@@ -41,41 +41,108 @@
     <div class="featuresection">
         <div class="featuretextsection">
             <h2>Everything You Need to Succeed</h2>
-            <p>Our platform combines intelligent meal planning, personalized workouts, and progress tracking.</p>
+            <p>
+                Our platform combines intelligent meal planning,
+                personalized workouts, and progress tracking.
+            </p>
         </div>
 
         <div class="featurecardsection">
-            
+
+            <!-- MEAL PLAN -->
             <div class="featurecard">
-                <img src="{% static 'images/Meal Card.png' %}" class="cardimage">
-                <div class="cardicon"><i class="bi bi-egg-fried"></i></div>
-                <h3>Meal Plan</h3>
-                <p>Auto-generated weekly plans tailored to your nutritional needs.</p>
+                <div class="featurecard-inner">
+
+                    <!-- FRONT -->
+                    <div class="featurecard-front">
+                        <img src="{% static 'images/Meal Card.png' %}" class="cardimage">
+                        <div class="cardicon"><i class="bi bi-egg-fried"></i></div>
+                        <h3>Meal Plan</h3>
+                        <p>Auto-generated weekly plans tailored to your nutritional needs.</p>
+                    </div>
+
+                    <!-- BACK -->
+                    <div class="featurecard-back">
+                        <h3>Personalized Meal Planning</h3>
+                        <p>
+                            Get smart calorie-based meal plans designed
+                            according to your goals, preferences, and
+                            nutritional requirements.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
+            <!-- EXERCISE PLAN -->
             <div class="featurecard">
-                <img src="{% static 'images/Fitness Card.png' %}" class="cardimage">
-                <div class="cardicon"><i class="bi bi-bicycle"></i></div>
-                <h3>Exercise Plan</h3>
-                <p>Daily routines matched to your fitness level and goals.</p>
+                <div class="featurecard-inner">
+
+                    <div class="featurecard-front">
+                        <img src="{% static 'images/Fitness Card.png' %}" class="cardimage">
+                        <div class="cardicon"><i class="bi bi-bicycle"></i></div>
+                        <h3>Exercise Plan</h3>
+                        <p>Daily routines matched to your fitness level and goals.</p>
+                    </div>
+
+                    <div class="featurecard-back">
+                        <h3>Smart Workout Engine</h3>
+                        <p>
+                            Personalized workouts that adapt to your
+                            strength, stamina, and progress over time.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
+            <!-- DASHBOARD -->
             <div class="featurecard">
-                <img src="{% static 'images/Dashboard Card.png' %}" class="cardimage">
-                <div class="cardicon"><i class="bi bi-bar-chart-line"></i></div>
-                <h3>Dashboard</h3>
-                <p>Charts and analytics to monitor your health journey.</p>
+                <div class="featurecard-inner">
+
+                    <div class="featurecard-front">
+                        <img src="{% static 'images/Dashboard Card.png' %}" class="cardimage">
+                        <div class="cardicon"><i class="bi bi-bar-chart-line"></i></div>
+                        <h3>Dashboard</h3>
+                        <p>Charts and analytics to monitor your health journey.</p>
+                    </div>
+
+                    <div class="featurecard-back">
+                        <h3>Progress Dashboard</h3>
+                        <p>
+                            Track calories, workouts, weight changes,
+                            and performance through interactive analytics.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
+            <!-- NUTRITIONIST -->
             <div class="featurecard">
-                <img src="{% static 'images/Nutritionists Card.png' %}" class="cardimage">
-                <div class="cardicon"><i class="bi bi-person-heart"></i></div>
-                <h3>Nutritionist Info</h3>
-                <p>Learn from certified experts for better guidance.</p>
+                <div class="featurecard-inner">
+
+                    <div class="featurecard-front">
+                        <img src="{% static 'images/Nutritionists Card.png' %}" class="cardimage">
+                        <div class="cardicon"><i class="bi bi-person-heart"></i></div>
+                        <h3>Nutritionist Info</h3>
+                        <p>Learn from certified experts for better guidance.</p>
+                    </div>
+
+                    <div class="featurecard-back">
+                        <h3>Expert Guidance</h3>
+                        <p>
+                            Learn nutrition science, healthy habits,
+                            and diet strategies curated by professionals.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
         </div>
     </div>
+
 
 
     <!-- HOW IT WORKS -->
@@ -132,7 +199,7 @@
 
     <!-- STATIC COUNTERS -->
     <div class="countersection">
-        <h3 class="text-center" >DietCraft At a Glance</h3>
+        <h3 class="text-center">DietCraft At a Glance</h3>
 
         <div class="countercontainer">
 
@@ -194,4 +261,7 @@
     </div>
 
 </div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
