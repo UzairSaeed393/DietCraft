@@ -14,105 +14,141 @@
     <h2>Expert Nutritionists</h2>
     <p>Connect with certified nutrition professionals for expert guidance and support</p>
 
-    <!-- NOTE SECTION -->
-    <div class="alert alert-success mt-3">
-        <strong>Note:</strong> The following nutritionists are available for informational purposes.
-        Contact them directly for consultations and appointments.
+    <!-- NOTE -->
+    <div class="alert mt-3">
+        <strong>
+            <i class="bi bi-info-circle-fill info-icon"></i>
+            Note:
+        </strong>
+        Nutritionists are listed for informational purposes only.
     </div>
 
-    <!-- SEARCH & FILTERS -->
+    <!-- SEARCH -->
     <div class="search-filter-box mt-4">
-
         <form method="get" class="d-flex gap-3">
+            <input type="text" name="search" value="{{ search }}" placeholder="Search by nutritionist name..."
+                class="form-control">
 
-            <!-- SEARCH -->
-            <input type="text" name="search" value="{{ search }}" 
-                   placeholder="Search by name, specialty, or degree..."
-                   class="form-control">
+            <input type="text" name="city" value="{{ city }}" placeholder="Enter city (e.g. Bahawalpur)"
+                class="form-control">
 
-            <!-- CATEGORY FILTER -->
-            <select name="category" class="form-select">
-                <option value="">All Categories</option>
-                <option value="sports" {% if category == 'sports' %}selected{% endif %}>Sports Nutrition</option>
-                <option value="weight" {% if category == 'weight' %}selected{% endif %}>Weight Management</option>
-                <option value="pediatric" {% if category == 'pediatric' %}selected{% endif %}>Pediatric Nutrition</option>
-                <option value="clinical" {% if category == 'clinical' %}selected{% endif %}>Clinical Nutrition</option>
-                <option value="general" {% if category == 'general' %}selected{% endif %}>General Nutrition</option>
-            </select>
-
-            <button class="btn btn-success px-4">Search</button>
+            <button class="btn btn-success px-4">
+                <i class="bi bi-search"></i> Search
+            </button>
         </form>
-
     </div>
 
-    <!-- CARDS SECTION -->
-    <div class="row mt-4">
+    <!-- LIST -->
+    <div class="nutritionist-list mt-4">
+        <div class="row justify-content-center">
 
-        {% for n in nutritionists %}
-<div class="col-md-6 mb-4">
-    <div class="nutri-card">
+            {% for n in nutritionists %}
+            <div class="col-12 mb-4 d-flex justify-content-center">
 
-        <div class="nutri-header">
+                <div class="nutri-card">
 
-            <!-- IMAGE -->
-            <div class="nutri-header-img">
-                {% if n.image %}
-                    <img src="{{ n.image.url }}" alt="Nutritionist Photo">
-                {% else %}
-                    <div class="nutri-header-placeholder"></div>
-                {% endif %}
+                    <!-- HEADER -->
+                    <div class="nutri-header">
+                        <div class="nutri-header-img">
+                            {% if n.image %}
+                            <img src="{{ n.image.url }}" alt="Nutritionist Photo">
+                            {% else %}
+                            <div class="nutri-header-placeholder"></div>
+                            {% endif %}
+                        </div>
+
+                        <div class="nutri-header-info">
+                            <h3 class="nutri-name">{{ n.name }}</h3>
+                            <span class="nutri-badge">{{ n.specialty }}</span>
+
+                            <small class="text-muted">
+                                <i class="bi bi-geo-alt-fill info-icon"></i>
+                                {{ n.city }}
+                                &nbsp;·&nbsp;
+                                <i class="bi bi-briefcase-fill info-icon"></i>
+                                {{ n.experience_years }} yrs experience
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- QUICK INFO -->
+                    <div class="nutri-quick mt-3">
+                        <strong>
+                            <i class="bi bi-hospital-fill info-icon"></i>
+                            {{ n.clinic_name }}
+                        </strong><br>
+
+                        <span class="subtext">
+                            <i class="bi bi-geo-fill info-icon"></i>
+                            {{ n.clinic_address }}
+                        </span>
+                    </div>
+
+                    <!-- TOGGLE -->
+                    <button class="btn btn-outline-success btn-sm mt-3" onclick="toggleDetails(this)">
+                        <i class="bi bi-chevron-down toggle-icon"></i> View Details
+                    </button>
+
+
+                    <!-- EXPAND -->
+                    <div class="nutri-expand">
+
+                        <div class="expand-row">
+                            <strong>
+                                <i class="bi bi-mortarboard-fill info-icon"></i>
+                                Degrees:
+                            </strong>
+                            <span>{{ n.degrees }}</span>
+                        </div>
+
+                        <div class="expand-row">
+                            <strong>
+                                <i class="bi bi-tags-fill info-icon"></i>
+                                Category:
+                            </strong>
+                            <span>{{ n.get_category_display }}</span>
+                        </div>
+
+                        <div class="expand-row">
+                            <strong>
+                                <i class="bi bi-clock-fill info-icon"></i>
+                                Available Timing:
+                            </strong>
+                            <span>{{ n.timing }}</span>
+                        </div>
+
+                        <div class="expand-row">
+                            <strong>
+                                <i class="bi bi-star-fill info-icon"></i>
+                                Rating:
+                            </strong>
+                            <span>⭐ {{ n.rating }}/5</span>
+                        </div>
+
+                        <p class="expand-note mt-3">
+                            <i class="bi bi-shield-check info-icon"></i>
+                            This information is provided for awareness purposes only.
+                        </p>
+
+                    </div>
+
+                </div>
             </div>
 
-            <!-- NAME + BADGE -->
-            <div class="nutri-header-info">
-                <h3 class="nutri-name">{{ n.name }}</h3>
-                <span class="nutri-badge">{{ n.specialty }}</span>
-            </div>
-
-        </div>
-
-        <!-- DESCRIPTION -->
-        <p class="nutri-description">
-            {{ n.description }}
-        </p>
-
-        <!-- DETAILS -->
-        <div class="nutri-detail">
-            <i class="bi bi-geo-alt-fill"></i>
-            <strong>{{ n.clinic_name }}</strong><br>
-            <span class="subtext">{{ n.clinic_address }}</span>
-        </div>
-
-        <div class="nutri-detail">
-            <i class="bi bi-telephone-fill"></i> {{ n.phone }}
-        </div>
-
-        <div class="nutri-detail">
-            <i class="bi bi-envelope-fill"></i> {{ n.email }}
-        </div>
-
-        <div class="nutri-detail">
-            <i class="bi bi-calendar-check"></i>
-            <strong>Experience:</strong> {{ n.experience_years }} years
-        </div>
-
-        <!-- DEGREES -->
-        <div class="degree-container">
-            {% for d in n.degrees_list %}
-                <span class="degree-tag">{{ d }}</span>
+            {% empty %}
+            <p class="text-center">
+                <i class="bi bi-exclamation-circle"></i>
+                No nutritionists match your search.
+            </p>
             {% endfor %}
+
         </div>
-
-    </div>
-</div>
-
-
-        {% empty %}
-        <p>No nutritionists match your search.</p>
-        {% endfor %}
-
     </div>
 
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/nutritionists.js' %}"></script>
 {% endblock %}

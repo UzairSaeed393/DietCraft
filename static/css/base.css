@@ -388,25 +388,3 @@ h6 {
     transform: scale(1.15);
     color: var(--btn1);
 }
-/*  
-footer {
-    background-color: var(--primary);
-    color: var(--lighttext);
-    padding: 40px 0;
-    margin-top: 40px;
-}
-
-.footercontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 25px;
-}
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    /* flex-direction: column; 
-}*/

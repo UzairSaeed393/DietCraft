@@ -1,135 +1,259 @@
 :root{
     --primary:#0A653A;
-    --primary-dark: #084f2d;
-    --secondary: rgb(166, 248, 166);
-    --mainbg: #d1e7dd;
-    --bg1: rgb(148, 215, 237);
+    --primary-dark:#084f2d;
+    --bg1:rgb(148,215,237);
     --bg2:#91db91;
-    --btn1: #ff9f1c;
-    --btn2: rgb(30, 60, 85);
-    --lighttext: white;
-    --darkgreentext: #0A653A;
-    --darktext: black;
+    --mainbg:#d1e7dd;
+    --lighttext:white;
+    --darktext:black;
 }
-.alert{
-    background-color: var(--bg2);
+
+
+html, body{
+    overflow-x:hidden;
 }
+
+.row{
+    margin-left:0;
+    margin-right:0;
+}
+
+/*  PAGE */
+
 .nutritionistspagecontainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
 }
-/* MAIN CARD */
-.nutri-card {
+
+.nutritionistspagecontainer > h2,
+.nutritionistspagecontainer > p{
+    text-align:center;
+}
+
+/* ALERT  */
+
+.alert{
+    width:100%;
+    max-width:1100px;
+    background:var(--primary);
+    color:var(--lighttext);
+    border:none;
+    border-radius:12px;
+    text-align:center;
+    padding:14px;
+}
+
+/* SEARCH*/
+
+.search-filter-box{
+    width:100%;
+    max-width:1100px;
+}
+
+.search-filter-box .form-control{
+    border-radius:10px;
+}
+
+/*  GRID  */
+
+.nutritionist-list{
+    width:100%;
+    max-width:1100px;
+}
+
+.nutritionist-list .row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    align-items: start;   
+}
+
+
+
+/*  CARD */
+
+.nutri-card{
     background:var(--bg1);
-    border-radius: 18px;
-    padding: 30px;
-    border: 1px solid var(--bg2);
+    border-radius:18px;
+    padding:28px;
+    border:1px solid var(--bg2);
+    width:100%;
+    transition:transform 0.25s ease;
 }
 
-/* HEADER ROW */
-.nutri-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.nutri-card:hover{
+    transform:translateY(-3px);
 }
 
-/* CIRCLE IMAGE */
-.nutri-header-img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--btn1);
-    flex-shrink: 0;
+/* HEADER  */
+
+.nutri-header{
+    display:flex;
+    gap:20px;
+    align-items:center;
 }
 
-.nutri-header-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.nutri-header-img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    overflow:hidden;
+    background:var(--primary);
+    flex-shrink:0;
 }
 
-.nutri-header-placeholder {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--primary);
+.nutri-header-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-/* NAME + BADGE */
-.nutri-header-info {
-    display: flex;
-    flex-direction: column;
+.nutri-header-placeholder{
+    width:100%;
+    height:100%;
+    background:var(--primary);
 }
 
-.nutri-name {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-    color: var(--darktext);
+.nutri-name{
+    margin:0;
+    font-size:20px;
+    color:var(--darktext);
 }
 
-.nutri-badge {
-    display: inline-block;
-    background:  var(--primary);
-    color: white;
-    padding: 4px 12px;
-    font-size: 13px;
-    border-radius: 20px;
-    margin-top: 6px;
+.nutri-badge{
+    background:var(--primary);
+    color:var(--lighttext);
+    padding:4px 12px;
+    border-radius:20px;
+    font-size:13px;
+    margin-top:6px;
 }
 
-/* DESCRIPTION */
-.nutri-description {
-    margin-top: 18px;
-    margin-bottom: 20px;
-    color: var(--bg1);
-    font-size: 15px;
-    line-height: 1.6;
+.text-muted{
+    color:var(--darktext) !important;
 }
 
-/* DETAILS SECTION */
-.nutri-detail {
-    margin-bottom: 12px;
-    font-size: 15px;
-    color:  var(--darktext);
+/*  ICON BASE  */
+
+.info-icon{
+    display:inline-block;
+    color:var(--primary);
+    margin-right:6px;
+    font-size:14px;
 }
 
-.nutri-detail i {
-    margin-right: 8px;
-    color:  var(--primary);
-    font-size: 18px;
+/* EXPAND  */
+
+.nutri-expand{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(-6px);
+    transition:all 0.35s ease;
+    border-top:1px dashed var(--primary);
 }
 
-.subtext {
-    color:  var(--darktext);
-    font-size: 14px;
+.nutri-expand.show{
+    max-height:500px;
+    opacity:1;
+    transform:translateY(0);
+    padding-top:16px;
+    margin-top:16px;
 }
 
-/* DEGREE TAGS */
-.degree-container {
-    margin-top: 12px;
-    display: flex;
-    gap: 10px;
-}
+/*  ICON ANIMATION  */
 
-.degree-tag {
-    padding: 5px 14px;
-    background:  var(--primary);
-    color:  var(--darktext);
-    border-radius: 20px;
-    font-size: 13px;
-}
-
-/* MOBILE FIX */
-@media(max-width: 768px) {
-    .nutri-card {
-        padding: 20px;
+@keyframes iconStagger{
+    0%{
+        transform:translateY(10px) scale(0.7);
+        opacity:0;
     }
+    70%{
+        transform:translateY(-2px) scale(1.1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+}
 
-    .nutri-header {
-        flex-direction: row;
+/* RESET ALL ICONS */
+.nutri-card .info-icon{
+    opacity:0;
+    transform:translateY(10px) scale(0.7);
+}
+
+/* ANIMATE ALL ICONS WHEN EXPANDED */
+.nutri-card:has(.nutri-expand.show) .info-icon{
+    animation:iconStagger 0.45s ease forwards;
+}
+
+/* STAGGER ORDER */
+
+/* Header icons */
+.nutri-card:has(.nutri-expand.show) .nutri-header .info-icon{
+    animation-delay:0.05s;
+}
+
+/* Quick info icons */
+.nutri-card:has(.nutri-expand.show) .nutri-quick .info-icon{
+    animation-delay:0.15s;
+}
+
+/* Expand rows */
+.nutri-card:has(.nutri-expand.show) .expand-row:nth-child(1) .info-icon{ animation-delay:0.25s; }
+.nutri-card:has(.nutri-expand.show) .expand-row:nth-child(2) .info-icon{ animation-delay:0.35s; }
+.nutri-card:has(.nutri-expand.show) .expand-row:nth-child(3) .info-icon{ animation-delay:0.45s; }
+.nutri-card:has(.nutri-expand.show) .expand-row:nth-child(4) .info-icon{ animation-delay:0.55s; }
+
+/* Note icon */
+.nutri-card:has(.nutri-expand.show) .expand-note .info-icon{
+    animation-delay:0.65s;
+}
+
+/* ================= RATING PULSE ================= */
+
+@keyframes ratingPulse{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.25); }
+    100%{ transform:scale(1); }
+}
+
+.expand-row .bi-star-fill{
+    color:#f4c430;
+}
+
+.nutri-card:has(.nutri-expand.show) .bi-star-fill{
+    animation:ratingPulse 1s ease-in-out infinite;
+}
+
+/* ================= NOTE ================= */
+
+.expand-note{
+    background:var(--mainbg);
+    padding:10px;
+    border-radius:10px;
+    font-size:13px;
+    color:var(--darktext);
+}
+
+/* ================= BUTTON ================= */
+
+.nutri-card button{
+    transition:transform 0.15s ease;
+}
+
+.nutri-card button:hover{
+    transform:translateY(-1px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+    .nutritionist-list .row{
+        grid-template-columns:1fr;
     }
 }

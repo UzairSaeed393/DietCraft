@@ -1,27 +1,27 @@
 from django.shortcuts import render
+from django.db.models import Q
 from .models import Nutritionist
-from django.db import models
 
 
 def nutritionists(request):
-    search = request.GET.get("search", "")
-    category = request.GET.get("category", "")
+    search = request.GET.get("search", "").strip()
+    city = request.GET.get("city", "").strip()
 
-    nutritionists = Nutritionist.objects.all()
+    queryset = Nutritionist.objects.all()
 
-    if search:
-        nutritionists = nutritionists.filter(
-            models.Q(name__icontains=search) |
-            models.Q(specialty__icontains=search) |
-            models.Q(degrees__icontains=search)
+    if search and len(search) >= 2:
+        queryset = queryset.filter(
+            Q(name__icontains=search)
         )
 
-    if category:
-        nutritionists = nutritionists.filter(category=category)
+    if city:
+        queryset = queryset.filter(city__icontains=city)
+
+    queryset = queryset[:10]
 
     context = {
-        "nutritionists": nutritionists,
+        "nutritionists": queryset,
         "search": search,
-        "category": category,
+        "city": city,
     }
     return render(request, "nutritionists/nutritionists.html", context)
