@@ -54,7 +54,7 @@ def signup_view(request):
         # Send OTP email
         send_mail(
             subject="Your DietCraft Verification Code",
-            message=f"Your OTP is {otp_obj.otp_code}.If you did not ask for otp ignore it",
+            message=f"Your OTP For DietCraft is {otp_obj.otp_code}.It will expire in 5 min. If you did not ask for otp ignore it",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[email],
         )
@@ -89,7 +89,7 @@ def resend_otp(request, user_id):
 
     send_mail(
         subject="Your New DietCraft Verification Code",
-        message=f"Your new OTP is {otp_obj.otp_code}. It expires in 5 minutes.",
+        message=f"Your new OTP for DietCraft is {otp_obj.otp_code}. It expires in 5 minutes.",
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user.email],
     )
@@ -157,7 +157,7 @@ def forgot_password_view(request):
 
         send_mail(
             subject="DietCraft Password Reset OTP",
-            message=f"Your password reset OTP is {otp_obj.otp_code}.If you did not ask for otp ignore it",
+            message=f"Your password reset OTP from DietCraft is {otp_obj.otp_code}.OTP code will expire in 5 min .If you did not ask for otp ignore it",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[email],
         )
