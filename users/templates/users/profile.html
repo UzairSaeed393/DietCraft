@@ -1,4 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Profile Page{% endblock %}
+{% block title %}My Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profilecontainer">
+
+    <!-- Header -->
+    <div class="profilehead">
+        <h2>My Profile</h2>
+        <p>Manage your personal information used for meal and exercise planning.</p>
+    </div>
+
+    <div class="profilebody">
+        <div class="formsection">
+
+            <!-- Account Info -->
+            <div class="account-info">
+                <p>
+                    <span class="info-label">Username</span>
+                    <span class="info-value">{{ request.user.username }}</span>
+                </p>
+                <p>
+                    <span class="info-label">Email</span>
+                    <span class="info-value">{{ request.user.email }}</span>
+                </p>
+            </div>
+
+            <!-- Disable inputs if NOT edit mode -->
+            {% if not edit_mode %}
+            <style>
+                input,
+                select {
+                    pointer-events: none;
+                    opacity: 0.85;
+                }
+            </style>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Section 1 -->
+                <div class="form-group-box">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>Age</label>
+                            {{ form.age }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Activity Level</label>
+                            {{ form.activity_level }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="form-group-box">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>Height (cm)</label>
+                            {{ form.height_cm }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label>Weight (kg)</label>
+                            {{ form.weight_kg }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="form-group-box">
+                    <label>Goal</label>
+                    {{ form.goal }}
+                </div>
+
+                <!-- Buttons -->
+                {% if edit_mode %}
+                <button type="submit" class="submit-btn w-100 mt-4">
+                    Save Changes
+                </button>
+                {% else %}
+                <a href="?edit=true" class="submit-btn w-100 mt-4 edit-btn">
+                    Edit Profile
+                </a>
+                {% endif %}
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

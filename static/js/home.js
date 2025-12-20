@@ -10,3 +10,9 @@ document.addEventListener("click", () => {
         card.classList.remove("flip");
     });
 });
+setTimeout(() => {
+        document.querySelectorAll('.auto-dismiss').forEach(alert => {
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+            bsAlert.close();
+        });
+}, 10000);
