@@ -8,25 +8,27 @@ from .forms import UserProfileForm
 def profile_view(request):
     profile = UserProfile.objects.filter(user=request.user).first()
 
-    # determine mode edit/view
+    # If profile does not exist → no form here
+    if not profile:
+        return render(request, "users/profile.html", {
+            "profile": None
+        })
+
     edit_mode = request.GET.get("edit") == "true"
 
     if request.method == "POST":
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            return redirect("profile")  # return to view mode
+            form.save()
+            return redirect("profile")
     else:
         form = UserProfileForm(instance=profile)
 
-    context = {
-        "form": form,
+    return render(request, "users/profile.html", {
         "profile": profile,
-        "edit_mode": edit_mode,
-    }
-    return render(request, "users/profile.html", context)
+        "form": form,
+        "edit_mode": edit_mode
+    })
 
 def dashboard(request):
     return render(request, 'users/dashboard.html')

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Meal Plan{% endblock %}
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/mealplan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profilecontainer">
+    <div class="profilehead">
+        <h2>Your Personalized Meal Plan</h2>
+        <p>Weekly meal plan based on your goals and preferences.</p>
+    </div>
+
+    <!-- Placeholder for now (temporay )-->
+    <div class="formsection">
+        <p><strong>Meal Plan Generated ✔</strong></p>
+        <p>Next step: weekly meals, calories, macros.</p>
+    </div>
+</div>
+{% endblock %}
+
