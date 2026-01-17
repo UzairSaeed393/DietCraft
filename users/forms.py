@@ -11,6 +11,8 @@ class UserProfileForm(forms.ModelForm):
             "weight_kg",
             "activity_level",
             "goal",
+            "gender",
+            "image",
         ]
 
         widgets = {
@@ -19,4 +21,6 @@ class UserProfileForm(forms.ModelForm):
             "weight_kg": forms.NumberInput(attrs={"class": "form-control"}),
             "activity_level": forms.Select(attrs={"class": "form-control"}),
             "goal": forms.Select(attrs={"class": "form-control"}),
+            "gender": forms.Select(attrs={"class": "form-control"}),
+            "image": forms.ClearableFileInput(attrs={"class": "form-control-file"}),
         }

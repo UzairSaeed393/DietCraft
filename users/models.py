@@ -7,7 +7,11 @@ class UserProfile(models.Model):
         ('maintain', 'Maintain Weight'),
         ('gain', 'Gain Weight'),
     ]
-
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
+    
     ACTIVITY_LEVEL_CHOICES = [
         ('sedentary', 'Sedentary'),
         ('light', 'Lightly Active'),
@@ -25,12 +29,20 @@ class UserProfile(models.Model):
     age = models.PositiveIntegerField()
     height_cm = models.FloatField(help_text="Height in centimeters")
     weight_kg = models.FloatField(help_text="Weight in kilograms")
-
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES
+    )
     activity_level = models.CharField(
         max_length=20,
         choices=ACTIVITY_LEVEL_CHOICES
     )
-
+    image = models.ImageField(
+        upload_to="profiles/",
+        null=True,
+        blank=True
+    )
+    
     goal = models.CharField(
         max_length=20,
         choices=GOAL_CHOICES
