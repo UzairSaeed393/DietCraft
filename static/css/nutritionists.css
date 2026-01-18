@@ -56,6 +56,39 @@ html, body{
     border-radius:10px;
 }
 
+/* Make search form fields wrap responsively and set min widths so they
+   remain usable on larger screens but drop to the next line on small screens */
+.search-filter-box form{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.search-filter-box .form-control,
+.search-filter-box select{
+    min-width:220px;
+    flex:1 1 220px;
+}
+
+.search-filter-box button{
+    flex:0 0 auto;
+    min-width:140px;
+}
+
+@media (max-width: 768px){
+    .search-filter-box .form-control,
+    .search-filter-box select{
+        min-width:100%;
+        flex:1 1 100%;
+    }
+
+    .search-filter-box button{
+        width:100%;
+        margin-top:6px;
+    }
+}
+
 /*  GRID  */
 
 .nutritionist-list{
@@ -114,6 +147,16 @@ html, body{
     width:100%;
     height:100%;
     background:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--lighttext);
+}
+
+.default-nutri-icon{
+    font-size:40px;
+    line-height:1;
+    display:block;
 }
 
 .nutri-name{

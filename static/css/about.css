@@ -355,3 +355,21 @@ body {
         width: 100%;
     }
 }
+/* EXPAND  */
+
+.expand{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(-6px);
+    transition:all 0.35s ease;
+    border-top:1px dashed var(--primary);
+}
+
+.expand.show{
+    max-height:500px;
+    opacity:1;
+    transform:translateY(0);
+    padding-top:16px;
+    margin-top:16px;
+}

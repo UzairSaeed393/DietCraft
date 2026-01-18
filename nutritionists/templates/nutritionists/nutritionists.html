@@ -26,8 +26,17 @@
     <!-- SEARCH -->
     <div class="search-filter-box mt-4">
         <form method="get" class="d-flex gap-3">
-            <input type="text" name="search" value="{{ search }}" placeholder="Search by nutritionist name..."
+            <input type="text" name="search" value="{{ search }}" placeholder="Search by name or keyword..."
                 class="form-control">
+
+            <select name="specialty" class="form-control">
+                <option value="">All Specialties</option>
+                <option value="weight" {% if specialty == 'weight' %}selected{% endif %}>Weight</option>
+                <option value="dermatologist" {% if specialty == 'dermatologist' %}selected{% endif %}>Dermatologist</option>
+                <option value="nutritionist" {% if specialty == 'nutritionist' %}selected{% endif %}>Nutritionist</option>
+                <option value="general physician" {% if specialty == 'general physician' %}selected{% endif %}>General Physician</option>
+                <option value="sports" {% if specialty == 'sports' %}selected{% endif %}>Sports Nutrition</option>
+            </select>
 
             <input type="text" name="city" value="{{ city }}" placeholder="Enter city (e.g. Bahawalpur)"
                 class="form-control">
@@ -51,9 +60,11 @@
                     <div class="nutri-header">
                         <div class="nutri-header-img">
                             {% if n.image %}
-                            <img src="{{ n.image.url }}" alt="Nutritionist Photo">
+                                <img src="{{ n.image.url }}" alt="Nutritionist Photo">
                             {% else %}
-                            <div class="nutri-header-placeholder"></div>
+                                <div class="nutri-header-placeholder">
+                                    <i class="bi bi-person-circle default-nutri-icon"></i>
+                                </div>
                             {% endif %}
                         </div>
 
