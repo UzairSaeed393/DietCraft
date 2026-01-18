@@ -15,7 +15,7 @@
 
     <div class="profilebody">
         <div class="formsection">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <div class="form-group-box">
@@ -41,7 +41,13 @@
                 <div class="form-group-box">
                     <label>Goal</label>
                     {{ form.goal }}
+                    <label>Gender</label>
                     {{ form.gender }}
+                </div>
+
+                <div class="form-group-box">
+                    <label>Profile Image (optional)</label>
+                    {{ form.image }}
                 </div>
 
                 <button type="submit" class="submit-btn w-100 mt-3">

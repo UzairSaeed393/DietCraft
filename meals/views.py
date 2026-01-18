@@ -24,7 +24,7 @@ def meals(request):
     profile = UserProfile.objects.filter(user=request.user).first()
 
     if request.method == "POST":
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
@@ -36,6 +36,6 @@ def meals(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    return render(request, "meals/profile.html", {
+    return render(request, "meals/profileform.html", {
         "form": form
     })
