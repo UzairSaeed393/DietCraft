@@ -8,12 +8,6 @@ from .forms import UserProfileForm
 def profile_view(request):
     profile = UserProfile.objects.filter(user=request.user).first()
 
-    # If profile does not exist → no form here
-    if not profile:
-        return render(request, "users/profile.html", {
-            "profile": None
-        })
-
     edit_mode = request.GET.get("edit") == "true"
 
     if request.method == "POST":
@@ -30,5 +24,6 @@ def profile_view(request):
         "edit_mode": edit_mode
     })
 
+@login_required
 def dashboard(request):
     return render(request, 'users/dashboard.html')

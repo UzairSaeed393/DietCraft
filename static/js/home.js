@@ -15,4 +15,4 @@ setTimeout(() => {
             const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
             bsAlert.close();
         });
-}, 10000);
+}, 5000);

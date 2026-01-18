@@ -4,11 +4,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.conf import settings
-
+from users.models import UserProfile
+from users.forms import UserProfileForm
 from .forms import RegisterForm, LoginForm
 from .models import UserOTP
 #   SIGNUP VIEW
-
+from django.contrib.auth.decorators import login_required
 
 def signup_view(request):
     form = RegisterForm()
@@ -125,9 +126,8 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, "Logged in successfully!","Welcome {{user.username}}")
-                # messages.success(request, "Welcome {{user.username}}")
-                return redirect("/")  
+                messages.success(request, f"Welcome {user.username}!")
+                return redirect("profileform")
             else:
                 messages.error(request, "Incorrect password.")
                 return render(request, "auth/login.html", {"form": form})
@@ -142,6 +142,7 @@ def logout_view(request):
     # messages.success(request, "Good bye {{user.username}}")
 
     return redirect("/")
+
 def forgot_password_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
@@ -166,6 +167,7 @@ def forgot_password_view(request):
         return redirect("forgot_verify", user_id=user.id)
 
     return render(request, "auth/forgot_password.html")
+
 def forgot_verify_view(request, user_id):
     user = User.objects.get(id=user_id)
     otp_obj = UserOTP.objects.get(user=user)
@@ -212,3 +214,26 @@ def reset_password_view(request, user_id):
         return redirect("login")
 
     return render(request, "auth/new_password.html")
+
+@login_required
+def profile_form(request):
+
+    profile = UserProfile.objects.filter(user=request.user).first()
+
+    if request.method == "POST":
+        # {% csrf_token %}
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+
+            # MealPlan.objects.create(user=request.user)
+            messages.success(request, "Profile created successfully.")
+            return redirect("home")
+    else:
+        form = UserProfileForm(instance=profile)
+
+    return render(request, "auth/profileform.html", {
+        "form": form
+    })

@@ -10,5 +10,5 @@ urlpatterns = [
     path("forgot-password/", views.forgot_password_view, name="forgot_password"),
     path("forgot-verify/<int:user_id>/", views.forgot_verify_view, name="forgot_verify"),
     path("reset-password/<int:user_id>/", views.reset_password_view, name="reset_password"),
-
+    path("profileform/", views.profile_form, name="profileform"),
 ]

@@ -4,6 +4,11 @@
 {% block title %}My Profile{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<style>
+    body{
+    background: url('/static/images/Login_bg.png') center/cover no-repeat;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -16,17 +21,8 @@
 
     <div class="profilebody">
         <div class="formsection">
-
             {% if not profile %}
-                <div class="account-info profile-empty">
-                    <h5 class="empty-title">Profile not completed</h5>
-                    <p class="empty-text">
-                        Please complete your profile from the Meal Plan page.
-                    </p>
-                    <a href="/meals/" class="submit-btn empty-btn">
-                         Meal Plan Page 
-                    </a>
-                </div>
+                <p>You have not set up your profile yet. Please <a href="{% url 'profileform' %}">complete your profile</a></p>
             {% else %}
             
             <!-- Profile Image -->
