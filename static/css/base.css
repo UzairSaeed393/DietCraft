@@ -388,3 +388,69 @@ h6 {
     transform: scale(1.15);
     color: var(--btn1);
 }
+
+/* Mobile-friendly footer polish */
+@media (max-width: 768px) {
+    footer {
+        padding: 24px 12px !important;
+        border-radius: 12px 12px 0 0;
+        background: linear-gradient(180deg, rgba(10,86,54,0.98), rgba(8,75,42,0.98)) !important;
+        color: #fff;
+        margin-top: 24px;
+    }
+
+    footer .container {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    footer .col-md-3 {
+        background: rgba(255,255,255,0.03);
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    footer h4, footer h5 {
+        color: #fff;
+    }
+
+    footer ul {
+        padding-left: 0;
+    }
+
+    footer a {
+        color: rgba(255,255,255,0.95);
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: var(--btn1);
+    }
+}
+
+/* Small-screen symmetrical gutters: keep a light space on both sides */
+@media (max-width: 900px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Convert wide sections from horizontal margins to vertical spacing so gutters are even */
+    [class$="section"], .formsection {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 12px !important;
+        margin-bottom: 12px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* Ensure hero and similar inner containers don't overflow */
+    .herosection, .featuresection, .worksection, .sucessstorysection, .countersection {
+        width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}

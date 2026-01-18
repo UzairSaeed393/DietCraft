@@ -4,10 +4,15 @@
 {% block title %}Profile Form{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<style>
+    body{
+        background: url('/static/images/Login_bg.png') center/cover no-repeat;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="profilecontainer">
+<div class="profilecontainer " style="background-color: #ffffffdd; border-radius: 25px ;">
     <div class="profilehead">
         <h2>Tell Us About Your Goals</h2>
         <p>This information helps us generate your personalized meal plan.</p>
@@ -51,7 +56,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn w-100 mt-3">
-                    Generate My Meal Plan
+                    Submit Profile
                 </button>
             </form>
         </div>

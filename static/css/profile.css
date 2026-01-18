@@ -47,7 +47,7 @@
     width: 100%;
     max-width: 760px;
     padding: 26px;
-    border-radius: 18px;
+    border-radius: 28px;
 
     background: var(--bg1);
 
@@ -103,7 +103,7 @@ input, select {
 /* FORM SECTIONS */
 .form-group-box {
     background-color: var(--mainbg);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 18px;
     margin-bottom: 20px;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -124,7 +124,7 @@ label {
 input, select {
     width: 100%;
     padding: 12px 14px;
-    border-radius: 10px;
+    border-radius: 14px;
     border: none;
 
     background-color: var(--secondary);

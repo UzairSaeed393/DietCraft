@@ -1,10 +1,11 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from authentication.decorators import profile_required
 from .models import UserProfile
 from .forms import UserProfileForm
 
 
-@login_required
+
+@profile_required
 def profile_view(request):
     profile = UserProfile.objects.filter(user=request.user).first()
 
@@ -24,6 +25,6 @@ def profile_view(request):
         "edit_mode": edit_mode
     })
 
-@login_required
+@profile_required
 def dashboard(request):
     return render(request, 'users/dashboard.html')

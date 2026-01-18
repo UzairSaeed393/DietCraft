@@ -127,6 +127,14 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Welcome {user.username}!")
+                # If user already has a profile, send them to home; otherwise prompt profile form
+                try:
+                    has_profile = UserProfile.objects.filter(user=user).exists()
+                except Exception:
+                    has_profile = False
+
+                if has_profile:
+                    return redirect("home")
                 return redirect("profileform")
             else:
                 messages.error(request, "Incorrect password.")
