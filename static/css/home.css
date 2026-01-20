@@ -40,6 +40,7 @@ body{
     font-size: 48px;
     font-weight: 700;
     line-height: 1.2;
+    font-style: var(--font1);
 }
 
 .herotext {
@@ -102,11 +103,13 @@ body{
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--primary);
+    font-style: var(--font1);
 }
 
 .featuretextsection p {
     margin-bottom: 20px;
     color: var(--darktext);
+    font-style: var(--font2);
 }
 
 .featurecardsection {
@@ -193,11 +196,13 @@ body{
     margin-top: 18px;
     font-size: 20px;
     color: var(--lighttext);
+    font-style: var(--font1);
 }
 
 .featurecard-front p {
     font-size: 14px;
     color: var(--lighttext);
+    font-style: var(--font2);
 }
 
 /* USER HINT */
@@ -235,12 +240,14 @@ body{
     font-size: 20px;
     margin-bottom: 14px;
     color: var(--lighttext);
+    font-style: var(--font1);
 }
 
 .featurecard-back p {
     font-size: 14px;
     line-height: 1.6;
     color: var(--lighttext);
+    font-style: var(--font2);
 }
 
 /* RESPONSIVE */
@@ -279,11 +286,13 @@ body{
     font-size: 32px;
     font-weight: 700;
     color: var(--primary);
+    font-style: var(--font1);
 }
 
 .worktextsection p {
     color: var(--darktext);
     font-size: 16px;
+    font-style: var(--font2);
 }
 
 /* Steps Wrapper */
@@ -332,11 +341,13 @@ body{
     margin-bottom: 10px;
     font-weight: 500;
     color: var(--lighttext);
+    font-style: var(--font1);
 }
 
 .workstep p {
     font-size: 15px;
     color: var(--lighttext);
+    font-style: var(--font2);
 }
 
 /* Arrow Icons Between Steps */
@@ -384,11 +395,13 @@ body{
     font-size: 32px;
     margin-bottom: 10px;
     color: var(--darkgreentext);
+    font-style: var(--font1);
 }
 
 .successtextsection p {
     margin-bottom: 40px;
     color: var(--darktext);
+    font-style: var(--font2);
 }
 
 .successcardscetion {
@@ -423,17 +436,20 @@ body{
 .successcard h4 {
     margin: 5px 0;
     font-weight: 700;
+    font-style: var(--font1);
 }
 
 .successcard h5 {
     font-size: 15px;
     color: var(--lighttext);
     margin-bottom: 12px;
+    font-style: var(--font1);
 }
 
 .successcard p {
     color: var(--lighttext);
     font-size: 15px;
+    font-style: var(--font2);
 }
 
 @media (max-width: 900px) {
@@ -492,6 +508,7 @@ body{
     color: var(--darktext);
     font-weight: 600;
     margin-bottom: 25px;
+    font-style: var(--font1);
 }
 
 .countercontainer {

@@ -10,6 +10,8 @@
     --lighttext: white;
     --darkgreentext: #0A653A;
     --darktext: black;
+    --font1: 'Poppins', sans-serif;
+    --font2: 'roboto', sans-serif;
 }
 
 * {
@@ -301,7 +303,7 @@ h6 {
     }
 }
 
-/* NAVBAR POLISH */
+/* NAVBAR  */
 .navbar {
     position: sticky;
     top: 0;
@@ -365,17 +367,6 @@ h6 {
     overflow: hidden;
 }
 
-/* .sidebar .mobile-nav a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.1);
-    transition: 0.3s ease;
-} */
-
 .sidebar .mobile-nav a:hover::after {
     left: 0;
 }
@@ -389,7 +380,7 @@ h6 {
     color: var(--btn1);
 }
 
-/* Mobile-friendly footer polish */
+/*Footer Responsiveness CSS */
 @media (max-width: 768px) {
     footer {
         padding: 24px 12px !important;
@@ -429,14 +420,13 @@ h6 {
     }
 }
 
-/* Small-screen symmetrical gutters: keep a light space on both sides */
+/* Small-screen  keep a light space on both sides of section */
 @media (max-width: 900px) {
     .container {
         padding-left: 12px;
         padding-right: 12px;
     }
 
-    /* Convert wide sections from horizontal margins to vertical spacing so gutters are even */
     [class$="section"], .formsection {
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -447,7 +437,7 @@ h6 {
         box-sizing: border-box;
     }
 
-    /* Ensure hero and similar inner containers don't overflow */
+    /* Each containers don't overflow */
     .herosection, .featuresection, .worksection, .sucessstorysection, .countersection {
         width: 100%;
         padding-left: 12px;

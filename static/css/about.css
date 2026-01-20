@@ -33,6 +33,7 @@ body {
 .abouthead h2 {
     font-weight: 700;
     color: var(--primary);
+    font-style: var(--font1);
 }
 
 /* .abouthead p {
@@ -48,6 +49,7 @@ body {
     color: var(--darktext);
     ;
     line-height: 1.6;
+    font-style: var(--font2);
 }
 
 /*  MISSION SECTION  */
@@ -59,23 +61,23 @@ body {
 
 .missionsection h3 {
     color: var(--primary);
-    ;
     font-weight: 600;
     margin-bottom: 15px;
+    font-style: var(--font1);
 }
 
 .missionsection p {
     color: var(--darktext);
-    ;
     font-size: 16px;
+    font-style: var(--font2);
 }
 
 /*  VALUES SECTION  */
 .valuessection h3 {
     text-align: center;
     color: var(--primary);
-    ;
     margin-bottom: 30px;
+    font-style: var(--font1);
 }
 
 .valuescardcontainer {
@@ -136,8 +138,8 @@ body {
 .offersection h3 {
     text-align: center;
     color: var(--primary);
-    ;
     margin-bottom: 25px;
+font-style: var(--font1);
 }
 
 .offer {
@@ -153,6 +155,7 @@ body {
     ;
     font-size: 17px;
     font-weight: 600;
+    font-style: var(--font1);
 }
 
 .offer:hover {
@@ -178,6 +181,7 @@ body {
     color: var(--darktext);
     font-weight: 600;
     margin-bottom: 25px;
+    font-style: var(--font1);
 }
 
 .countercontainer {
@@ -250,6 +254,7 @@ body {
     color: var(--primary);
     ;
     margin-bottom: 25px;
+    font-style: var(--font1);
 }
 
 .teamcardcontainer {
@@ -289,6 +294,7 @@ body {
     ;
     font-size: 18px;
     font-weight: 600;
+    font-style: var(--font1);
 }
 
 .teamcard h4 {
@@ -296,20 +302,21 @@ body {
     color: var(--darktext);
     ;
     margin-bottom: 10px;
+    font-style: var(--font2);
 }
 
 .teamcard p {
     font-size: 14px;
     color: var(--darktext);
-    ;
+    font-style: var(--font2);
 }
 
 /* TECHNOLOGY SECTION */
 .technonlogysection h3 {
     text-align: center;
     color: var(--primary);
-    ;
     margin-bottom: 25px;
+    font-style: var(--font1);
 }
 
 .techsection {
@@ -338,12 +345,13 @@ body {
     color: var(--primary);
     ;
     font-weight: 600;
+    font-style: var(--font1);
 }
 
 .techcard p {
     color: var(--darktext);
-    ;
     font-size: 14px;
+    font-style: var(--font2);
 }
 
 /* RESPONSIVE */

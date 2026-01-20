@@ -30,11 +30,13 @@
 .profilehead h2 {
     color: var(--primary);
     font-weight: 700;
+    font-style: var(--font1);
 }
 
 .profilehead p {
     color: var(--darktext);
     opacity: 0.85;
+    font-style: var(--font2);
 }
 
 .profilebody {
@@ -84,6 +86,7 @@ input, select {
 
 .account-info p {
     margin: 10px 0;
+    font-style: var(--font1);
 }
 
 .info-label {

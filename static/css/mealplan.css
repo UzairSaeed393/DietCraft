@@ -23,7 +23,9 @@
 }
 .profilehead h2{
     color: var(--primary-dark);
+    font-style: var(--font1);
 }
 .profilehead p{
     color: var(--dark);
+    font-style: var(--font2);
 }
