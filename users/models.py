@@ -20,11 +20,7 @@ class UserProfile(models.Model):
         ('very_active', 'Very Active'),
     ]
 
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='profile'
-    )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
 
     age = models.PositiveIntegerField()
     height_cm = models.FloatField(help_text="Height in centimeters")

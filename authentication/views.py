@@ -103,7 +103,8 @@ def resend_otp(request, user_id):
 
 def login_view(request):
     form = LoginForm()
-
+    if not request.user.is_authenticated and request.GET.get('next'):
+        messages.info(request, "Please log in to access that page.")
     if request.method == "POST":
         form = LoginForm(request.POST)
 
@@ -211,7 +212,6 @@ def reset_password_view(request, user_id):
         if not any(char.isdigit() for char in password):
             messages.error(request, "Password must contain at least one number & 5 characters long.")
             return redirect("signup")
-        # IMPORTANT: This hashes the password
         user.set_password(password)
         user.save()
 

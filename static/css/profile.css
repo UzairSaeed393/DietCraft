@@ -69,7 +69,7 @@
 }
 
 /* Account Info Section */
-/* View-only mode cursor feedback */
+/* View-only mode cursor  */
 input[disabled], select[disabled],
 input, select {
     cursor: default;

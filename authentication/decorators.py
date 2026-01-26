@@ -1,4 +1,5 @@
 from functools import wraps
+from pyexpat.errors import messages
 from django.shortcuts import redirect
 from django.contrib.auth.views import redirect_to_login
 from django.conf import settings
@@ -32,6 +33,7 @@ def profile_required(view_func=None, login_url=None, redirect_field_name='next')
                 has_profile = False
 
             if not has_profile:
+                messages.warning(request, "You must complete your profile before accessing this feature.")
                 return redirect('profileform')
 
             return view(request, *args, **kwargs)

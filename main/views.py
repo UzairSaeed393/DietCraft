@@ -11,7 +11,7 @@ def contact(request):
         if form.is_valid():
             form.save()  # Save message into ContactMessage table
             messages.success(request, "Your message has been sent successfully!")
-            return redirect('contact')  # Redirect to avoid resubmission
+            return redirect('contact')  
 
     else:
         form = ContactForm()

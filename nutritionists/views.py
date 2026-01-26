@@ -27,13 +27,10 @@ def nutritionists(request):
         if q:
             queryset = queryset.filter(q)
 
-    # Only filter by city when user provides at least 2 characters (avoid overly broad matches)
+    # Only filter by city when user provides at least 2 characters
     if city and len(city) >= 2:
         queryset = queryset.filter(city__icontains=city)
-
-    # Allow direct specialty filter (select box keywords). Match case-insensitively
-    # against both the `specialty` text and the `category` key so options like
-    # "weight" or "sports" match either field.
+    # Filter by specialty or category when user provides at least 2 characters
     if specialty and len(specialty) >= 2:
         queryset = queryset.filter(
             Q(specialty__icontains=specialty) | Q(category__icontains=specialty)

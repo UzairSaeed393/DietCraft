@@ -28,7 +28,7 @@ class Nutritionist(models.Model):
     rating = models.DecimalField(
         max_digits=2,
         decimal_places=1,
-        default=3.0
+        default=3.5
     )
 
     timing = models.CharField(
