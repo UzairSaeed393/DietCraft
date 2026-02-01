@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from users.models import UserProfile
+from urllib.parse import urlparse, parse_qs
 
 # Create your models here.
 
@@ -15,20 +16,43 @@ class Exercise(models.Model):
     DIFFICULTY_CHOICES = [
         ('beginner', 'Beginner'),
         ('intermediate', 'Intermediate'),
+        ('advanced', 'Advanced'),
     ]
 
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)
-    met_value = models.FloatField() # Metabolic Equivalent of Task value for the exercise. It indicates the energy cost of the exercise. It is used to estimate calories burned during the activity.
+    met_value = models.FloatField()
     duration_minutes = models.PositiveIntegerField()
-    video_url = models.URLField()
-    description = models.TextField(blank=True)
-    is_active = models.BooleanField(default=True)# Indicates if the exercise is currently active and available for users.
+    video_url = models.URLField(blank=True, null=True)
+    description = models.TextField()
+    is_active = models.BooleanField(default=True)
+
+    def get_embed_url(self):
+        """
+        Converts any YouTube URL into a safe embed URL
+        """
+        if not self.video_url:
+            return None
+
+        parsed = urlparse(self.video_url)
+        video_id = None
+
+        if "youtube.com" in parsed.netloc:
+            video_id = parse_qs(parsed.query).get("v", [None])[0]
+        elif "youtu.be" in parsed.netloc:
+            video_id = parsed.path.lstrip("/")
+        elif "youtube-nocookie.com" in parsed.netloc:
+            return self.video_url  # already embed
+
+        if video_id:
+            return f"https://www.youtube-nocookie.com/embed/{video_id}"
+
+        return None
 
     def __str__(self):
         return self.name
-    
+
 #ExercisePlan Model storing details about exercise plans assigned to users for a week.
 class ExercisePlan(models.Model):
     profile = models.ForeignKey(
@@ -51,11 +75,11 @@ class ExercisePlanDay(models.Model):
         on_delete=models.CASCADE,
         related_name='daily_exercises'
     )
-    day_number = models.PositiveSmallIntegerField()
     exercise = models.ForeignKey(
         Exercise,
         on_delete=models.CASCADE
     )
+    day_number = models.PositiveSmallIntegerField()
     order_number = models.PositiveSmallIntegerField() # Order of the exercise in the day's routine.
     estimated_calories = models.FloatField()
     is_completed = models.BooleanField(default=False)

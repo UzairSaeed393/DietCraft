@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Exercise Plan{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/exercise.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="no-plan-wrapper">
+
+    <div class="no-plan-card">
+        <h2>No Active Exercise Plan</h2>
+        <p>
+            You don’t have an active exercise plan yet.
+            Generate a personalized 7-day routine to get started.
+        </p>
+
+        <a href="{% url 'generate_exercise_plan' %}" class="btn-generate">
+            Generate Exercise Plan
+        </a>
+    </div>
+
+</div>
+{% endblock %}

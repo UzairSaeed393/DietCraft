@@ -1,0 +1,264 @@
+/*  ROOT VARIABLES  */
+:root{
+    --primary:#0A653A;
+    --primary-dark:#084f2d;
+    --secondary:#a6f8a6;
+    --mainbg:#d1e7dd;
+    --bg1:#94d7ed;
+    --bg2:#91db91;
+    --btn1:#ff9f1c;
+    --btn2:#1e3c55;
+    --lighttext:#ffffff;
+    --darkgreentext:#0A653A;
+    --darktext:#000000;
+    --font1:'Poppins', sans-serif;
+}
+
+/*  PAGE WRAPPER  */
+.exercise-container{
+    background:var(--mainbg);
+    padding:2.5rem 1.5rem 3rem;
+    font-family:var(--font1);
+    max-width:1200px;
+    margin:0 auto;
+    animation:fadeIn .6s ease;
+}
+
+.exercise-container h2{
+    color:var(--darkgreentext);
+    margin-bottom:1.8rem;
+    font-size:2rem;
+    animation:slideUp .5s ease;
+}
+
+/*SUMMARY */
+.exercise-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1.2rem;
+    margin-bottom:2rem;
+}
+
+.summary-card{
+    background:var(--secondary);
+    border-radius:18px;
+    padding:1.4rem;
+    text-align:center;
+    box-shadow:0 10px 18px rgba(0,0,0,.08);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.summary-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 26px rgba(0,0,0,.12);
+}
+
+.summary-card h3{
+    color:var(--darkgreentext);
+    font-size:1.8rem;
+}
+
+.summary-card span{
+    font-size:.95rem;
+    color:var(--darktext);
+}
+
+/*  WEEK NAV  */
+.week-nav-wrapper{
+    background:var(--bg1);
+    padding:1rem 1.2rem;
+    border-radius:18px;
+    margin-bottom:2.2rem;
+    animation:slideUp .6s ease;
+}
+
+.week-nav{
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.day-btn{
+    text-decoration:none;
+    background:var(--btn1);
+    color:var(--darktext);
+    padding:.5rem 1.1rem;
+    border-radius:14px;
+    font-weight:600;
+    min-width:72px;
+    text-align:center;
+    transition:all .25s ease;
+}
+
+.day-btn:hover{
+    background:var(--btn2);
+    color:var(--lighttext);
+    transform:translateY(-2px);
+}
+
+.day-btn.active{
+    background:var(--primary);
+    color:var(--lighttext);
+    box-shadow:0 6px 14px rgba(0,0,0,.18);
+}
+
+/* ================= EXERCISE CARD ================= */
+.exercise-card{
+    background:var(--secondary);
+    border-radius:22px;
+    padding:1.8rem;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:1.8rem;
+    margin-bottom:2rem;
+    box-shadow:0 14px 26px rgba(0,0,0,.1);
+    animation:slideUp .5s ease;
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.exercise-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 32px rgba(0,0,0,.14);
+}
+
+.exercise-info h3{
+    color:var(--primary);
+    font-size:1.6rem;
+}
+
+.exercise-info p{
+    margin:.7rem 0;
+    color:var(--darktext);
+    line-height:1.6;
+}
+
+/* ================= META ================= */
+.exercise-meta{
+    margin-top:.6rem;
+}
+
+.exercise-meta span{
+    display:inline-block;
+    margin-right:1.4rem;
+    font-weight:600;
+    color:var(--btn2);
+}
+
+/* ================= BUTTONS ================= */
+.btn-done{
+    display:inline-block;
+    margin-top:1.2rem;
+    background:var(--btn1);
+    color:var(--lighttext);
+    padding:.65rem 1.6rem;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:all .25s ease;
+}
+
+.btn-done:hover{
+    background:#ff8c00;
+    transform:scale(1.05);
+}
+
+.completed-badge{
+    display:inline-block;
+    margin-top:1.2rem;
+    background:var(--primary-dark);
+    color:var(--lighttext);
+    padding:.5rem 1rem;
+    border-radius:14px;
+    font-weight:600;
+}
+
+/* ================= VIDEO PLACEHOLDER ================= */
+.video-wrapper {
+    background: var(--bg1);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    border: none;
+}
+
+.video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    font-weight: 600;
+    color: var(--darkgreentext);
+}
+
+/* ================= NO PLAN PAGE ================= */
+.no-plan-wrapper{
+    background:var(--mainbg);
+    padding:2rem;
+}
+
+.no-plan-card{
+    background:var(--secondary);
+    border-radius:26px;
+    padding:2.4rem;
+    text-align:center;
+    max-width:900px;
+    margin:0 auto;
+    box-shadow:0 18px 34px rgba(0,0,0,.14);
+    animation:fadeIn .6s ease;
+}
+
+.btn-generate{
+    margin-top:1.8rem;
+    display:inline-block;
+    background:var(--primary);
+    color:var(--lighttext);
+    padding:1rem 2.4rem;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:600;
+    transition:all .3s ease;
+}
+
+.btn-generate:hover{
+    background:var(--primary-dark);
+    transform:translateY(-3px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .exercise-card{
+        grid-template-columns:1fr;
+    }
+
+    .exercise-container h2{
+        font-size:1.7rem;
+    }
+}
+
+@media(max-width:576px){
+    .day-btn{
+        flex:1 1 30%;
+    }
+
+    .summary-card h3{
+        font-size:1.5rem;
+    }
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes slideUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Daily Exercise Routine{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/exercise.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="exercise-container">
+
+    <h2>Daily Exercise Routine</h2>
+
+    <!-- SUMMARY -->
+    <div class="exercise-summary">
+        <div class="summary-card">
+            <h3>{{ daily_exercises|length }}</h3>
+            <span>Total Exercises</span>
+        </div>
+        <div class="summary-card">
+            <h3>{{ current_day }}/7</h3>
+            <span>Current Day</span>
+        </div>
+        <div class="summary-card">
+            <h3>{{ total_calories }}</h3>
+            <span>Total Calories Burned</span>
+        </div>
+    </div>
+
+    <!-- WEEK NAV  -->
+    <div class="week-nav-wrapper">
+        <div class="week-nav">
+            {% for day in "1234567" %}
+                <a href="?day={{ forloop.counter }}"
+                class="day-btn {% if current_day == forloop.counter %}active{% endif %}">
+                    Day {{ forloop.counter }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- EXERCISES -->
+    {% for item in daily_exercises %}
+    <div class="exercise-card">
+
+        <div class="exercise-info">
+            <h3>{{ item.exercise.name }}</h3>
+            <p>{{ item.exercise.description }}</p>
+
+            <div class="exercise-meta">
+                <span>⏱ Duration: {{ item.exercise.duration_minutes }} minutes</span>
+                <span>🔥 Calories Burned: {{ item.estimated_calories }} kcal</span>
+            </div>
+
+            {% if item.is_completed %}
+                <span class="completed-badge">Completed ✓</span>
+            {% else %}
+                <a href="{% url 'mark_done' item.id %}" class="btn-done">
+                    Mark as Done
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="video-wrapper">
+            {% with embed=item.exercise.get_embed_url %}
+                {% if embed %}
+                    <iframe
+                        src="{{ embed }}"
+                        title="{{ item.exercise.name }}"
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                {% else %}
+                    <div class="video-placeholder">
+                        Video not available
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

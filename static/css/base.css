@@ -272,7 +272,7 @@ h6 {
 
     .auth-buttons a {
         padding: 5px 10px;
-        font-size: 13px;
+        font-size: 12px;
         white-space: nowrap;
     }
 
@@ -286,18 +286,18 @@ h6 {
     }
 
     .navbar {
-        padding: 10px 10px;
+        padding: 9px 9px;
     }
 
     .logo-section img {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
     }
 
     .logo-section h3 {
         color: var(--lighttext);
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 500;
         margin: 0;
     }
