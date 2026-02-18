@@ -20,6 +20,24 @@ class UserProfile(models.Model):
         ('very_active', 'Very Active'),
     ]
 
+    FOOD_TYPE_CHOICES = [
+         ('all', 'All'),
+        ('meat', 'Meat'),
+        ('vegetarian', 'Vegetarian'),
+        ('vegan', 'Vegan'),
+        ('dairy', 'Dairy'),
+        ('drink', 'Drink'),
+        ('fastfood', 'Fast Food'),
+    ]
+
+    MEDICAL_CHOICES = [
+        ('diabetes', 'Diabetes'),
+        ('hypertension', 'Hypertension'),
+        ('lactose', 'Lactose Intolerant'),
+        ('heart', 'Heart Disease'),
+        ('none', 'None'),
+    ]
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
 
     age = models.PositiveIntegerField()
@@ -33,6 +51,17 @@ class UserProfile(models.Model):
         max_length=20,
         choices=ACTIVITY_LEVEL_CHOICES
     )
+
+    preferred_food_types = models.JSONField(
+        default=list,
+        help_text="Allowed food categories"
+    )
+
+    medical_conditions = models.JSONField(
+        default=list,
+        help_text="Medical conditions"
+    )
+    
     image = models.ImageField(
         upload_to="profiles/",
         null=True,

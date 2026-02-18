@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block title %}My Profile{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
 {% endblock %}
 
 {% block content %}
@@ -17,66 +17,142 @@
 
     <div class="profilebody">
         <div class="formsection">
+
             {% if not profile %}
-                <p>You have not set up your profile yet. Please <a href="{% url 'profileform' %}">complete your profile</a></p>
+                <div class="profile-empty">
+                    <h4 class="empty-title">Profile not completed</h4>
+                    <p class="empty-text">Please complete your profile to continue.</p>
+                    <a href="{% url 'profileform' %}" class="submit-btn empty-btn">
+                        Complete Profile
+                    </a>
+                </div>
             {% else %}
             
+
             <!-- Profile Image -->
-                <div class="profile-image-wrapper">
-                    <div class="profile-image-box">
-                        {% if profile.image %}
-                            <img class="profile-image" src="{{ profile.image.url }}" alt="{{ request.user.username }}">
-                        {% else %}
-                            <div class="profile-image-placeholder">{{ request.user.username|slice:":1"|upper }}</div>
-                        {% endif %}
-                    </div>
+            <div class="profile-image-wrapper">
+                <div class="profile-image-box">
+                    {% if profile.image %}
+                        <img class="profile-image" src="{{ profile.image.url }}" alt="{{ request.user.username }}">
+                    {% else %}
+                        <div class="profile-image-placeholder">
+                            {{ request.user.username|slice:":1"|upper }}
+                        </div>
+                    {% endif %}
                 </div>
+            </div>
 
             <!-- Account Info -->
-                <div class="account-info">
-                    <p><span class="info-label">Username</span><span class="info-value">{{ request.user.username }}</span></p>
-                    <p><span class="info-label">Email</span><span class="info-value">{{ request.user.email }}</span></p>
+            <div class="account-info">
+                <p>
+                    <span class="info-label">Username</span>
+                    <span class="info-value">{{ request.user.username }}</span>
+                </p>
+                <p>
+                    <span class="info-label">Email</span>
+                    <span class="info-value">{{ request.user.email }}</span>
+                </p>
+            </div>
+
+            {% if not edit_mode %}
+                <style>
+                    input:not([type="checkbox"]), select {
+                        pointer-events: none;
+                        opacity: 0.85;
+                    }
+                </style>
+            {% endif %}
+
+            <form method="POST" {% if edit_mode %}enctype="multipart/form-data"{% endif %}>
+                {% csrf_token %}
+
+                <div class="form-group-box">
+                    {{ form.age.label_tag }} {{ form.age }}
+                    {{ form.activity_level.label_tag }} {{ form.activity_level }}
                 </div>
 
-                {% if not edit_mode %}
-                    <style>
-                        input, select { pointer-events: none; opacity: 0.85; }
-                    </style>
-                {% endif %}
+                <div class="form-group-box">
+                    {{ form.height_cm.label_tag }} {{ form.height_cm }}
+                    {{ form.weight_kg.label_tag }} {{ form.weight_kg }}
+                </div>
 
-                <form method="POST" {% if edit_mode %}enctype="multipart/form-data"{% endif %}>
-                    {% csrf_token %}
-                    <div class="profilesection">
-                        {% if edit_mode %}
-                            <div class="form-group-box">
-                                {{ form.image.label_tag }} {{ form.image }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="form-group-box">
-                        {{ form.age.label_tag }} {{ form.age }}
-                        {{ form.activity_level.label_tag }} {{ form.activity_level }}
-                    </div>
+                <div class="form-group-box">
+                    {{ form.goal.label_tag }} {{ form.goal }}
+                    {{ form.gender.label_tag }} {{ form.gender }}
+                </div>
 
-                    <div class="form-group-box">
-                        {{ form.height_cm.label_tag }} {{ form.height_cm }}
-                        {{ form.weight_kg.label_tag }} {{ form.weight_kg }}
-                    </div>
-
-                    <div class="form-group-box">
-                        {{ form.goal.label_tag }} {{ form.goal }}
-                        {{ form.gender.label_tag }} {{ form.gender  }}
-                    </div>
+                <!-- FOOD PREFERENCES -->
+                <div class="form-group-box">
+                    <span class="info-label">Food Preferences</span>
 
                     {% if edit_mode %}
-                        <button class="submit-btn w-100 mt-3">Save Changes</button>
+                        <div class="chip-list" id="food-chips">
+                            {% for checkbox in form.preferred_food_types %}
+                                <label class="chip">
+                                    {{ checkbox.tag }}
+                                    <span class="checkbox-custom"></span>
+                                    <span class="chip-label">{{ checkbox.choice_label }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
                     {% else %}
-                        <a href="?edit=true" class="submit-btn w-100 mt-3 edit-btn">Edit Profile</a>
+                        <div class="chip-list">
+                            {% for item in profile.preferred_food_types %}
+                                <span class="chip-view">{{ item }}</span>
+                            {% empty %}
+                                <span class="info-value">-</span>
+                            {% endfor %}
+                        </div>
                     {% endif %}
-                </form>
+                </div>
+
+                <!-- MEDICAL CONDITIONS -->
+                <div class="form-group-box">
+                    <span class="info-label">Medical Conditions</span>
+
+                    {% if edit_mode %}
+                        <div class="chip-list" id="medical-chips">
+                            {% for checkbox in form.medical_conditions %}
+                                <label class="chip">
+                                    {{ checkbox.tag }}
+                                    <span class="checkbox-custom"></span>
+                                    <span class="chip-label">{{ checkbox.choice_label }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="chip-list">
+                            {% for item in profile.medical_conditions %}
+                                <span class="chip-view">{{ item }}</span>
+                            {% empty %}
+                                <span class="info-value">-</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- IMAGE -->
+                {% if edit_mode %}
+                <div class="form-group-box">
+                    {{ form.image.label_tag }}
+                    {{ form.image }}
+                </div>
+                {% endif %}
+
+                {% if edit_mode %}
+                    <button class="submit-btn w-100 mt-3">Save Changes</button>
+                {% else %}
+                    <a href="?edit=true" class="submit-btn w-100 mt-3 edit-btn">
+                        Edit Profile
+                    </a>
+                {% endif %}
+            </form>
 
             {% endif %}
         </div>
     </div>
 </div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

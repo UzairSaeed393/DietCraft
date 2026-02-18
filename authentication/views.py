@@ -239,6 +239,12 @@ def profile_form(request):
             # MealPlan.objects.create(user=request.user)
             messages.success(request, "Profile created successfully.")
             return redirect("home")
+        else:
+
+            messages.error(
+                request,
+                "Please complete all required fields before submitting your profile."
+            )
     else:
         form = UserProfileForm(instance=profile)
 

@@ -1,39 +1,36 @@
 from functools import wraps
-from pyexpat.errors import messages
 from django.shortcuts import redirect
+from django.contrib import messages
 from django.contrib.auth.views import redirect_to_login
 from django.conf import settings
 from users.models import UserProfile
 
 
 def profile_required(view_func=None, login_url=None, redirect_field_name='next'):
-    """Decorator for views that requires the user to have a completed UserProfile.
-
-    Usage:
-      @profile_required
-      def my_view(request):
-          ...
-
-    or with parameters:
-      @profile_required(login_url='/auth/login/')
-      def my_view(request):
-          ...
+    """
+    Decorator that requires the user to be authenticated
+    AND have a completed UserProfile.
     """
 
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
+
             if not request.user.is_authenticated:
-                return redirect_to_login(request.get_full_path(), login_url or settings.LOGIN_URL, redirect_field_name)
+                return redirect_to_login(
+                    request.get_full_path(),
+                    login_url or settings.LOGIN_URL,
+                    redirect_field_name
+                )
 
             # Check if profile exists
-            try:
-                has_profile = UserProfile.objects.filter(user=request.user).exists()
-            except Exception:
-                has_profile = False
+            has_profile = UserProfile.objects.filter(user=request.user).exists()
 
             if not has_profile:
-                messages.warning(request, "You must complete your profile before accessing this feature.")
+                messages.warning(
+                    request,
+                    "You must complete your profile before accessing this feature."
+                )
                 return redirect('profileform')
 
             return view(request, *args, **kwargs)

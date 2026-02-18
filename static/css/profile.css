@@ -16,6 +16,7 @@
 
 
 .profilecontainer {
+    margin-top: 15px;
     padding: 30px 20px;
     background-color: var(--mainbg);
     font-family: var(--font1);
@@ -108,7 +109,7 @@ input, select {
     background-color: var(--mainbg);
     border-radius: 20px;
     padding: 18px;
-    margin-bottom: 20px;
+    margin: 18px;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -293,4 +294,131 @@ input[type="number"]:focus {
         object-fit: cover !important;
         max-width: none !important;
     }
+}
+/* SaaS iOS-STYLE SELECTABLE CHIPS (Checkbox Pills)      */
+
+.chip-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:14px;
+}
+
+/* Base chip */
+.chip{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    padding:10px 22px 10px 46px;
+    border-radius:50px;
+    background:#f3f5f7;
+    color:#2e2e2e;
+    font-weight:600;
+    font-size:14px;
+    cursor:pointer;
+    transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    overflow:hidden;
+}
+
+/* Hover */
+.chip:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* Hide native checkbox */
+.chip input[type="checkbox"]{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Background fill animation */
+.chip::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(135deg, #19c6d1, #12aab3);
+    opacity:0;
+    transition: opacity 0.35s ease;
+}
+
+/* Circle indicator */
+.checkbox-custom{
+    position:absolute;
+    left:14px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#ffffff;
+    border:2px solid #cfd8dc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.3s ease;
+    z-index:2;
+}
+
+/* Check icon */
+.checkbox-custom::after{
+    content:"";
+    width:6px;
+    height:10px;
+    border: solid #12aab3;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s ease;
+}
+
+/* Label text */
+.chip-label{
+    position:relative;
+    z-index:2;
+    transition: color 0.3s ease;
+}
+
+/* Checked state */
+.chip:has(input:checked)::before{
+    opacity:1;
+}
+
+.chip input:checked + .checkbox-custom{
+    border-color:#ffffff;
+}
+
+.chip input:checked + .checkbox-custom::after{
+    transform: rotate(45deg) scale(1);
+}
+
+.chip input:checked ~ .chip-label{
+    color:#ffffff;
+}
+
+/* Subtle pop animation */
+.chip input:checked ~ .chip-label{
+    animation: chipPop 0.25s ease;
+}
+
+@keyframes chipPop{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.06); }
+    100%{ transform: scale(1); }
+}
+
+/* View-only chips (Profile display)     */
+.chip-view{
+    display:inline-flex;
+    align-items:center;
+    padding:8px 18px;
+    border-radius:40px;
+    background: linear-gradient(135deg, #19c6d1, #12aab3);
+    color:#ffffff;
+    font-weight:600;
+    font-size:14px;
+    box-shadow: 0 6px 16px rgba(18,170,179,0.35);
+}
+
+input:not([type="checkbox"]), select{
+    cursor: default;
 }
