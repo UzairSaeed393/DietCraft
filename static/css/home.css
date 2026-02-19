@@ -14,12 +14,47 @@
     --font2: 'roboto', sans-serif;
 }
 body{
-    /* background-color: var(--primary-dark); */
     background-color: var(--mainbg);
-    padding: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+/* SECTION CONSISTENCY SYSTEM*/
+.section{
+    margin: 32px 20px;
+    padding: 64px 28px;
+    border-radius: 16px;
+    position: relative;
+}
+
+/* Section separator*/
+.section::after{
+    content:'';
+    position:absolute;
+    bottom:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    width:60px;
+    height:4px;
+    border-radius:999px;
+    background:rgba(10,101,58,.25);
+}
+
+.section:last-of-type::after{
+    display:none;
+}
+
+/*  SCROLL REVEAL SUPPORT  */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
 }
 /*HERO SECTION */
-
 .herosection {
     display: flex;
     justify-content: space-between;
@@ -27,7 +62,7 @@ body{
     background-color: var(--bg2);
     padding: 60px 40px;
     border-radius: 16px;
-    margin: 20px;
+    margin: 30px;
     width: 100%;
     gap: 25px;
 }
@@ -95,7 +130,7 @@ body{
     background-color: var(--bg1);
     text-align: center;
     border-radius: 16px;
-    margin: 20px;
+    margin: 30px;
     width: 100%;}
 
 .featuretextsection h2 {
@@ -261,8 +296,6 @@ body{
 .featurecard .cardicon {
     color: var(--lighttext) !important;
 }
-
-/* Add consistent spacing between direct section children inside homecontainer */
 .homecontainer > * {
     margin: 18px;
 }
@@ -290,7 +323,7 @@ body{
     background-color: var(--bg2);
     padding: 60px 20px;
     border-radius: 16px;
-    margin: 20px;
+    margin: 30px;
     width: 100%;
 }
 
@@ -395,7 +428,7 @@ body{
     padding: 70px 20px;
     background-color: var(--bg1);
     border-radius: 16px;
-    margin: 20px;
+    margin: 30px;
     width: 100%;
 }
 
@@ -511,7 +544,7 @@ body{
 
 .countersection {
     border-radius: 16px;
-    margin: 20px;
+    margin: 30px;
     padding: 28px 20px;
     width: 100%;
     background-color: rgba(10,86,58,0.06);
@@ -554,8 +587,8 @@ body{
 }
 
 .chip-icon {
-    width: 46px;
-    height: 46px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;

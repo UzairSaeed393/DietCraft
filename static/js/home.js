@@ -60,3 +60,37 @@ if ('IntersectionObserver' in window) {
     // fallback
     counters.forEach(c => animateCount(c));
 }
+// Scroll reveal animation
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+reveals.forEach(el => observer.observe(el));
+
+// Counter animation (safe)
+document.querySelectorAll('.count-number').forEach(counter => {
+  const target = +counter.dataset.target;
+  let current = 0;
+  const step = Math.ceil(target / 60);
+
+  const update = () => {
+    current += step;
+    if (current >= target) {
+      counter.innerText = target;
+    } else {
+      counter.innerText = current;
+      requestAnimationFrame(update);
+    }
+  };
+  update();
+});
