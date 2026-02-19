@@ -190,32 +190,42 @@
         </div>
     </div>
 
-
-
-    <!-- STATIC COUNTERS -->
+    <!-- DYNAMIC COUNTERS (animated chips) -->
     <div class="countersection">
         <h3 class="text-center">DietCraft At a Glance</h3>
 
         <div class="countercontainer">
 
-            <div class="countercard">
-                <h2>50+</h2>
-                <p>Healthy Meals</p>
+            <div class="countercard chip" role="group" aria-label="Meals">
+                <div class="chip-icon"><i class="bi bi-basket"></i></div>
+                <div class="chip-content">
+                    <div class="count-number" data-target="{{ meals_count }}">0</div>
+                    <div class="count-text">Meals</div>
+                </div>
             </div>
 
-            <div class="countercard">
-                <h2>30+</h2>
-                <p>Exercise Videos</p>
+            <div class="countercard chip" role="group" aria-label="Exercises">
+                <div class="chip-icon"><i class="bi bi-bicycle"></i></div>
+                <div class="chip-content">
+                    <div class="count-number" data-target="{{ exercises_count }}">0</div>
+                    <div class="count-text">Exercises</div>
+                </div>
             </div>
 
-            <div class="countercard">
-                <h2>10+</h2>
-                <p>Nutritionists</p>
+            <div class="countercard chip" role="group" aria-label="Nutritionists">
+                <div class="chip-icon"><i class="bi bi-person-heart"></i></div>
+                <div class="chip-content">
+                    <div class="count-number" data-target="{{ nutritionists_count }}">0</div>
+                    <div class="count-text">Nutritionists</div>
+                </div>
             </div>
 
-            <div class="countercard">
-                <h2>500+</h2>
-                <p>Active Users</p>
+            <div class="countercard chip" role="group" aria-label="Active Users">
+                <div class="chip-icon"><i class="bi bi-people"></i></div>
+                <div class="chip-content">
+                    <div class="count-number" data-target="{{ users_count }}">0</div>
+                    <div class="count-text">Active Users</div>
+                </div>
             </div>
 
         </div>

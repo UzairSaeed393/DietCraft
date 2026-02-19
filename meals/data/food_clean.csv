@@ -1,0 +1,301 @@
+id,name,calories,protein,carbs,fat,type
+1,Chicken Karahi,450,35,6,28,meat
+2,Beef Karahi,520,32,5,38,meat
+3,Chicken Biryani,560,28,65,22,meat
+4,Beef Biryani,620,30,60,30,meat
+5,Mutton Pulao,680,34,55,40,meat
+6,Chicken Tikka,280,32,3,14,meat
+7,Chicken Malai Boti,340,28,4,22,meat
+8,Seekh Kabab,320,22,6,24,meat
+9,Chicken Reshmi Kabab,360,24,5,26,meat
+10,Beef Chapli Kabab,400,25,8,30,meat
+11,Chicken Qeema,420,30,5,30,meat
+12,Beef Qeema,480,28,4,36,meat
+13,Chicken Korma,480,26,8,32,meat
+14,Mutton Korma,620,30,6,45,meat
+15,Chicken Handi,460,27,7,30,meat
+16,Beef Nihari,600,40,4,45,meat
+17,Chicken White Karahi,430,33,4,28,meat
+18,Chicken Jalfrezi,410,30,10,24,meat
+19,Chicken Achari,440,29,6,30,meat
+20,Chicken Sajji,390,35,0,22,meat
+21,Beef Sajji,520,38,0,35,meat
+22,Mutton Sajji,610,40,0,42,meat
+23,Chicken Roast,370,34,0,20,meat
+24,Beef Roast,490,36,0,32,meat
+25,Chicken Stew,360,28,8,18,meat
+26,Beef Stew,420,30,6,22,meat
+27,Chicken Kofta,450,26,10,30,meat
+28,Beef Kofta,520,28,8,38,meat
+29,Chicken Liver Masala,380,34,4,20,meat
+30,Beef Liver Masala,420,36,4,24,meat
+31,Chicken Shawarma Plate,480,28,35,22,meat
+32,Chicken Tandoori,300,32,2,12,meat
+33,Chicken Wings Fried,520,30,10,36,meat
+34,Chicken Nuggets,490,26,30,28,meat
+35,Chicken Patties,450,22,35,24,meat
+36,Beef Burger Patty,420,24,8,32,meat
+37,Chicken Burger Patty,380,26,10,24,meat
+38,Chicken Roll Filling,460,24,30,26,meat
+39,Beef Roll Filling,520,26,28,34,meat
+40,Chicken Haleem,540,32,40,24,meat
+41,Beef Haleem,620,35,38,32,meat
+42,Chicken Pulao,520,26,58,18,meat
+43,Beef Pulao,580,28,55,26,meat
+44,Mutton Karahi,650,34,4,48,meat
+45,Chicken Masala Curry,430,28,10,26,meat
+46,Beef Masala Curry,520,30,8,36,meat
+47,Chicken Yakhni,350,30,2,18,meat
+48,Beef Yakhni,420,32,2,24,meat
+49,Chicken Soup,220,20,5,10,meat
+50,Beef Soup,260,22,4,14,meat
+51,Daal Mash,230,9,28,7,vegetarian
+52,Daal Chana,250,11,30,6,vegetarian
+53,Chana Masala,270,12,35,7,vegetarian
+54,Aloo Bhujia,300,4,35,15,vegetarian
+55,Mix Sabzi,180,5,20,8,vegetarian
+56,Palak Paneer,340,14,10,25,vegetarian
+57,Vegetable Pulao,350,6,55,9,vegetarian
+58,Kadhi Pakora,320,10,22,18,vegetarian
+59,Masoor Daal,240,12,28,6,vegetarian
+60,Bhindi Fry,260,4,18,20,vegetarian
+61,Aloo Gobi,220,5,25,10,vegetarian
+62,Tinda Masala,190,4,16,9,vegetarian
+63,Loki Sabzi,170,3,14,8,vegetarian
+64,Rajma Curry,310,14,40,6,vegetarian
+65,White Chana Curry,300,15,38,5,vegetarian
+66,Paneer Bhurji,380,18,8,30,vegetarian
+67,Shahi Paneer,420,16,12,34,vegetarian
+68,Vegetable Korma,360,7,20,28,vegetarian
+69,Chana Daal Fry,280,13,32,8,vegetarian
+70,Methi Aloo,240,4,28,12,vegetarian
+71,Baingan Curry,200,4,18,11,vegetarian
+72,Vegetable Handi,300,6,22,20,vegetarian
+73,Daal Tadka,290,12,30,10,vegetarian
+74,Aloo Matar,260,6,35,9,vegetarian
+75,Vegetable Biryani,400,8,65,12,vegetarian
+76,Chana Pulao,380,12,60,9,vegetarian
+77,Paneer Karahi,410,17,10,32,vegetarian
+78,Daal Makhni,350,14,28,18,vegetarian
+79,Vegetable Cutlets,330,8,30,18,vegetarian
+80,Samosa Veg,260,6,30,14,vegetarian
+81,Pakora Mix,300,7,25,20,vegetarian
+82,Aloo Paratha,420,9,55,18,vegetarian
+83,Gobhi Paratha,380,8,50,16,vegetarian
+84,Methi Paratha,360,7,48,14,vegetarian
+85,Paneer Paratha,450,14,50,22,vegetarian
+86,Vegetable Roll,390,10,45,18,vegetarian
+87,Cheese Sandwich,340,12,30,18,vegetarian
+88,Veg Burger,420,14,45,20,vegetarian
+89,Vegetable Chowmein,410,9,60,14,vegetarian
+90,Macaroni Veg,380,10,58,12,vegetarian
+91,Creamy Spinach,310,8,12,22,vegetarian
+92,Corn Soup,210,5,30,6,vegetarian
+93,Tomato Soup,150,3,20,4,vegetarian
+94,Chana Salad,220,11,28,5,vegetarian
+95,Sprout Salad,200,12,25,4,vegetarian
+96,Vegetable Omelette,280,14,6,20,vegetarian
+97,Cheese Omelette,350,18,4,28,vegetarian
+98,Paneer Tikka,300,20,6,18,vegetarian
+99,Vegetable Stew,220,6,24,8,vegetarian
+100,Stuffed Capsicum,260,9,22,12,vegetarian
+101,Boiled Chana,260,14,40,4,vegan
+102,Chana Chaat,240,11,34,5,vegan
+103,Masoor Daal Plain,220,12,30,4,vegan
+104,Moong Daal Plain,210,13,32,2,vegan
+105,Lobia Curry,290,15,38,6,vegan
+106,Vegetable Soup,120,3,18,3,vegan
+107,Mixed Vegetable Curry,200,5,22,9,vegan
+108,Baingan Bharta,200,4,15,12,vegan
+109,Karela Salan,190,3,14,11,vegan
+110,Tori Sabzi,160,3,12,8,vegan
+111,Loki Curry,170,3,14,8,vegan
+112,Bhindi Masala,210,4,18,14,vegan
+113,Aloo Tamatar,280,4,35,12,vegan
+114,Aloo Palak,260,5,30,10,vegan
+115,Vegetable Salan,180,4,20,8,vegan
+116,Corn Chaat,220,6,32,5,vegan
+117,Chana Pulao,380,12,60,9,vegan
+118,Plain Rice,280,5,62,1,vegan
+119,Brown Rice,240,6,50,2,vegan
+120,Vegetable Khichdi,300,9,45,6,vegan
+121,Vegetable Cutlets (No Egg),300,7,30,16,vegan
+122,Veg Samosa (No Dairy),250,6,28,14,vegan
+123,Vegetable Pakora,280,7,25,18,vegan
+124,Chickpea Salad,220,12,26,4,vegan
+125,Sprouts Salad,200,12,25,4,vegan
+126,Fruit Chaat,180,2,45,1,vegan
+127,Apple,95,0,25,0,vegan
+128,Banana,120,1,30,0,vegan
+129,Orange,85,1,21,0,vegan
+130,Dates (3 pcs),200,2,54,0,vegan
+131,Oats Plain,150,5,27,3,vegan
+132,Vegetable Oats,200,6,30,5,vegan
+133,Corn Soup Clear,140,4,22,3,vegan
+134,Lentil Soup,180,9,28,4,vegan
+135,Vegetable Stew,220,6,24,8,vegan
+136,Tofu Curry,280,18,8,14,vegan
+137,Tofu Stir Fry,260,20,6,12,vegan
+138,Roasted Chickpeas,210,10,32,4,vegan
+139,Hummus,240,8,20,14,vegan
+140,Falafel,300,10,30,18,vegan
+141,Vegetable Shawarma (No Sauce),420,12,50,16,vegan
+142,Veg Rice Bowl,380,10,58,8,vegan
+143,Quinoa Plain,220,8,40,4,vegan
+144,Quinoa Vegetable Mix,300,10,45,6,vegan
+145,Roasted Vegetables,180,4,20,8,vegan
+146,Pumpkin Curry,200,3,30,6,vegan
+147,Carrot Beans Sabzi,170,4,18,7,vegan
+148,Cabbage Peas Sabzi,180,5,20,8,vegan
+149,Vegetable Yakhni,160,5,10,6,vegan
+150,Clear Vegetable Broth,80,2,8,1,vegan
+151,Plain Yogurt,90,6,8,3,dairy
+152,Low Fat Yogurt,70,6,7,1,dairy
+153,Full Fat Yogurt,120,6,8,6,dairy
+154,Plain Milk,150,8,12,8,dairy
+155,Low Fat Milk,120,8,12,5,dairy
+156,Full Cream Milk,180,8,12,10,dairy
+157,Lassi Sweet,280,8,40,8,dairy
+158,Lassi Salted,180,7,15,7,dairy
+159,Butter Milk,120,6,10,4,dairy
+160,Paneer Cubes,320,18,6,26,dairy
+161,Paneer Tikka,300,20,6,18,dairy
+162,Paneer Bhurji,380,18,8,30,dairy
+163,Shahi Paneer,420,16,12,34,dairy
+164,Milk Tea,120,4,10,6,dairy
+165,Milk Coffee,140,5,12,7,dairy
+166,Kheer,300,7,45,8,dairy
+167,Rabri,350,8,40,15,dairy
+168,Khoya,360,18,15,28,dairy
+169,Cheese Slice,110,6,2,9,dairy
+170,Cheddar Cheese,120,7,1,10,dairy
+171,Cream,100,1,2,10,dairy
+172,Butter,100,0,0,11,dairy
+173,Ghee (1 tbsp),120,0,0,14,dairy
+174,Ice Cream Vanilla,210,4,24,11,dairy
+175,Ice Cream Chocolate,240,4,26,13,dairy
+176,Milkshake Banana,320,8,50,9,dairy
+177,Milkshake Mango,340,7,55,10,dairy
+178,Milkshake Strawberry,300,7,48,8,dairy
+179,Yogurt Smoothie,250,9,35,6,dairy
+180,Paneer Sandwich,420,18,40,22,dairy
+181,Cheese Sandwich,360,14,30,18,dairy
+182,Paneer Paratha,450,14,50,22,dairy
+183,Cheese Paratha,480,16,52,26,dairy
+184,Milk Custard,280,6,38,10,dairy
+185,Milk Pudding,300,7,42,9,dairy
+186,Yogurt Raita,110,5,8,4,dairy
+187,Fruit Yogurt,180,6,28,4,dairy
+188,Chocolate Milk,220,8,30,8,dairy
+189,Flavored Milk,210,7,32,7,dairy
+190,Paneer Roll,480,20,45,26,dairy
+191,Cheese Roll,500,18,48,30,dairy
+192,Milk Khoya Halwa,420,10,45,20,dairy
+193,Paneer Cutlets,360,16,28,20,dairy
+194,Cheese Cutlets,380,14,30,22,dairy
+195,Butter Paneer Masala,520,20,14,40,dairy
+196,Creamy Milk Soup,220,6,20,12,dairy
+197,Paneer Kofta,480,18,22,36,dairy
+198,Cheese Balls,420,15,26,30,dairy
+199,Yogurt Drink Plain,130,6,12,4,dairy
+200,Sweetened Yogurt Drink,200,6,28,5,dairy
+201,Green Tea,5,0,1,0,drink
+202,Black Tea,10,0,2,0,drink
+203,Black Coffee,8,0,1,0,drink
+204,Milk Tea,120,4,10,6,drink
+205,Milk Coffee,140,5,12,7,drink
+206,Lemon Water,15,0,4,0,drink
+207,Mint Lemon Drink,40,0,10,0,drink
+208,Sugarcane Juice,180,0,45,0,drink
+209,Orange Juice Fresh,120,2,28,0,drink
+210,Apple Juice Fresh,130,1,30,0,drink
+211,Mango Juice,160,1,40,0,drink
+212,Banana Shake,350,8,55,10,drink
+213,Mango Shake,380,7,60,12,drink
+214,Strawberry Shake,300,7,50,8,drink
+215,Chocolate Shake,420,8,55,15,drink
+216,Rooh Afza Drink,160,0,42,0,drink
+217,Sattu Drink,220,10,30,4,drink
+218,Lassi Sweet,280,8,40,8,drink
+219,Lassi Salted,180,7,15,7,drink
+220,Buttermilk,120,6,10,4,drink
+221,Coconut Water,60,1,15,0,drink
+222,Pomegranate Juice,140,1,32,0,drink
+223,Carrot Juice,90,1,20,0,drink
+224,Beetroot Juice,110,2,25,0,drink
+225,Mixed Fruit Juice,150,2,35,0,drink
+226,Iced Tea,90,0,22,0,drink
+227,Cold Coffee,180,4,25,6,drink
+228,Cold Coffee Sweet,260,5,40,8,drink
+229,Protein Shake,220,25,8,3,drink
+230,Energy Drink,250,0,60,0,drink
+231,Herbal Tea,10,0,2,0,drink
+232,Ginger Tea,20,0,4,0,drink
+233,Masala Chai,140,4,12,7,drink
+234,Kashmiri Chai,220,6,28,10,drink
+235,Falooda Drink,450,6,65,15,drink
+236,Almond Milk Unsweetened,40,1,2,3,drink
+237,Soy Milk Unsweetened,80,7,4,4,drink
+238,Dates Shake,380,6,60,8,drink
+239,Iced Lemon Tea,60,0,15,0,drink
+240,Mint Juice,70,1,18,0,drink
+241,Apple Cider Drink,90,0,22,0,drink
+242,Pineapple Juice,140,1,33,0,drink
+243,Guava Juice,130,2,30,0,drink
+244,Watermelon Juice,100,1,25,0,drink
+245,Iced Green Tea,30,0,8,0,drink
+246,Cinnamon Tea,15,0,3,0,drink
+247,Turmeric Milk,180,6,14,8,drink
+248,Honey Lemon Drink,90,0,24,0,drink
+249,Oat Milk,120,3,16,5,drink
+250,Flavored Water,20,0,5,0,drink
+251,Zinger Burger,550,25,50,28,fastfood
+252,Chicken Burger,480,24,45,22,fastfood
+253,Beef Burger,520,26,42,30,fastfood
+254,Double Beef Burger,720,40,45,45,fastfood
+255,Chicken Shawarma,480,28,40,22,fastfood
+256,Beef Shawarma,520,30,38,28,fastfood
+257,Chicken Roll Paratha,520,22,45,30,fastfood
+258,Beef Roll Paratha,580,24,42,34,fastfood
+259,Chicken Nuggets,490,26,30,28,fastfood
+260,Chicken Wings Fried,520,30,10,36,fastfood
+261,French Fries,420,5,55,22,fastfood
+262,Curly Fries,450,6,58,24,fastfood
+263,Samosa,260,6,28,15,fastfood
+264,Aloo Samosa,240,5,30,14,fastfood
+265,Chicken Patties,450,22,35,24,fastfood
+266,Chicken Pizza Slice,380,18,40,18,fastfood
+267,Beef Pizza Slice,420,20,38,22,fastfood
+268,Cheese Pizza Slice,400,16,42,20,fastfood
+269,BBQ Chicken Pizza Slice,450,22,40,22,fastfood
+270,Chicken Sandwich,420,20,38,18,fastfood
+271,Club Sandwich,520,24,45,26,fastfood
+272,Grilled Chicken Sandwich,380,26,35,12,fastfood
+273,Chicken Wrap,460,24,40,22,fastfood
+274,Beef Wrap,500,26,38,28,fastfood
+275,Hot Dog,430,18,35,24,fastfood
+276,Chicken Hot Dog,410,20,34,22,fastfood
+277,Chicken Fried Rice,520,24,60,18,fastfood
+278,Egg Fried Rice,480,20,58,16,fastfood
+279,Chicken Chowmein,540,22,65,20,fastfood
+280,Vegetable Chowmein,500,18,68,16,fastfood
+281,Chicken Manchurian,560,26,50,24,fastfood
+282,Beef Manchurian,600,28,48,30,fastfood
+283,Chicken Fried Burger,620,28,50,34,fastfood
+284,Beef Fried Burger,680,30,48,40,fastfood
+285,Chicken Quesadilla,520,24,42,28,fastfood
+286,Beef Quesadilla,560,26,40,32,fastfood
+287,Cheese Fries,480,10,50,28,fastfood
+288,Loaded Fries,560,18,52,34,fastfood
+289,Chicken Tacos,450,22,38,22,fastfood
+290,Beef Tacos,500,24,36,28,fastfood
+291,Chicken Burrito,620,30,65,24,fastfood
+292,Beef Burrito,680,32,62,30,fastfood
+293,Chicken Sub Sandwich,480,26,45,18,fastfood
+294,Beef Sub Sandwich,520,28,42,22,fastfood
+295,Chicken Pasta,540,24,60,20,fastfood
+296,White Sauce Pasta,600,18,58,28,fastfood
+297,Red Sauce Pasta,520,20,62,16,fastfood
+298,Chicken Lasagna,650,32,55,30,fastfood
+299,Cheese Lasagna,620,26,58,28,fastfood
+300,Chicken Calzone,580,28,50,26,fastfood

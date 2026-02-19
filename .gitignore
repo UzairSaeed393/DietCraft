@@ -16,8 +16,6 @@ ENV/
 staticfiles/
 media/
 *.log
-*settings.py
-DietCraft/settings.py
 
 # IDE
 .vscode/

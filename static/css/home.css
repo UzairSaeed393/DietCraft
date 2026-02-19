@@ -126,6 +126,7 @@ body{
     height: 420px;
     cursor: pointer;
     perspective: 1200px;
+    color: var(--lighttext);
 }
 
 /* FLIP */
@@ -169,6 +170,7 @@ body{
     flex-direction: column;
     align-items: center;
     text-align: center;
+    color: var(--lighttext);
 }
 
 /* FRONT */
@@ -250,6 +252,21 @@ body{
     font-style: var(--font2);
 }
 
+/* Ensure all text inside feature cards stays white (lighttext) */
+.featurecard .featurecard-front,
+.featurecard .featurecard-front h3,
+.featurecard .featurecard-front p,
+.featurecard .featurecard-back h3,
+.featurecard .featurecard-back p,
+.featurecard .cardicon {
+    color: var(--lighttext) !important;
+}
+
+/* Add consistent spacing between direct section children inside homecontainer */
+.homecontainer > * {
+    margin: 18px;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {
@@ -279,7 +296,7 @@ body{
 
 .worktextsection {
     text-align: center;
-    margin-bottom: 30px;
+    margin: 10px;
 }
 
 .worktextsection h2 {
@@ -490,14 +507,14 @@ body{
     }
 }
 
-/*  COUNTER SECTION */
+/*  COUNTER SECTION (SaaS + iOS-style chips) */
 
 .countersection {
     border-radius: 16px;
     margin: 20px;
-    padding: 20px;
+    padding: 28px 20px;
     width: 100%;
-    background-color: var(--primary-dark);
+    background-color: rgba(10,86,58,0.06);
     justify-content: center;
     align-items: center;
     display: flex;
@@ -505,70 +522,96 @@ body{
 }
 
 .countersection h3 {
-    color: var(--darktext);
-    font-weight: 600;
-    margin-bottom: 25px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 18px;
     font-style: var(--font1);
 }
 
 .countercontainer {
     display: flex;
-    justify-content: space-evenly;
-    gap: 25px;
+    justify-content: center;
+    gap: 18px;
     flex-wrap: wrap;
 }
 
 .countercard {
-    background-color: var(--bg2);
-    width: 145px;
-    height: 145px;
-    padding: 25px 15px;
-    border-radius: 75px;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.85));
+    padding: 10px 16px;
+    border-radius: 999px;
     display: flex;
-    flex-direction: column;    transition: 0.25s ease-in-out;
+    align-items: center;
+    gap: 12px;
+    min-width: 160px;
+    box-shadow: 0 6px 20px rgba(10,86,58,0.06);
+    transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+    cursor: default;
 }
 
 .countercard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    color: var(--primary);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(10,86,58,0.12);
+}
+
+.chip-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 14px rgba(10,86,58,0.12);
+}
+
+.chip-content {
+    display: flex;
+    flex-direction: column;
 }
 
 .count-number {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 5px;
+    color: var(--primary-dark);
+    line-height: 1;
 }
 
 .count-text {
-    font-size: 15px;
-    font-weight: 500;
-    color: #555;
+    font-size: 13px;
+    color: #556;
+    margin-top: 4px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    
+/* small screens */
+@media (max-width: 480px) {
     .countercard {
-        max-width: 80px;
-        max-height: 100px;
+        min-width: 140px;
+        gap: 8px;
+        padding: 8px 12px;
     }
 
-    .count-number {
-        font-size: 20px;
-        font-weight: 400;
-        color: var(--primary);
-        margin-bottom: 3px;
+    .chip-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 
-    .count-text {
-        font-size: 14px;
-        font-weight: 400;
-        color: var(--darktext);
-    }
+    .count-number { font-size: 18px; }
+    .count-text { font-size: 12px; }
+}
+
+/* subtle pop when count finishes */
+.chip-bounce {
+    animation: chipPop 480ms cubic-bezier(.2,.9,.3,1);
+}
+
+@keyframes chipPop {
+    0% { transform: translateY(0) scale(1); }
+    35% { transform: translateY(-6px) scale(1.03); }
+    100% { transform: translateY(0) scale(1); }
 }
 
 .Nostyle{
