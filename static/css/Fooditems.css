@@ -1,0 +1,208 @@
+:root{
+    --primary:#0A653A;
+    --primary-dark:#084f2d;
+    --mainbg:#d1e7dd;
+    --accent:#e6f7ea;
+    --glass:rgba(255,255,255,.75);
+    --border:rgba(10,101,58,.25);
+    --muted:#6b6b6b;
+    --font1:'Poppins',sans-serif;
+}
+
+/*  BASE  */
+html,body{
+    margin:0;
+    padding:0;
+    background:var(--mainbg);
+    font-family:var(--font1);
+    overflow-x:hidden;
+}
+
+/*  Container */
+.foodpagecontainer{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px;
+}
+
+.foodpagecontainer h2{
+    font-size:32px;
+    color:var(--primary);
+    margin-bottom:6px;
+}
+
+.foodpagecontainer p{
+    color:var(--muted);
+    text-align:center;
+}
+
+/*  SearchBar */
+.search-filter-box{
+    width:100%;
+    max-width:1200px;
+}
+
+.search-filter-box .form-control{
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+.table-wrap{
+    width:100%;
+    max-width:1200px;
+    margin:20px auto;
+    background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.6));
+    border-radius:18px;
+    border:2px solid var(--border);
+    box-shadow:0 14px 40px rgba(10,101,58,.08);
+    overflow:hidden;
+}
+
+.food-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.food-table th,
+.food-table td{
+    border:1px solid var(--border); 
+}
+
+.food-table thead th{
+    background:rgba(10,101,58,.1);
+    color:var(--primary);
+    padding:14px;
+    font-weight:600;
+    text-align:left;
+}
+
+.food-table tbody td{
+    padding:14px;
+    font-size:14px;
+    background:transparent;
+}
+
+.food-row:hover{
+    background:var(--accent);
+}
+
+/* TABLET */
+@media (max-width:900px) and (min-width:651px){
+    .food-table thead th,
+    .food-table tbody td{
+        padding:10px;
+        font-size:13px;
+    }
+}
+
+/* Mobile */
+@media (max-width:650px){
+
+    .food-table,
+    .food-table thead,
+    .food-table tbody,
+    .food-table tr,
+    .food-table td{
+        display:block;
+        width:100%;
+        border:none;
+    }
+
+    .food-table thead{
+        display:none;
+    }
+
+    /* Card */
+    .food-table tr{
+        width:92%;
+        margin:18px auto;
+        padding:18px;
+        border-radius:22px;
+        background:linear-gradient(
+            180deg,
+            rgba(255,255,255,.85),
+            rgba(255,255,255,.7)
+        );
+        border:1.5px solid var(--border);
+        box-shadow:0 12px 30px rgba(0,0,0,.06);
+        animation:fadeUp .35s ease;
+    }
+
+    .food-table td.name{
+        display:flex;
+        align-items:center;
+        gap:5px;
+        font-size:15px;         
+        font-weight:600;    
+        color:var(--primary-dark);
+        margin-bottom:3px;
+    }
+
+    .food-table td.type{
+        padding: 4px 8px;
+        font-size:10px;
+        font-weight:500;
+        color:var(--primary);
+        background:rgba(10,101,58,.08);
+        border:1px solid var(--border);
+        border-radius:999px;
+        white-space:nowrap;
+    }
+
+    /* MACRO ROW */
+    .food-table td.cal,
+    .food-table td.carb,
+    .food-table td.protein,
+    .food-table td.fat{
+        display:inline-block;
+        width:23%;
+        text-align:center;
+        padding:10px 6px;
+        margin-top:6px;
+        border-radius:14px;
+        background:rgba(255,255,255,.75);
+        border:1px solid var(--border);
+    }
+
+    .food-table td.cal::before,
+    .food-table td.carb::before,
+    .food-table td.protein::before,
+    .food-table td.fat::before{
+        display:block;
+        font-size:11px;
+        font-weight:600;
+        color:var(--primary);
+        margin-bottom:4px;
+        opacity:.85;
+    }
+
+    .food-table td.cal::before{
+        content:"Calories";
+    }
+    .food-table td.carb::before{
+        content:"Carbs(g)";
+    }
+    .food-table td.protein::before{
+        content:"Protein(g)";
+    }
+    .food-table td.fat::before{
+        content:"Fat(g)";
+    }
+
+    .food-table td.cal,
+    .food-table td.carb,
+    .food-table td.protein,
+    .food-table td.fat{
+        font-size:14px;
+        font-weight:700;
+        color:var(--primary-dark);
+    }
+
+}
+
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(18px);}
+    to{opacity:1;transform:translateY(0);}
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}No Plan{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/fooditems.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="fooditemscontainer">
+    <h1>No Plan</h1>
+    <p>You do not have a meal plan yet. Please create one to get started.</p>
+</div>
+{% endblock %}

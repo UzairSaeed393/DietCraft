@@ -8,7 +8,6 @@ from users.models import UserProfile
 from users.forms import UserProfileForm
 from .forms import RegisterForm, LoginForm
 from .models import UserOTP
-#   SIGNUP VIEW
 from django.contrib.auth.decorators import login_required
 
 def signup_view(request):
@@ -40,7 +39,6 @@ def signup_view(request):
             messages.error(request, "Email already registered.")
             return redirect("signup")
 
-        # Create inactive user
         user = User.objects.create_user(
             username=user_name,
             email=email,
@@ -122,13 +120,12 @@ def login_view(request):
             if not user.is_active:
                 messages.error(request, "Account inactive. Please verify your email.")
                 return redirect("login")
-            # Authenticate using username 
+
             user = authenticate(request, username=user.username, password=password)
 
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Welcome {user.username}!")
-                # If user already has a profile, send them to home; otherwise prompt profile form
                 try:
                     has_profile = UserProfile.objects.filter(user=user).exists()
                 except Exception:
@@ -217,7 +214,6 @@ def reset_password_view(request, user_id):
 
         # Cleanup OTP
         UserOTP.objects.filter(user=user).delete()
-
         messages.success(request, "Password updated successfully. You can now log in.")
         return redirect("login")
 
@@ -235,12 +231,10 @@ def profile_form(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-
             # MealPlan.objects.create(user=request.user)
             messages.success(request, "Profile created successfully.")
             return redirect("home")
         else:
-
             messages.error(
                 request,
                 "Please complete all required fields before submitting your profile."

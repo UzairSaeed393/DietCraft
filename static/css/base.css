@@ -53,7 +53,6 @@ h6 {
     justify-content: space-between;
 }
 
-/*  Hamburger Icon */
 .menu-toggle {
     display: none;
     font-size: 30px;
@@ -69,7 +68,6 @@ h6 {
     gap: 0;
 }
 
-/* Adjust logo spacing */
 .logo-section {
     display: flex;
     align-items: center;
@@ -120,7 +118,6 @@ h6 {
     gap: 15px;
 }
 
-/* Username  */
 .username-link {
     color: var(--lighttext);
     font-size: 15px;
@@ -137,7 +134,6 @@ h6 {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Logout button */
 .logout-btn {
     background-color: var(--lighttext);
     color: var(--primary);
@@ -153,7 +149,6 @@ h6 {
     box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.1);
 }
 
-/* Login button */
 .login-btn {
     background-color: var(--btn1);
     color: var(--lighttext);
@@ -169,7 +164,6 @@ h6 {
     box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.1);
 }
 
-/* Signup button */
 .signup-btn {
     background-color: var(--btn2);
     color: var(--lighttext);
@@ -198,7 +192,6 @@ h6 {
     z-index: 9999;
 }
 
-/* Close Button */
 .close-btn {
     position: absolute;
     top: 15px;
@@ -208,7 +201,6 @@ h6 {
     cursor: pointer;
 }
 
-/* Sidebar Links */
 .sidebar .mobile-nav {
     display: flex;
     flex-direction: column;
@@ -223,31 +215,28 @@ h6 {
     transition: background 0.2s ease;
 }
 
-/* Hover Highlight */
 .sidebar .mobile-nav a:hover {
     background-color: var(--btn1);
     color: var(--lighttext);
 }
 
-/* When Sidebar Opens */
 .sidebar.active {
     left: 0;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
 
     /* Show hamburger */
     .menu-toggle {
         display: block;
     }
 
-    /* Treat hamburger + logo as ONE aligned block */
+
     .left-nav-group {
         display: flex;
         align-items: center;
         gap: 5px;
         flex-shrink: 0;
-        /* never wrap */
     }
 
     .auth-buttons {
@@ -256,12 +245,10 @@ h6 {
         gap: 8px;
     }
 
-    /* Hide desktop nav */
     .desktop-nav {
         display: none !important;
     }
 
-    /* Fix logo size on small screens */
     .logo-section img {
         width: 32px;
         height: 32px;
@@ -318,7 +305,6 @@ h6 {
     transition: 0.3s ease;
 }
 
-/* NAV LINK HOVER EFFECT */
 .desktop-nav a {
     position: relative;
     transition: color 0.2s ease;
@@ -339,7 +325,6 @@ h6 {
     width: 100%;
 }
 
-/* AUTH BUTTONS HOVER */
 .auth-buttons a {
     transition: 0.25s ease;
 }
@@ -349,7 +334,6 @@ h6 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* SIDEBAR ANIMATION */
 .sidebar {
     opacity: 0;
     transform: translateX(-20px);
@@ -361,7 +345,6 @@ h6 {
     transform: translateX(0);
 }
 
-/* SIDEBAR LINK ANIMATION */
 .sidebar .mobile-nav a {
     position: relative;
     overflow: hidden;
@@ -420,7 +403,6 @@ h6 {
     }
 }
 
-/* Small-screen  keep a light space on both sides of section */
 @media (max-width: 900px) {
     .container {
         padding-left: 12px;
@@ -437,7 +419,6 @@ h6 {
         box-sizing: border-box;
     }
 
-    /* Each containers don't overflow */
     .herosection, .featuresection, .worksection, .sucessstorysection, .countersection {
         width: 100%;
         padding-left: 12px;

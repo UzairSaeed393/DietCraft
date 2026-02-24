@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Food Items{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/Fooditems.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="foodpagecontainer py-4">
+
+    <h2>Food Items</h2>
+    <p>Explore nutrition facts for foods in our database. Use search and filters for quick lookup.</p>
+
+    <div class="search-filter-box mt-4">
+        <div class="d-flex gap-3 flex-wrap">
+            <input id="foodSearch" type="search" placeholder="Search name, tag or nutrient..." class="form-control">
+
+            <select id="typeFilter" class="form-control">
+                <option value="">All Types</option>
+                <option value="meat">Meat</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="dairy">Dairy</option>
+                <option value="drink">Drink</option>
+                <option value="fastfood">Fast Food</option>
+            </select>
+
+            <div class="ms-auto">
+                <button id="clearFilters" class="btn btn-outline-success">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrap mt-4">
+        <table id="foodTable" class="food-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Calories</th>
+                    <th>Carbs (g)</th>
+                    <th>Protein (g)</th>
+                    <th>Fat (g)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in fooditems %}
+                <tr class="food-row">
+                    <td class="name">{{ item.name }}</td>
+                    <td class="type">{{ item.get_food_type_display }}</td>
+                    <td class="cal">{{ item.calories_per_serving }}</td>
+                    <td class="carb">{{ item.carbs_per_serving }}</td>
+                    <td class="protein">{{ item.proteins_per_serving }}</td>
+                    <td class="fat">{{ item.fats_per_serving }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-controls">
+        <button id="prevPage" class="page-btn" disabled>← Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage" class="page-btn">Next →</button>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/Fooditems.js' %}"></script>
+{% endblock %}

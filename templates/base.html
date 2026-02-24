@@ -24,22 +24,19 @@
 </head>
 
 <body>
-    <!-- NAVBAR  -->
     <nav class="navbar">
         <div class="left-nav-group">
-            <!-- Hamburger -->
             <div class="menu-toggle" id="menuToggle">&#9776;</div>
-            <!-- Logo -->
             <div class="logo-section">
                 <img src="{% static 'images/DietCraft Logo.png' %}" alt="DietCraft Logo">
                 <h3>DIETCRAFT</h3>
             </div>
         </div>
-        <!-- NAV LINKS (DESKTOP) -->
         <div class="nav-links desktop-nav">
             <a href="/">Home</a>
             <a href="/meals/">Meal Plans</a>
             <a href="/exercises/">Exercises</a>
+            <a href="/meals/fooditems/">Food Items</a>
             <a href="/nutritionists/">Nutritionists</a>
             <a href="/users/">Dashboard</a>
             <a href="/about/">About</a>
@@ -62,15 +59,15 @@
 
     </nav>
 
-    <!--SIDEBAR only appear on small screens-->
     <div class="sidebar" id="sidebar">
         <div class="close-btn" id="closeSidebar">&times;</div>
         <div class="nav-links mobile-nav">
             <a href="/">Home</a>
             <a href="/meals/">Meal Plans</a>
             <a href="/exercises/">Exercises</a>
+            <a href="/meals/fooditems/">Food Items</a>
             <a href="/nutritionists/">Nutritionists</a>
-            <a href="/user/dashboard/">Dashboard</a>
+            <a href="/users/dashboard/">Dashboard</a>
             <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
         </div>
@@ -91,12 +88,10 @@
     {% endif %}
 
 
-    <!--  MAIN CONTENT -->
     <main class="container">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- FOOTER -->
     <footer style="background-color: #0A5C36; color: white; padding: 40px 0; margin-top: 40px;">
         <div class="container">
             <div class="row">
@@ -121,8 +116,8 @@
                     <h5 class="fw-bold mb-3">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="/meals/" class="text-white text-decoration-none">Meal Plans</a></li>
-                        <li><a href="/exercise/" class="text-white text-decoration-none">Exercises</a></li>
-                        <li><a href="/about/" class="text-white text-decoration-none">About Us</a></li>
+                        <li><a href="/exercises/" class="text-white text-decoration-none">Exercises</a></li>
+                        <li><a href="/meals/fooditems/" class="text-white text-decoration-none">Food Items</a></li>
                     </ul>
                 </div>
 
@@ -131,8 +126,7 @@
                     <h5 class="fw-bold mb-3">Support</h5>
                     <ul class="list-unstyled">
                         <li><a href="/contact/" class="text-white text-decoration-none">Contact Us</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                        <li><a href="/about/" class="text-white text-decoration-none">About Us</a></li>
                     </ul>
                 </div>
 
@@ -141,16 +135,12 @@
                     <h5 class="fw-bold mb-3">Contact Info</h5>
                     <ul class="list-unstyled">
                         <li><i class="bi bi-envelope-fill me-2"></i> DietCraftinfo@gmail.com</li>
-                        <li><i class="bi bi-geo-alt-fill me-2"></i> University of Gujrat, Pakistan</li>
-                        <li><i class="bi bi-telephone-fill me-2"></i> +1 (555) 123-4567</li>
-                    </ul>
                 </div>
 
             </div>
 
             <hr class="border-light mt-4">
-
-            <p class="text-center mb-0">© 2025 DietCraft. All rights reserved.</p>
+            <p class="text-center mb-0">© 2026 DietCraft. All rights reserved.</p>
         </div>
     </footer>
 
