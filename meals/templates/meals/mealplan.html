@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block title %}Meal Plan{% endblock %}
-{% block extra_css %}
 
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/mealplan.css' %}">
 {% endblock %}
 
@@ -13,6 +13,10 @@
         <h2>Your Personalized Meal Plan</h2>
         <p>Weekly meal plan based on your goals and preferences.</p>
     </div>
+
+    <div class="calorie-box">
+        <h3>Daily Calorie Requirement</h3>
+        <h1>{{ daily_calories }} kcal</h1>
+    </div>
 </div>
 {% endblock %}
-

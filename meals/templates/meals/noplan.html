@@ -1,15 +1,25 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block title %}No Plan{% endblock %}
-
+{% block title %}Meal Plan{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/fooditems.css' %}">
+<link rel="stylesheet" href="{% static 'css/exercise.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="fooditemscontainer">
-    <h1>No Plan</h1>
-    <p>You do not have a meal plan yet. Please create one to get started.</p>
+<div class="no-plan-wrapper">
+
+    <div class="no-plan-card">
+        <h2>No Active Meal Plan</h2>
+        <p>
+            You don’t have an active meal plan yet.
+            Generate a personalized 7-day plan to get started.
+        </p>
+
+        <a href="{% url 'generate_meal_plan' %}" class="btn-generate">
+            Generate Meal Plan
+        </a>
+    </div>
+
 </div>
 {% endblock %}

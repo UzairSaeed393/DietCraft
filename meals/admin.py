@@ -1,12 +1,42 @@
 from django.contrib import admin
-from .models import FoodItem, MedicalTag, FoodMedicalTag
+from .models import (
+    FoodItem,
+    MedicalTag,
+    FoodMedicalTag,
+    MealPlan,
+    MealPlanDay,
+    MealItem
+)
 
-# Register your models here.
 @admin.register(FoodItem)
 class FoodItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'food_type', 'calories_per_serving')
-    search_fields = ('name',)
-    list_filter = ('food_type',)
-    
-admin.site.register(MedicalTag)
-admin.site.register(FoodMedicalTag)
+    list_display = ("name", "calories_per_serving", "food_type")
+    search_fields = ("name",)
+    list_filter = ("food_type",)
+
+@admin.register(MedicalTag)
+class MedicalTagAdmin(admin.ModelAdmin):
+    list_display = ("code", "name")
+    search_fields = ("code", "name")
+
+@admin.register(FoodMedicalTag)
+class FoodMedicalTagAdmin(admin.ModelAdmin):
+    list_display = ("food", "medical_tag")
+    list_filter = ("medical_tag",)
+
+@admin.register(MealPlan)
+class MealPlanAdmin(admin.ModelAdmin):
+    list_display = ("user", "week_start", "is_finalized")
+    list_filter = ("is_finalized",)
+    search_fields = ("user__username",)
+
+@admin.register(MealPlanDay)
+class MealPlanDayAdmin(admin.ModelAdmin):
+    list_display = ("meal_plan", "day_name", "date")
+    list_filter = ("day_name",)
+
+@admin.register(MealItem)
+class MealItemAdmin(admin.ModelAdmin):
+    list_display = ("day", "food_item", "meal_type", "quantity", "is_completed")
+    list_filter = ("meal_type", "is_completed")
+    search_fields = ("food_item__name",)

@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -14,7 +16,7 @@ class FoodItem(models.Model):
 
     name = models.CharField(max_length=100)
 
-    # 🔹 Nutrition values PER SERVING
+    #  Nutrition values PER SERVING
     calories_per_serving = models.PositiveIntegerField(
         help_text="Calories per serving"
     )
@@ -78,10 +80,64 @@ class FoodMedicalTag(models.Model):
 
     def __str__(self):
         return f"{self.food.name} → {self.medical_tag.name}"
-
+    
 class MealPlan(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    week_start = models.DateField(default=date.today)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_finalized = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username} Meal Plan"
+        return f"{self.user.username} - Week Plan ({self.week_start})"
+    
+class MealPlanDay(models.Model):
+
+    DAY_CHOICES = [
+        ('monday', 'Monday'),
+        ('tuesday', 'Tuesday'),
+        ('wednesday', 'Wednesday'),
+        ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
+        ('saturday', 'Saturday'),
+        ('sunday', 'Sunday'),
+    ]
+
+    meal_plan = models.ForeignKey(MealPlan,on_delete=models.CASCADE,related_name="days")
+    day_name = models.CharField(max_length=20,choices=DAY_CHOICES)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.meal_plan.user.username} - {self.day_name}"
+    
+class MealItem(models.Model):
+
+    MEAL_TYPE_CHOICES = [
+        ('breakfast', 'Breakfast'),
+        ('lunch', 'Lunch'),
+        ('snack', 'Snack'),
+        ('dinner', 'Dinner'),
+    ]
+
+    day = models.ForeignKey(
+        MealPlanDay,
+        on_delete=models.CASCADE,
+        related_name="meals"
+    )
+
+    food_item = models.ForeignKey(
+        FoodItem,
+        on_delete=models.CASCADE
+    )
+
+    meal_type = models.CharField(
+        max_length=20,
+        choices=MEAL_TYPE_CHOICES
+    )
+
+    quantity = models.FloatField(default=1)
+
+    is_completed = models.BooleanField(default=False)
+    is_removed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.food_item.name} - {self.meal_type}"
