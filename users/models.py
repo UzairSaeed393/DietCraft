@@ -57,6 +57,11 @@ class UserProfile(models.Model):
         help_text="Allowed food categories"
     )
 
+    excluded_foods = models.JSONField(
+        default=list,
+        help_text="List of permanently excluded food item IDs"
+    )
+
     medical_conditions = models.JSONField(
         default=list,
         help_text="Medical conditions"

@@ -3,11 +3,11 @@
 
 {% block title %}Meal Plan{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/exercise.css' %}">
+<link rel="stylesheet" href="{% static 'css/mealplan.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="no-plan-wrapper">
+<div class="no-plan-wrapper text-center" style="padding:60px 0">
 
     <div class="no-plan-card">
         <h2>No Active Meal Plan</h2>
@@ -16,8 +16,11 @@
             Generate a personalized 7-day plan to get started.
         </p>
 
-        <a href="{% url 'generate_meal_plan' %}" class="btn-generate">
-            Generate Meal Plan
+        <a href="{% url 'meals:generate_temp' %}" class="btn btn-primary">
+            Generate Temporary Plan
+        </a>
+        <a href="{% url 'meals:fooditems' %}" class="btn btn-outline-secondary" style="margin-left:10px">
+            Browse Food Items
         </a>
     </div>
 

@@ -11,6 +11,7 @@ class FoodItem(models.Model):
         ('vegan', 'Vegan'),
         ('dairy', 'Dairy'),
         ('drink', 'Drink'),
+        ('snack', 'Snack'),
         ('fastfood', 'Fast Food'),
     ]
 
@@ -37,6 +38,18 @@ class FoodItem(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def protein_g(self):
+        return self.proteins_per_serving
+
+    @property
+    def carbs_g(self):
+        return self.carbs_per_serving
+
+    @property
+    def fat_g(self):
+        return self.fats_per_serving
    
 class MedicalTag(models.Model):
 

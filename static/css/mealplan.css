@@ -1,31 +1,74 @@
 :root{
-    --primary:#0A653A;
+    --primary: #0A653A;
     --primary-dark: #084f2d;
-    --secondary: rgb(166, 248, 166);
-    --mainbg: #d1e7dd;
-    --bg1: rgb(148, 215, 237);
-    --bg2:#91db91;
-    --btn1: #ff9f1c;
-    --btn2: rgb(30, 60, 85);
-    --lighttext: white;
-    --darkgreentext: #0A653A;
-    --darktext: black;
+    --muted: #eaf8ef;
+    --page-bg: #def0e8; /* softer green page */
+    --card-bg: #eef9f2;
+    --chip-bg: #f3fbf6;
+    --accent: #0A5C36;
+    --warning: #ffb84d;
+    --danger: #ff6b6b;
+    --btn-primary: #0A5C36;
     --font1: 'Poppins', sans-serif;
-    --font2: 'roboto', sans-serif;
+    --font2: 'Roboto', sans-serif;
 }
-.profilehead{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    padding: 20px;
+
+body { background: var(--page-bg); }
+
+.mealplan-header { display:flex; gap:24px; align-items:flex-start; padding:28px 24px; }
+.header-left { flex:0 0 48%; }
+.header-right { flex:1; }
+
+.profilehead { text-align:center; margin-bottom:12px; }
+.profilehead h2 { color: var(--primary-dark); font-family: var(--font1); font-weight:700; font-size:34px; margin:4px 0; }
+.profilehead p { color:#4b4b4b; margin:0 0 12px 0; }
+
+.calorie-box { background: var(--chip-bg); border-radius:14px; padding:22px; margin-bottom:18px; box-shadow: 0 2px 6px rgba(10,86,54,0.04); }
+.calorie-box.calorie-big h1 { color: var(--accent); font-size:40px; margin:6px 0 0 0; font-weight:700; }
+.calorie-box h3 { margin:0; color:#1f5c3f; font-weight:600; }
+
+.macro-chips { display:flex; gap:14px; margin-top:8px; flex-wrap:wrap; }
+.macro-chip { background: white; padding:16px 18px; border-radius:12px; color:var(--accent); min-width:110px; text-align:center; box-shadow: 0 1px 4px rgba(10,86,54,0.06); }
+.macro-chip .value { font-weight:700; font-size:18px; display:block; }
+.macro-chip .label { font-size:13px; color:#6b6b6b; margin-top:6px; }
+
+.day-nav { display:flex; gap:10px; margin:14px 0; overflow:auto; justify-content:flex-start; }
+.day-nav.centered { justify-content:flex-start; max-width:720px; margin:14px auto; }
+.day-pill { padding:10px 14px; background:transparent; border-radius:12px; border:1px solid transparent; color:var(--accent); text-decoration:none; }
+.day-pill.active { background:var(--accent); color:white; }
+
+.selected-date { font-size:28px; color:#103d2a; margin:16px 24px; }
+
+.day-meals { padding:10px 24px 30px 24px; }
+.meal-card.modern { background: var(--card-bg); border-radius:10px; padding:18px 20px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; box-shadow: 0 6px 18px rgba(10,86,54,0.04); }
+.meal-card.modern:hover { transform: translateY(-2px); transition: all 150ms ease; }
+
+.meal-left { display:flex; flex-direction:column; gap:8px; }
+.meal-type-pill { background:#ffd6c9; color:#b84a1a; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; display:inline-block; }
+.meal-name { font-weight:700; font-size:16px; color:#113d2b; }
+.meal-nutrients { display:flex; gap:36px; margin-top:6px; }
+.meal-nutrients .nut { color:#2f5f46; display:flex; flex-direction:column; }
+.meal-nutrients .nut strong { font-size:15px; }
+.meal-nutrients .nut span { font-size:12px; color:#667; margin-top:6px; }
+
+.meal-actions { display:flex; gap:10px; align-items:center; }
+.meal-actions .btn { padding:8px 12px; border-radius:8px; }
+.btn-outline-success { border:1px solid var(--accent); color:var(--accent); background:transparent; }
+.btn-warning { background: var(--warning); border:none; color:#4b2a00; }
+.btn-danger { background: var(--danger); border:none; color:white; }
+.btn-success { background: var(--btn-primary); border:none; color: white; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .mealplan-header { flex-direction:column; }
+  .header-left { width:100%; }
+  .calorie-box.calorie-big h1 { font-size:32px; }
+  .meal-card.modern { flex-direction:column; align-items:flex-start; gap:12px; }
+  .meal-nutrients { gap:18px; }
 }
-.profilehead h2{
-    color: var(--primary-dark);
-    font-style: var(--font1);
-}
-.profilehead p{
-    color: var(--dark);
-    font-style: var(--font2);
+
+@media (max-width: 480px) {
+  .macro-chips { gap:10px; }
+  .meal-nutrients { flex-wrap:wrap; gap:12px; }
+  .meal-actions { width:100%; justify-content:flex-end; }
 }

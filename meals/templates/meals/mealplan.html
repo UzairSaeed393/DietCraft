@@ -8,15 +8,78 @@
 {% endblock %}
 
 {% block content %}
-<div class="profilecontainer">
+<div class="mealplan-header">
+  <div class="header-left">
     <div class="profilehead">
         <h2>Your Personalized Meal Plan</h2>
         <p>Weekly meal plan based on your goals and preferences.</p>
     </div>
 
-    <div class="calorie-box">
+    <div class="calorie-box calorie-big">
         <h3>Daily Calorie Requirement</h3>
         <h1>{{ daily_calories }} kcal</h1>
     </div>
+
+    {% if totals %}
+    <div class="macro-chips">
+      <div class="macro-chip">
+        <span class="value">{{ totals.calories|floatformat:0 }}</span>
+        <span class="label">Calories</span>
+      </div>
+      <div class="macro-chip">
+        <span class="value">{{ totals.protein|floatformat:0 }}g</span>
+        <span class="label">Protein</span>
+      </div>
+      <div class="macro-chip">
+        <span class="value">{{ totals.carbs|floatformat:0 }}g</span>
+        <span class="label">Carbs</span>
+      </div>
+      <div class="macro-chip">
+        <span class="value">{{ totals.fat|floatformat:0 }}g</span>
+        <span class="label">Fat</span>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="day-nav centered">
+      {% for d in day_list %}
+        <a href="?day={{ d.index }}" class="day-pill {% if d.index == selected_index %}active{% endif %}">{{ d.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="header-right">
+    <h3 class="selected-date">{{ selected_day.day_name|title }} - {{ selected_day.date }}</h3>
+  </div>
 </div>
+
+{% if meal_plan %}
+  <div class="day-meals">
+    {% for meal in meals_data %}
+      <div class="meal-card modern">
+        <div class="meal-left">
+          <span class="meal-type-pill">{{ meal.meal_type }}</span>
+          <div class="meal-name">{{ meal.name }}</div>
+          <div class="meal-nutrients">
+            <div class="nut"><strong>{{ meal.cal_total }}</strong><span>kcal</span></div>
+            <div class="nut"><strong>{{ meal.protein_total }}g</strong><span>Protein</span></div>
+            <div class="nut"><strong>{{ meal.carbs_total }}g</strong><span>Carbs</span></div>
+            <div class="nut"><strong>{{ meal.fat_total }}g</strong><span>Fat</span></div>
+          </div>
+        </div>
+        <div class="meal-actions">
+          <form method="post" action="{% url 'meals:toggle_item_done' %}">{% csrf_token %}
+            <input type="hidden" name="item_id" value="{{ meal.id }}" />
+            <button type="submit" class="btn {% if meal.is_completed %}btn-secondary{% else %}btn-outline-success{% endif %}">
+              {% if meal.is_completed %}Completed{% else %}Mark as Eaten{% endif %}
+            </button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="muted" style="margin:24px">No finalized meal plan yet. <a href="{% url 'meals:generate_temp' %}">Generate a plan</a>.</p>
+{% endif %}
+
 {% endblock %}

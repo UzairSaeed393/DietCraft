@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/mealplan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="mealplan-header">
+  <div class="header-left">
+    <div class="profilehead">
+      <h2>Your Temporary Meal Plan</h2>
+      <p>Preview your plan. Use buttons to exclude items for the day or permanently.</p>
+    </div>
+
+    <div class="calorie-box calorie-big">
+      <h3>Daily Calorie Requirement</h3>
+      <h1>{{ daily_calories }} kcal</h1>
+    </div>
+
+    <div class="macro-chips">
+  <div class="macro-chip">
+    <span class="value">{{ totals.calories|floatformat:0 }}</span>
+    <span class="label">Calories</span>
+  </div>
+  <div class="macro-chip">
+    <span class="value">{{ totals.protein|floatformat:0 }}g</span>
+    <span class="label">Protein</span>
+  </div>
+  <div class="macro-chip">
+    <span class="value">{{ totals.carbs|floatformat:0 }}g</span>
+    <span class="label">Carbs</span>
+  </div>
+  <div class="macro-chip">
+    <span class="value">{{ totals.fat|floatformat:0 }}g</span>
+    <span class="label">Fat</span>
+  </div>
+  </div>
+  <div class="header-right">
+    <!-- reserved for future controls -->
+  </div>
+</div>
+    <!-- Day navigation -->
+    <div class="day-nav centered">
+      {% for d in day_list %}
+        <a href="?day={{ d.index }}" class="day-pill {% if d.index == selected_index %}active{% endif %}">
+          {{ d.name }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <h3 class="selected-date">{{ selected_day.day_name|title }} - {{ selected_day.date }}</h3>
+<div class="day-meals">
+  {% for meal in meals_data %}
+    <div class="meal-card modern">
+      <div class="meal-left">
+        <span class="meal-type-pill">{{ meal.meal_type }}</span>
+        <div class="meal-name">{{ meal.name }}</div>
+        <div class="meal-nutrients">
+          <div class="nut"><strong>{{ meal.cal_total }}</strong><span>kcal</span></div>
+          <div class="nut"><strong>{{ meal.protein_total }}g</strong><span>Protein</span></div>
+          <div class="nut"><strong>{{ meal.carbs_total }}g</strong><span>Carbs</span></div>
+          <div class="nut"><strong>{{ meal.fat_total }}g</strong><span>Fat</span></div>
+        </div>
+      </div>
+      <div class="meal-actions">
+        <form method="post" action="{% url 'meals:exclude_for_day' %}" style="display:inline">{% csrf_token %}
+          <input type="hidden" name="meal_item_id" value="{{ meal.id }}" />
+          <button type="submit" class="btn btn-warning">Exclude for Day</button>
+        </form>
+
+        <form method="post" action="{% url 'meals:exclude_permanent' %}" style="display:inline">{% csrf_token %}
+          <input type="hidden" name="food_id" value="{{ meal.food_id }}" />
+          <button type="submit" class="btn btn-danger">Exclude Permanently</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div style="margin-top:20px">
+  <form method="post" action="{% url 'meals:finalize_plan' %}">{% csrf_token %}
+    <button type="submit" class="btn btn-success">Accept & Finalize Plan</button>
+  </form>
+  <a href="{% url 'meals:generate_temp' %}" class="btn btn-primary">Regenerate Full Plan</a>
+</div>
+
+{% endblock %}
