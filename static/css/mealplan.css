@@ -9,6 +9,8 @@
     --danger: #ff6b6b;
     --btn-primary: #0A5C36;
     --font1: 'Poppins', sans-serif;
+    --darkgreentext: #0A653A;
+    --darktext: black;
     --font2: 'Roboto', sans-serif;
 }
 
@@ -23,16 +25,18 @@ body { background: var(--page-bg); }
 
 /* HEADER */
 .mealplan-header{
-    display:grid;
-    grid-template-columns: 1fr auto;
+    display:flex;
+    flex-direction: column;
     gap: 24px;
-    align-items:start;
-}
+    align-items:center;
+    justify-content: center;
+  }
 
 .header-main{ 
   display:flex;
   flex-direction:column;
   gap:16px; 
+  width: 100%;
 }
 .profilehead{
     margin-bottom: 10px;
@@ -59,11 +63,22 @@ body { background: var(--page-bg); }
     background: var(--chip-bg);
     border-radius:14px;
     padding:22px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
-.calorie-box h1{
-    color: var(--accent);
-    font-size:30px;
-    margin:6px 0 0;
+.calorie-label{
+    color: var(--darktext);
+    font-size:26px;
+    /* margin:6px 0 0; */
+    font-weight:500;
+}
+.calorie-value{
+    font-size:26px;
+    color: var(--primary-dark);
+    font-weight:500;
+    /* margin-left:20px; */
 }
 
 /* MACROS */
@@ -80,12 +95,13 @@ body { background: var(--page-bg); }
 }
 .macro-chip .value{
   font-weight:500;
-  font-size:15px;
+  font-size:16px;
   color: var(--primary-dark);
 }
 .macro-chip .label{ 
-  font-size:13px;
-  color:#666;
+  font-size:15px;
+  font-weight: 500;
+  color:var(--darktext);
  }
 
 /* DATE */

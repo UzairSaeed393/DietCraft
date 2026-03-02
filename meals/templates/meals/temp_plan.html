@@ -16,26 +16,28 @@
       </div>
 
       <div class="calorie-box calorie-big">
-        <h3>Daily Calorie Requirement</h3>
-        <h1>{{ daily_calories }} kcal</h1>
+        <h3 class="calorie-label">Daily Calorie Requirement :</h3>
+        <h3 class="calorie-value">{{ daily_calories }} kcal</h3>
       </div>
 
       <div class="macro-chips">
         <div class="macro-chip">
+          <span class="label">Calories :
+
+          </span>
           <span class="value">{{ totals.calories|floatformat:0 }}</span>
-          <span class="label">Calories</span>
         </div>
         <div class="macro-chip">
+          <span class="label">Protein :</span>
           <span class="value">{{ totals.protein|floatformat:0 }}g</span>
-          <span class="label">Protein</span>
         </div>
         <div class="macro-chip">
+          <span class="label">Carbs :</span>
           <span class="value">{{ totals.carbs|floatformat:0 }}g</span>
-          <span class="label">Carbs</span>
         </div>
         <div class="macro-chip">
+          <span class="label">Fat : </span>
           <span class="value">{{ totals.fat|floatformat:0 }}g</span>
-          <span class="label">Fat</span>
         </div>
       </div>
     </div>
@@ -63,10 +65,22 @@
         <div class="meal-name">{{ meal.name }}</div>
 
         <div class="meal-nutrients">
-          <div class="nut"><strong>{{ meal.cal_total }}</strong><span>kcal</span></div>
-          <div class="nut"><strong>{{ meal.protein_total }}g</strong><span>Protein</span></div>
-          <div class="nut"><strong>{{ meal.carbs_total }}g</strong><span>Carbs</span></div>
-          <div class="nut"><strong>{{ meal.fat_total }}g</strong><span>Fat</span></div>
+          <div class="nut">
+            <span>kcal : </span>
+            <strong>{{ meal.cal_total }}</strong>
+          </div>
+          <div class="nut">
+            <span>Protein : </span>
+            <strong>{{ meal.protein_total }}g</strong>
+          </div>
+          <div class="nut">
+            <span>Carbs : </span>
+            <strong>{{ meal.carbs_total }}g</strong>
+          </div>
+          <div class="nut">
+            <span>Fat : </span>
+            <strong>{{ meal.fat_total }}g</strong>
+          </div>
         </div>
       </div>
 
