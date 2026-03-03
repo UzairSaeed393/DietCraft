@@ -2,3 +2,115 @@
 {% load static %}
 
 {% block title %}Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="dashboard-root" class="container dash-container"
+    data-week-labels='{{ week_labels_json|safe }}'
+    data-daily-calories='{{ daily_calories_json|safe }}'
+    data-daily-protein='{{ daily_protein_json|safe }}'
+    data-daily-ex-burned='{{ daily_ex_burned_json|safe }}'
+    data-daily-ex-completed='{{ daily_ex_completed_json|safe }}'
+    data-calorie-progress='{{ calorie_progress }}'
+    data-protein-progress='{{ protein_progress }}'
+    data-workout-progress='{{ workout_progress }}'
+    data-calorie-target='{{ calorie_target }}'
+    data-protein-target='{{ protein_goal_g }}'
+    data-daily-workout-target='{{ daily_ex_total }}'
+    data-today-calories='{{ today_calories }}'
+    data-today-protein='{{ today_protein }}'
+    data-today-ex-burned='{{ today_ex_burned }}'
+    data-today-ex-completed='{{ today_ex_completed }}'
+>   <div class="headcontainer mt-5"> 
+        <h1>Welcome to your Dashboard, {{ user.username }}!</h1>
+        <p>This is your personalized dashboard where you can view your progress toward your fitness goals.</p> 
+    </div>
+    <div class="dash-header">
+        <div class="header-cards">
+            <div class="header-card">
+                <div class="header-icon">🍽️</div>
+                <div class="header-meta">Total Calories Planned (this week) : </div>
+                <div class="header-value"> {{ planned_calories_week }} kcal</div>
+            </div>
+
+            <div class="header-card">
+                <div class="header-icon">🏃‍♂️</div>
+                <div class="header-meta">Calories to Burned (this week) : </div>
+                <div class="header-value"> {{ planned_ex_burn_week|floatformat:0 }} kcal</div>
+            </div>
+
+            <div class="header-card">
+                <div class="header-icon">🥗</div>
+                <div class="header-meta">Protein to Consume (this week) : </div>
+                <div class="header-value">{{ planned_protein_week }} g</div>
+            </div>
+        </div>
+        <div class="dashcardcontainer">
+            <div class="dash-card large-summary">
+                <div class="stat-small">Calories Consumed (this week)</div>
+                <div class="stat-value">{{ total_calories_week }} kcal</div>
+                <div class="stat-small">Goal (daily est): {{ calorie_target }} kcal</div>
+            </div>
+            <div class="dash-card large-summary">
+                <div class="stat-small">Protein Consumed (this week)</div>
+                <div class="stat-value">{{ total_protein_week }} g</div>
+                <div class="stat-small">Goal (daily est): {{ protein_goal_g }} g</div>
+            </div>
+            <div class="dash-card large-summary">
+                <div class="stat-small">Workouts Completed (this week)</div>
+                <div class="stat-value">{{ workouts_completed }}</div>
+                <div class="stat-small">Goal (weekly): {{ weekly_workout_goal }}</div>
+            </div>
+
+    </div>
+
+    <div class="dash-row">
+        <div class="dash-card chart-card" style="flex:2">
+            <h4>Weekly Progress</h4>
+            <div class="controls">
+                <button id="btn-calories" class="ctrl-btn">Calories</button>
+                <button id="btn-protein" class="ctrl-btn">Protein</button>
+                <button id="btn-exercises" class="ctrl-btn">Exercises</button>
+            </div>
+            <div id="chart-wrapper"><canvas id="weeklyChart" height="360"></canvas></div>
+        </div>
+        <div class="dash-card">
+            <h4>Daily Goals Progress</h4>
+            <div class="stat-small">Daily Calorie Target: {{ calorie_target }} kcal</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                <div class="stat-small">Today</div>
+                <div id="calorie-label" class="stat-small"></div>
+            </div>
+            <div class="progress-bar-wrap" style="margin:8px 0;"><div id="calorie-progress" class="progress-bar" style="width:0%"></div></div>
+
+            <div class="stat-small">Protein (week avg/day): {{ daily_protein_avg }} g / goal {{ protein_goal_g }} g</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                <div class="stat-small">Today</div>
+                <div id="protein-label" class="stat-small"></div>
+            </div>
+            <div class="progress-bar-wrap" style="margin:8px 0;"><div id="protein-progress" class="progress-bar" style="width:0%"></div></div>
+
+            <div class="stat-small">Weekly workouts: {{ workouts_completed }}/{{ weekly_workout_goal }}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                <div class="stat-small">Today</div>
+                <div id="workout-label" class="stat-small"></div>
+            </div>
+            <div class="progress-bar-wrap" style="margin:8px 0;"><div id="workout-progress" class="progress-bar" style="width:0%"></div></div>
+
+            <div class="log-buttons">
+                <a class="btn-log" href="/meals/">Log Meal</a>
+                <a class="btn-log" href="/exercises/">Log Exercise</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

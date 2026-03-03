@@ -3,7 +3,6 @@ from typing import Dict, List, Tuple
 from django.utils import timezone
 from .models import MealPlan, MealItem, FoodItem, MealPlanDay
 
-
 #BMR CALCULATION 
 
 def calculate_bmr(weight_kg: float, height_cm: float, age: int, gender: str) -> float:
@@ -56,13 +55,13 @@ def calculate_macros(calories: float, height_cm: float) -> dict:
     Reference-weight based macro system
     Ensures macros always fit calorie target
     """
-
+   # Reference weight based on ideal BMI midpoint
     BMI_REF = 22.5
     ref_weight = BMI_REF * (height_cm / 100) ** 2
-
+    # Calculate initial macros based on reference weight
     protein_g = round(ref_weight * 2.0)
     fat_g = round(ref_weight * 0.8)
-
+    # Calculate calories from protein and fat
     protein_cal = protein_g * 4
     fat_cal = fat_g * 9
 
@@ -70,7 +69,7 @@ def calculate_macros(calories: float, height_cm: float) -> dict:
     while (protein_cal + fat_cal) > calories:
         fat_g -= 1
         fat_cal = fat_g * 9
-
+    # Remaining calories go to carbs
     carb_cal = calories - (protein_cal + fat_cal)
     carbs_g = round(carb_cal / 4)
 
@@ -125,7 +124,7 @@ def split_macros_into_meals(daily_plan: dict) -> dict:
     MIN_MEAL_CALORIES = 250
 
     meals = {}
-
+# Ensure each meal has at least MIN_MEAL_CALORIES, adjust macros proportionally
     for meal, r in ratios.items():
         meal_cal = max(calories * r, MIN_MEAL_CALORIES)
         factor = meal_cal / calories
@@ -148,10 +147,7 @@ def get_filtered_foods(profile):
     excluded = getattr(profile, "excluded_foods", []) or []
     return FoodItem.objects.exclude(id__in=excluded)
 
-
-# =========================================================
-# --------- FOOD PICKER WITH VARIETY + FALLBACK ----------
-# =========================================================
+#  FOOD PICKER WITH VARIETY + FALLBACK 
 
 def pick_food_for_target(
     foods,
@@ -207,11 +203,7 @@ def pick_food_for_target(
 
     return []
 
-
-# =========================================================
-# ---------------- TEMP MEAL PLAN GENERATION --------------
-# =========================================================
-
+# TEMP MEAL PLAN GENERATION
 def generate_temp_meal_plan(user):
     """
     Generate 7-day preview plan.

@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from authentication.decorators import profile_required
-
 from .models import MealPlan, MealItem, FoodItem
 from . import meal_engine
 
@@ -21,15 +20,15 @@ def get_selected_day(meal_plan, request):
 
     if not days:
         return None, None, None
-
+    #It ensures the selected day index is always valid even if user messes with the URL.
     try:
         index = int(request.GET.get("day", 0))
     except:
         index = 0
-
+    #If the index is out of bounds, it defaults to the first or last day, preventing errors.
     index = max(0, min(index, len(days) - 1))
     selected_day = days[index]
-
+    #it creates a list of dictionaries for each day in the meal plan, containing the index, formatted name, and date. 
     day_list = [
         {"index": i, "name": d.day_name.title(), "date": d.date}
         for i, d in enumerate(days)
@@ -42,7 +41,7 @@ def calculate_day_totals(day):
     """Compute calories + macros for one day."""
     totals = {"calories": 0, "protein": 0, "carbs": 0, "fat": 0}
     meals_data = []
-
+    #This loop iterates through each meal item for the selected day, retrieves the associated food item, and calculates the total calories, protein, carbs, and fat based on the quantity of the food item. It also constructs a dictionary for each meal item containing all relevant information, which is then added to the meals_data list. Finally, it returns the totals and the detailed meal data for rendering in the template.
     for mi in day.meals.select_related("food_item"):
         f = mi.food_item
         qty = float(mi.quantity or 1)
@@ -88,7 +87,7 @@ def render_plan(request, meal_plan, template, is_temp):
         return render(request, "meals/noplan.html")
 
     totals, meals_data = calculate_day_totals(selected_day)
-
+    
     daily_info = meal_engine.generate_daily_macro_plan(request.user.profile)
 
     context = {
@@ -175,7 +174,7 @@ def exclude_for_day(request):
         foods = [f for f in foods if f.food_type != "drink"]
 
     used_ids = list(meal_item.day.meals.values_list("food_item_id", flat=True))
-
+#It retrieves the user's profile and gets a list of filtered foods based on the user's preferences. It then filters the foods further based on the meal type (e.g., snacks can include drinks, while other meals cannot). It also creates a list of food item IDs that are already used in the same day to avoid duplicates when picking a replacement food item.
     daily_plan = meal_engine.generate_daily_macro_plan(profile)
     meal_targets = meal_engine.split_macros_into_meals(daily_plan)
     targets = meal_targets.get(meal_item.meal_type)
