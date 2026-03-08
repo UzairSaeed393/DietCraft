@@ -4,7 +4,7 @@ from django.utils import timezone
 from .models import MealPlan, MealItem, FoodItem, MealPlanDay
 
 #BMR CALCULATION 
-
+#To calculate the calories user need to stay alive
 def calculate_bmr(weight_kg: float, height_cm: float, age: int, gender: str) -> float:
     """
     Mifflin-St Jeor Equation
