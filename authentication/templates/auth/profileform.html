@@ -14,6 +14,7 @@
 {% block content %}
 <div class="profilecontainer " style="background-color: #ffffffdd; border-radius: 25px ;">
     <div class="profilehead">
+        <img src="{% static 'images/DietCraft Logo.png' %}" class="auth-logo">
         <h2>Tell Us About Your Goals</h2>
         <p>This information helps us generate your personalized meal plan.</p>
     </div>
@@ -74,12 +75,11 @@
                         {% endfor %}
                     </div>
                 </div>
-
-
+{% comment %} 
                 <div class="form-group-box">
                     <label>Profile Image (optional)</label>
                     {{ form.image }}
-                </div>
+                </div> {% endcomment %}
                 
                 <button type="submit" class="submit-btn w-100 mt-3">
                     Submit Profile

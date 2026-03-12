@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_POST
@@ -20,21 +22,31 @@ def get_selected_day(meal_plan, request):
 
     if not days:
         return None, None, None
-    #It ensures the selected day index is always valid even if user messes with the URL.
-    try:
-        index = int(request.GET.get("day", 0))
-    except:
-        index = 0
-    #If the index is out of bounds, it defaults to the first or last day, preventing errors.
-    index = max(0, min(index, len(days) - 1))
-    selected_day = days[index]
-    #it creates a list of dictionaries for each day in the meal plan, containing the index, formatted name, and date. 
+
+    # Build day list for navigation
     day_list = [
         {"index": i, "name": d.day_name.title(), "date": d.date}
         for i, d in enumerate(days)
     ]
 
-    return selected_day, day_list, index
+    # If user requested a specific index via GET, honor it (validate bounds)
+    if request.GET.get("day") is not None:
+        try:
+            index = int(request.GET.get("day", 0))
+        except Exception:
+            index = 0
+        index = max(0, min(index, len(days) - 1))
+        selected_day = days[index]
+        return selected_day, day_list, index
+
+    # Otherwise auto-select based on today's date if present in the plan
+    today = date.today()
+    for i, d in enumerate(days):
+        if d.date == today:
+            return days[i], day_list, i
+
+    # Fallback to first day
+    return days[0], day_list, 0
 
 
 def calculate_day_totals(day):
@@ -231,6 +243,15 @@ def mealplan_view(request):
 
     if not meal_plan:
         return render(request, "meals/noplan.html")
+
+    # Expire plan after 7 days from week_start
+    try:
+        start = meal_plan.week_start
+        if start and date.today() > (start + timedelta(days=6)):
+            return render(request, "meals/noplan.html")
+    except Exception:
+        # If week_start missing or invalid, fallback to showing plan
+        pass
 
     return render_plan(request, meal_plan, "meals/mealplan.html", False)
 

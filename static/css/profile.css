@@ -13,8 +13,16 @@
     --font1: 'Poppins', sans-serif;
     --font2: 'roboto', sans-serif;
 }
-
-
+.auth-logo {
+    width: 100px;
+    margin: 10px;
+    border-radius: 50px;
+}
+@media (max-width: 600px) {
+    .auth-logo {
+        width: 80px;
+    }
+}
 .profilecontainer {
     margin-top: 15px;
     padding: 30px 20px;

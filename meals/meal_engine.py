@@ -275,5 +275,10 @@ def finalize_meal_plan(meal_plan):
     """
     Convert temp plan into active plan
     """
+    # Set as finalized and record week_start from earliest day date
+    days = meal_plan.days.order_by("date")
+    if days.exists():
+        meal_plan.week_start = days.first().date
+
     meal_plan.is_finalized = True
     meal_plan.save()

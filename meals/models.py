@@ -37,18 +37,6 @@ class FoodItem(models.Model):
 
     def __str__(self):
         return self.name
-    
-    @property
-    def protein_g(self):
-        return self.proteins_per_serving
-
-    @property
-    def carbs_g(self):
-        return self.carbs_per_serving
-
-    @property
-    def fat_g(self):
-        return self.fats_per_serving
    
 class MedicalTag(models.Model):
 
@@ -153,3 +141,15 @@ class MealItem(models.Model):
 
     def __str__(self):
         return f"{self.food_item.name} - {self.meal_type}"
+    
+    @property
+    def protein_g(self):
+        return self.proteins_per_serving
+
+    @property
+    def carbs_g(self):
+        return self.carbs_per_serving
+
+    @property
+    def fat_g(self):
+        return self.fats_per_serving

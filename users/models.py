@@ -67,11 +67,11 @@ class UserProfile(models.Model):
         help_text="Medical conditions"
     )
     
-    image = models.ImageField(
-        upload_to="profiles/",
-        null=True,
-        blank=True
-    )
+    # image = models.ImageField(
+    #     upload_to="profiles/",
+    #     null=True,
+    #     blank=True
+    # )
     
     goal = models.CharField(
         max_length=20,

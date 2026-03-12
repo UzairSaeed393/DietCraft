@@ -1,19 +1,18 @@
 from django import forms
 from .models import UserProfile
 
-
 class UserProfileForm(forms.ModelForm):
     
     preferred_food_types = forms.MultipleChoiceField(
         choices=UserProfile.FOOD_TYPE_CHOICES,
         widget=forms.CheckboxSelectMultiple,
-        required=True  # 🔥 NOW REQUIRED
+        required=True  
     )
 
     medical_conditions = forms.MultipleChoiceField(
         choices=UserProfile.MEDICAL_CHOICES,
         widget=forms.CheckboxSelectMultiple,
-        required=True  # 🔥 NOW REQUIRED
+        required=True  
     )
 
     class Meta:
@@ -27,7 +26,7 @@ class UserProfileForm(forms.ModelForm):
             "gender",
             "preferred_food_types",
             "medical_conditions",
-            "image",
+            # "image",
         ]
 
     # VALIDATION: Food preference must not be empty
@@ -44,7 +43,7 @@ class UserProfileForm(forms.ModelForm):
             raise forms.ValidationError("Please select at least one medical condition (or None).")
         return data
 
-    # Extra rule: if 'none' selected, it must be alone
+    # if 'none' selected, it must be alone
     def clean(self):
         cleaned_data = super().clean()
         medical = cleaned_data.get("medical_conditions")
@@ -65,7 +64,7 @@ class UserProfileForm(forms.ModelForm):
             "activity_level",
             "goal",
             "gender",
-            "image",
+            # "image",
             "preferred_food_types",
             "medical_conditions",
         ]
@@ -77,8 +76,7 @@ class UserProfileForm(forms.ModelForm):
             "activity_level": forms.Select(attrs={"class": "form-control"}),
             "goal": forms.Select(attrs={"class": "form-control"}),
             "gender": forms.Select(attrs={"class": "form-control"}),
-            "image": forms.ClearableFileInput(attrs={"class": "form-control-file"}),
+            # "image": forms.ClearableFileInput(attrs={"class": "form-control-file"}),
             "preferred_food_types": forms.CheckboxSelectMultiple(attrs={"class": "form-check-input"}),
             "medical_conditions": forms.CheckboxSelectMultiple(attrs={"class": "form-check-input"}),
-            
         }
