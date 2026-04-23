@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 
 class FoodItem(models.Model):
 
+    MEAL_SUITABILITY_CHOICES = [
+        ('breakfast', 'Breakfast'),
+        ('lunch', 'Lunch'),
+        ('dinner', 'Dinner'),
+        ('snack', 'Snack'),
+        ('any', 'Any time'),
+    ]
+
     FOOD_TYPE_CHOICES = [
         ('meat', 'Meat'),
         ('vegetarian', 'Vegetarian'),
@@ -33,6 +41,14 @@ class FoodItem(models.Model):
     food_type = models.CharField(
         max_length=20,
         choices=FOOD_TYPE_CHOICES
+    )
+
+    meal_suitability = models.CharField(
+        max_length=20,
+        choices=MEAL_SUITABILITY_CHOICES,
+        default='any',
+        db_index=True,
+        help_text='Best meal time for this food item'
     )
 
     def __str__(self):

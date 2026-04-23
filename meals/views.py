@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.db import transaction
 from django.views.decorators.http import require_POST
 from authentication.decorators import profile_required
 from .models import MealPlan, MealItem, FoodItem
@@ -54,7 +55,7 @@ def calculate_day_totals(day):
     totals = {"calories": 0, "protein": 0, "carbs": 0, "fat": 0}
     meals_data = []
     #This loop iterates through each meal item for the selected day, retrieves the associated food item, and calculates the total calories, protein, carbs, and fat based on the quantity of the food item. It also constructs a dictionary for each meal item containing all relevant information, which is then added to the meals_data list. Finally, it returns the totals and the detailed meal data for rendering in the template.
-    for mi in day.meals.select_related("food_item"):
+    for mi in day.meals.filter(is_removed=False).select_related("food_item"):
         f = mi.food_item
         qty = float(mi.quantity or 1)
 
@@ -78,6 +79,7 @@ def calculate_day_totals(day):
             "fat_per": fat,
             "fat_total": round(fat * qty, 1),
             "food_type": f.get_food_type_display(),
+            "meal_suitability": f.get_meal_suitability_display(),
             "is_completed": mi.is_completed,
         }
 
@@ -118,8 +120,15 @@ def render_plan(request, meal_plan, template, is_temp):
 #  FOOD LIST
 
 def fooditems(request):
-    items = FoodItem.objects.all().order_by("name")
-    return render(request, "meals/Fooditems.html", {"fooditems": items})
+    items = FoodItem.objects.all().order_by("meal_suitability", "food_type", "name")
+    return render(
+        request,
+        "meals/Fooditems.html",
+        {
+            "fooditems": items,
+            "meal_suitability_choices": FoodItem.MEAL_SUITABILITY_CHOICES,
+        },
+    )
 
 
 # GENERATE TEMP PLAN 
@@ -174,30 +183,51 @@ def exclude_permanently(request):
 @profile_required
 def exclude_for_day(request):
     item_id = int(request.POST.get("meal_item_id"))
-    meal_item = get_object_or_404(MealItem, id=item_id)
+    meal_item = get_object_or_404(
+        MealItem,
+        id=item_id,
+        day__meal_plan__user=request.user,
+        is_removed=False,
+    )
 
     profile = request.user.profile
     foods = list(meal_engine.get_filtered_foods(profile))
 
-    # Filter by meal type
-    if meal_item.meal_type == "snack":
-        foods = [f for f in foods if f.food_type in ["drink", "snack"]]
-    else:
-        foods = [f for f in foods if f.food_type != "drink"]
+    used_ids = list(
+        meal_item.day.meals.filter(is_removed=False)
+        .exclude(id=meal_item.id)
+        .values_list("food_item_id", flat=True)
+    )
 
-    used_ids = list(meal_item.day.meals.values_list("food_item_id", flat=True))
-#It retrieves the user's profile and gets a list of filtered foods based on the user's preferences. It then filters the foods further based on the meal type (e.g., snacks can include drinks, while other meals cannot). It also creates a list of food item IDs that are already used in the same day to avoid duplicates when picking a replacement food item.
     daily_plan = meal_engine.generate_daily_macro_plan(profile)
     meal_targets = meal_engine.split_macros_into_meals(daily_plan)
     targets = meal_targets.get(meal_item.meal_type)
 
+    if not targets:
+        messages.error(request, "Could not determine a replacement target")
+        return redirect("meals:temp_plan")
+
     weekly_usage = {}
+
+    for food_id in MealItem.objects.filter(
+        day__meal_plan=meal_item.day.meal_plan,
+        is_removed=False,
+    ).exclude(id=meal_item.id).values_list("food_item_id", flat=True):
+        weekly_usage[food_id] = weekly_usage.get(food_id, 0) + 1
+
+    excluded_food_ids = list(
+        meal_item.day.meals.filter(is_removed=True).values_list("food_item_id", flat=True)
+    )
+    excluded_food_ids.append(meal_item.food_item_id)
 
     picked = meal_engine.pick_food_for_target(
         foods,
         targets,
         used_ids,
-        weekly_usage
+        weekly_usage,
+        exclude_food_ids=excluded_food_ids,
+        meal_type=meal_item.meal_type,
+        profile=profile,
     )
 
     if not picked:
@@ -206,14 +236,16 @@ def exclude_for_day(request):
 
     food, qty = picked[0]
 
-    meal_item.delete()
+    with transaction.atomic():
+        meal_item.is_removed = True
+        meal_item.save(update_fields=["is_removed"])
 
-    MealItem.objects.create(
-        day=meal_item.day,
-        food_item=food,
-        meal_type=meal_item.meal_type,
-        quantity=qty
-    )
+        MealItem.objects.create(
+            day=meal_item.day,
+            food_item=food,
+            meal_type=meal_item.meal_type,
+            quantity=qty
+        )
 
     messages.success(request, "Item replaced")
     return redirect("meals:temp_plan")

@@ -16,7 +16,7 @@
 
     <div class="search-filter-box mt-4">
         <div class="d-flex gap-3 flex-wrap">
-            <input id="foodSearch" type="search" placeholder="Search name, tag or nutrient..." class="form-control">
+            <input id="foodSearch" type="search" placeholder="Search name, type, meal time or nutrient..." class="form-control">
 
             <select id="typeFilter" class="form-control">
                 <option value="">All Types</option>
@@ -25,7 +25,15 @@
                 <option value="vegan">Vegan</option>
                 <option value="dairy">Dairy</option>
                 <option value="drink">Drink</option>
+                <option value="snack">Snack</option>
                 <option value="fastfood">Fast Food</option>
+            </select>
+
+            <select id="mealFilter" class="form-control">
+                <option value="">All Meal Times</option>
+                {% for value, label in meal_suitability_choices %}
+                <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
             </select>
 
             <div class="ms-auto">
@@ -40,6 +48,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
+                    <th>Meal Time</th>
                     <th>Calories</th>
                     <th>Carbs (g)</th>
                     <th>Protein (g)</th>
@@ -51,6 +60,7 @@
                 <tr class="food-row">
                     <td class="name">{{ item.name }}</td>
                     <td class="type">{{ item.get_food_type_display }}</td>
+                    <td class="suitability">{{ item.get_meal_suitability_display }}</td>
                     <td class="cal">{{ item.calories_per_serving }}</td>
                     <td class="carb">{{ item.carbs_per_serving }}</td>
                     <td class="protein">{{ item.proteins_per_serving }}</td>

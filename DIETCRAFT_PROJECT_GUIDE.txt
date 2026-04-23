@@ -1,0 +1,410 @@
+DIETCRAFT PROJECT GUIDE
+Current workspace snapshot: April 23, 2026
+
+1. PROJECT OVERVIEW
+DietCraft is a Django-based health and fitness web application built around four main ideas:
+- User account management with email verification and password reset
+- A user profile that stores body stats, goals, and food preferences
+- Automated meal planning based on calories and macros
+- Automated exercise planning based on the user's fitness goal
+
+The app also includes a nutritionist directory, a public home/about/contact section, a dashboard for progress tracking, and an admin area for managing data.
+
+2. TECHNOLOGY STACK
+The project currently uses:
+- Python and Django 6.0
+- PostgreSQL as the configured database engine
+- django-environ for environment variables
+- SMTP email delivery for OTP and password reset emails
+- Pillow for image handling
+- psycopg2-binary for PostgreSQL connectivity
+- Static files and media files for front-end assets and uploads
+
+Important note:
+- The repository also contains a db.sqlite3 file, but the active settings file points to PostgreSQL.
+
+3. PROJECT STRUCTURE AND WHAT EACH PART DOES
+- DietCraft/ - Project settings, root URL routing, ASGI and WSGI configuration
+- authentication/ - Signup, login, logout, OTP verification, password reset, and profile creation flow
+- users/ - User profile model, profile page, dashboard, and weekly progress calculations
+- meals/ - Food database, medical tags, meal plan models, meal generation logic, and meal plan views
+- exercises/ - Exercise catalog, weekly exercise plan generation, and exercise completion tracking
+- nutritionists/ - Nutritionist listing and search filters
+- main/ - Home page, about page, and contact form
+- templates/ - Shared base templates and HTML layout files
+- static/ - CSS, JavaScript, and image assets
+- media/ - Uploaded files such as nutritionist images and profile-related media
+
+4. HOW THE APP WORKS FROM A USER'S POINT OF VIEW
+The normal flow is:
+- The user opens the home page and can browse the public content.
+- The user signs up with username, email, and password.
+- The account is created as inactive.
+- An OTP is generated and emailed to the user.
+- After OTP verification, the user can log in.
+- After login, if the user profile does not exist yet, the app redirects to the profile form.
+- Once the profile is completed, the user can access meal plans, exercise plans, dashboard data, and other profile-based features.
+- Meal plans and exercise plans are generated from the user's profile values and goal.
+
+5. AUTHENTICATION MODULE
+This module lives in authentication/ and handles account lifecycle features.
+
+Main routes:
+- /auth/signup/
+- /auth/login/
+- /auth/logout/
+- /auth/verify/<user_id>/
+- /auth/resend/<user_id>/
+- /auth/forgot-password/
+- /auth/forgot-verify/<user_id>/
+- /auth/reset-password/<user_id>/
+- /auth/profileform/
+
+Main views:
+- signup_view - creates a new inactive user, generates OTP, sends verification email
+- verify_otp_view - checks the OTP and activates the account
+- resend_otp - generates a new OTP and sends it again
+- login_view - logs in by email and password, then redirects to home or profile form
+- logout_view - logs the user out
+- forgot_password_view - starts the password reset flow with OTP email
+- forgot_verify_view - checks the password reset OTP
+- reset_password_view - updates the password after OTP verification
+- profile_form - creates the first user profile after login
+
+OTP behavior:
+- OTP codes are 6 digits
+- OTPs expire after 5 minutes
+- The same UserOTP model is used for both signup verification and password reset
+
+6. PROFILE AND USER MODULE
+This module lives in users/.
+
+Main model:
+- UserProfile
+
+Profile fields:
+- age
+- height_cm
+- weight_kg
+- gender
+- activity_level
+- goal
+- preferred_food_types
+- excluded_foods
+- medical_conditions
+
+What the profile is used for:
+- Meal calorie and macro calculations
+- Exercise plan generation
+- Dashboard calorie and protein target estimation
+- Access control for profile-required pages
+
+Profile form rules:
+- At least one food preference must be selected
+- At least one medical condition must be selected, or None alone
+- None cannot be combined with any other medical condition
+
+Main views:
+- profile_view - lets the user view and edit the profile
+- dashboard - shows weekly calories, protein, exercise burn, and progress charts
+
+Dashboard logic:
+- Counts completed meal items only when is_completed is true and is_removed is false
+- Counts completed exercise items only when is_completed is true
+- Builds weekly totals for the current Monday-to-Sunday week
+- Computes today stats as well
+- Estimates a calorie target from BMR and activity level
+- Estimates a protein target from body weight
+- Returns JSON-encoded arrays for chart rendering on the front end
+
+7. MEALS MODULE
+This is the most important custom logic in the project.
+
+Main models:
+- FoodItem - a food entry with per-serving calories, carbs, protein, fat, food type, and meal_suitability
+- MedicalTag - medical condition tags such as diabetes or hypertension
+- FoodMedicalTag - many-to-many link between foods and medical tags
+- MealPlan - a weekly meal plan owned by a user
+- MealPlanDay - one day inside a meal plan
+- MealItem - one food choice inside a meal plan day
+
+Food types stored in FoodItem:
+- meat
+- vegetarian
+- vegan
+- dairy
+- drink
+- snack
+- fastfood
+
+Medical tags stored in MedicalTag:
+- diabetes
+- hypertension
+- lactose
+- heart
+- none
+
+MealPlan behavior:
+- A MealPlan belongs to one user
+- week_start stores the first date of the weekly plan
+- is_finalized marks whether the plan is temporary or active
+- MealPlanDay stores the calendar date and day name
+- MealItem stores the chosen food, meal type, quantity, and completion state
+
+Meal engine functions:
+- calculate_bmr
+- calculate_tdee
+- adjust_calories_for_goal
+- calculate_macros
+- generate_daily_macro_plan
+- split_macros_into_meals
+- get_filtered_foods
+- pick_food_for_target
+- generate_temp_meal_plan
+- finalize_meal_plan
+
+Meal calorie calculation:
+- BMR uses the Mifflin-St Jeor equation
+- TDEE multiplies BMR by an activity factor
+- Goal adjustment multiplies TDEE by a goal factor
+- Macros are built from a reference weight based on BMI 22.5
+- Protein starts at 2.0 g per kg of reference weight
+- Fat starts at 0.8 g per kg of reference weight
+- Carbs fill the remaining calories
+- If protein and fat exceed the calorie target, fat is reduced until the macros fit
+
+Activity factors in meal_engine:
+- not_active = 1.2
+- lightly_active = 1.35
+- moderately_active = 1.55
+- active = 1.75
+- very_active = 1.9
+
+Goal factors in meal_engine:
+- lose = 0.8
+- maintain = 1.0
+- gain = 1.1
+
+Meal split logic:
+- breakfast = 30 percent of daily calories
+- lunch = 35 percent of daily calories
+- dinner = 25 percent of daily calories
+- snack = 10 percent of daily calories
+- Each meal is forced to have at least 250 calories so the picker always has a usable target
+
+How food is filtered:
+- get_filtered_foods(profile) removes permanently excluded foods first
+- It then applies the user's preferred_food_types when possible
+- It also applies medical condition filtering using FoodMedicalTag when possible
+- If the strict filter would leave no foods, it falls back to a broader safe candidate set instead of failing
+
+How food is picked:
+- The picker skips foods already used earlier in the same day
+- It filters by meal type first, so breakfast, lunch, and dinner can use matching foods plus any-time foods while snacks only use snack-tagged foods and drink items
+- It scores each food using the meal's protein, carbs, and fat targets first, with calories only as a small tie-breaker
+- It adds a penalty for weekly repetition
+- It adds preference and medical-condition bonuses so the result is more personalized
+- It searches multiple serving quantities and stores the best match as the meal quantity
+- If the meal-specific pool is empty, it falls back to the broader candidate set rather than breaking the plan
+
+Meal pick score:
+- score is driven by weighted macro error first, then a small calorie tie-breaker, weekly repetition, preference/medical alignment, and a tiny amount of randomness
+
+Temporary meal plan generation:
+- Any old non-finalized meal plan for the same user is deleted first
+- A new temporary MealPlan is created
+- The app builds a 7-day plan starting from today
+- For each day it creates a MealPlanDay record
+- For each day it tries to assign breakfast, lunch, dinner, and snack
+- It keeps a weekly_usage dictionary so the same food is less likely to repeat across the week
+
+Finalized meal plan behavior:
+- finalize_meal_plan marks the plan as finalized
+- It stores week_start as the earliest day in the plan
+- mealplan_view shows the finalized plan only if it is still within 7 days of week_start
+- If the plan is older than 7 days, the user sees the no-plan page again
+
+Meal views:
+- fooditems - shows all food items in the database
+- generate_temp_plan - builds a new temporary weekly meal plan
+- temp_plan - displays the temporary plan
+- exclude_permanently - adds a food ID to the user's permanent excluded list and regenerates the temp plan
+- exclude_for_day - replaces one meal item for that day only
+- finalize_plan - turns the temporary plan into the active plan
+- mealplan_view - shows the active finalized plan
+- toggle_item_done - flips a meal item's completion state
+
+Day selection in mealplan views:
+- If the request has ?day=N, the Nth day is shown
+- Otherwise the view tries to select today's date if it exists in the plan
+- If not, it falls back to the first day
+
+Meal replacement for one day:
+- Snacks are replaced only with drink or snack foods, and any-time foods are kept out of snack selection
+- The current item is soft-removed instead of deleted
+- The replacement uses the same macro-driven picker, the same profile filters, and the same weekly variety rules
+- The removed item is ignored in totals and dashboard counts
+- preferred_food_types and medical_conditions are now part of the filter and scoring path, so the picker stays personalized instead of calorie-first
+- If strict filtering leaves too few foods, the picker falls back to a broader safe pool instead of failing the plan
+
+8. EXERCISES MODULE
+This module lives in exercises/.
+
+Main models:
+- Exercise - a single exercise template
+- ExercisePlan - a weekly exercise plan for a profile
+- ExercisePlanDay - one exercise item scheduled for one day
+
+Exercise fields:
+- name
+- category
+- difficulty
+- met_value
+- duration_minutes
+- video_url
+- description
+- is_active
+
+Exercise categories:
+- weight_loss
+- muscle_gain
+- maintenance
+
+Exercise difficulties:
+- beginner
+- intermediate
+- advanced
+
+Exercise plan generation:
+- The current active plan for that profile is deactivated first
+- A new 7-day plan is created
+- The user's goal is mapped to a category:
+  - lose -> weight_loss
+  - gain -> muscle_gain
+  - maintain -> maintenance
+- Active exercises from that category are loaded
+- The plan creates 4 exercises per day for 7 days
+- The code cycles through the available exercises list if there are fewer than 28 items
+- Calories burned are estimated using MET x body weight x duration in hours
+
+Exercise views:
+- exercise_plan_view - shows the current plan and the current day
+- generate_exercise_plan - creates a new weekly exercise plan
+- mark_done - marks one exercise item as completed
+
+9. NUTRITIONISTS MODULE
+This module lives in nutritionists/.
+
+Main model:
+- Nutritionist
+
+Fields:
+- name
+- specialty
+- category
+- clinic_name
+- clinic_address
+- city
+- experience_years
+- rating
+- timing
+- degrees
+- image
+
+Search behavior:
+- search text of at least 2 characters can match the name
+- search text of at least 3 characters can also match specialty, category, clinic name, and clinic address
+- city filters are applied only when the city text is at least 2 characters
+- specialty filters are applied only when the specialty text is at least 2 characters
+- The final queryset is limited to 10 results
+
+10. MAIN MODULE
+This module lives in main/ and handles the public-facing pages.
+
+Main model:
+- ContactMessage
+
+Main views:
+- home - shows site counts
+- about - renders the about page
+- contact - saves a contact form submission
+
+Home page counts:
+- Total food items
+- Active exercises
+- Nutritionists
+- Active users
+
+Contact form:
+- Saves first name, last name, email, phone, subject, and message into the ContactMessage table
+
+11. ROOT URL ROUTING
+The project URL config sends requests to these apps:
+- /admin/ -> Django admin
+- / -> main app
+- /users/ -> users app
+- /meals/ -> meals app
+- /exercises/ -> exercises app
+- /nutritionists/ -> nutritionists app
+- /auth/ -> authentication app
+
+12. ADMIN PANEL
+Each major app registers its main models in Django admin.
+
+Examples:
+- FoodItem admin shows name, calories, and food type
+- MealPlan admin can filter by finalized state
+- MealItem admin can filter by meal type and completion state
+- Exercise admin can filter by category, difficulty, and active state
+
+13. DATA IMPORT
+The meals app includes a management command for CSV import.
+
+Command:
+- meals/management/commands/import_food_data.py
+
+What it does:
+- Imports food items from food_clean.csv
+- Attempts to import food-medical mappings from food_medical_mapping.csv
+
+Important note:
+- The medical-tag import block is currently commented out in the command
+- That means FoodMedicalTag rows will only import correctly if the MedicalTag rows already exist in the database
+
+14. STATIC AND MEDIA FILES
+Static files are organized by page or feature:
+- base.css
+- auth.css
+- dashboard.css
+- mealplan.css
+- exercise.css
+- nutritionists.css
+- profile.css
+- home.css
+- contact.css
+
+JavaScript files follow the same pattern.
+
+Media folders are used for uploaded content, especially nutritionist images and profile-related assets.
+
+15. IMPORTANT IMPLEMENTATION NOTES
+- The meal engine and the dashboard now use compatible activity-level keys, so profile activity values resolve consistently
+- Food preference and medical condition fields are now used by the meal picker to narrow and rank candidate foods
+- The meal picker is now macro-driven; calories are only a secondary tie-breaker, not the main signal
+- Breakfast, lunch, dinner, snack, and any-time suitability are now stored on each food item, and the picker uses that field when selecting meals
+- Meal replacements now soft-remove the old item and create a new one inside a transaction
+- Nutritionist search still has no pagination; it returns the first 10 matches
+- The finalized meal plan expires after 7 days from week_start
+
+16. SHORT VERSION OF THE FULL FLOW
+- User signs up
+- OTP verifies the account
+- User completes profile
+- Meal engine calculates calories and macros
+- Meal planner selects foods from the food table, avoiding excluded items and repeating foods too often
+- Exercise engine creates a weekly workout routine from the user's goal
+- Dashboard tracks completed meals and exercises
+- Nutritionist search provides filtered expert listings
+- Contact form collects messages from visitors
+
+END OF GUIDE

@@ -150,6 +150,19 @@ html,body{
         white-space:nowrap;
     }
 
+    .food-table td.suitability{
+        padding: 4px 8px;
+        font-size:10px;
+        font-weight:500;
+        color:var(--primary-dark);
+        background:rgba(10,101,58,.06);
+        border:1px solid var(--border);
+        border-radius:999px;
+        white-space:nowrap;
+        margin-top:3px;
+        margin-bottom:2px;
+    }
+
     /* MACRO ROW */
     .food-table td.cal,
     .food-table td.carb,

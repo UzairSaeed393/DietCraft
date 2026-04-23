@@ -10,9 +10,9 @@ from .models import (
 
 @admin.register(FoodItem)
 class FoodItemAdmin(admin.ModelAdmin):
-    list_display = ("name", "calories_per_serving", "food_type")
+    list_display = ("name", "meal_suitability", "calories_per_serving", "food_type")
     search_fields = ("name",)
-    list_filter = ("food_type",)
+    list_filter = ("meal_suitability", "food_type")
 
 @admin.register(MedicalTag)
 class MedicalTagAdmin(admin.ModelAdmin):

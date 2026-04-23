@@ -6,6 +6,14 @@ from meals.models import FoodItem, MedicalTag, FoodMedicalTag
 class Command(BaseCommand):
     help = "Import food items and medical tags from CSV files"
 
+    MEAL_SUITABILITY_VALUES = {"breakfast", "lunch", "dinner", "snack", "any"}
+
+    def _normalized_meal_suitability(self, row):
+        value = (row.get("meal_suitability") or "any").strip().lower()
+        if value not in self.MEAL_SUITABILITY_VALUES:
+            return "any"
+        return value
+
     def handle(self, *args, **kwargs):
 
         self.stdout.write(self.style.SUCCESS("Starting CSV import..."))
@@ -37,7 +45,8 @@ class Command(BaseCommand):
                         'proteins_per_serving': row['protein'],  
                         'carbs_per_serving': row['carbs'],
                         'fats_per_serving': row['fat'],         
-                        'food_type': row['type'],             
+                        'food_type': row['type'],
+                        'meal_suitability': self._normalized_meal_suitability(row),
                     }
                 )
         self.stdout.write(self.style.SUCCESS(" Food items imported"))
