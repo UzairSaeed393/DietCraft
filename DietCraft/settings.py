@@ -2,10 +2,8 @@ from pathlib import Path
 import os
 import environ
 
-
 env = environ.Env()
-environ.Env.read_env()
-
+environ.Env.read_env(os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env'))
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,12 +75,12 @@ WSGI_APPLICATION = 'DietCraft.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dietcraft_db',
-        'USER': 'postgres',
-        'PASSWORD': 'postgre',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': env('DB_ENGINE',),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -145,5 +143,5 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 # Session settings: auto-logout after 1 day (86400 seconds)
 SESSION_COOKIE_AGE = 86400  # 1 day in seconds
-SESSION_SAVE_EVERY_REQUEST = False  # do not extend session on each request
+SESSION_SAVE_EVERY_REQUEST = False  
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False

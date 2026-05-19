@@ -18,9 +18,11 @@
             <button type="submit" class="auth-btn">Verify</button>
         </form>
         
-        <a class="outline-btn" href="{% url 'resend_otp' user_id %}">
-            Resend OTP
-        </a>
+        {% if pending_id %}
+        <a class="outline-btn" href="{% url 'resend_otp' pending_id %}">Resend OTP</a>
+        <a class="outline-btn" href="{% url 'signup' %}?email={{ pending_email|urlencode }}&username={{ pending_username|urlencode }}">Change Email</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
+{% block extra_js %}{% endblock %}

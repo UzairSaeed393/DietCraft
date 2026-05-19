@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from authentication.decorators import profile_required
 from .models import UserProfile
 from .forms import UserProfileForm
+from .utils import delete_user_plans
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 from exercises.models import Exercise,ExercisePlan,ExercisePlanDay
 from meals.models import MealItem,MealPlanDay,MealPlan
 from datetime import date, timedelta
@@ -15,10 +17,13 @@ def profile_view(request):
     edit_mode = request.GET.get("edit") == "true"
 
     if request.method == "POST":
+        was_existing_profile = profile is not None
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
         if form.is_valid():
             form.save()
+            if was_existing_profile:
+                delete_user_plans(request.user)
             messages.success(request, "Profile updated successfully.")
             return redirect("profile")
         else:
@@ -34,6 +39,28 @@ def profile_view(request):
         "form": form,
         "edit_mode": edit_mode
     })
+
+
+@require_POST
+@profile_required
+def delete_meal_plan(request):
+    deleted_count, _ = MealPlan.objects.filter(user=request.user).delete()
+    if deleted_count:
+        messages.success(request, "Meal plan deleted successfully.")
+    else:
+        messages.info(request, "No meal plan found to delete.")
+    return redirect("profile")
+
+
+@require_POST
+@profile_required
+def delete_exercise_plan(request):
+    deleted_count, _ = ExercisePlan.objects.filter(profile__user=request.user).delete()
+    if deleted_count:
+        messages.success(request, "Exercise plan deleted successfully.")
+    else:
+        messages.info(request, "No exercise plan found to delete.")
+    return redirect("profile")
 
 
 @profile_required

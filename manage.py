@@ -7,6 +7,10 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DietCraft.settings')
+    if len(sys.argv) >= 2 and sys.argv[1] == 'runserver' and not any(
+        arg for arg in sys.argv[2:] if not arg.startswith('-')
+    ):
+        sys.argv.append('localhost:8000')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

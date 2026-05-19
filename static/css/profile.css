@@ -193,6 +193,35 @@ input:focus, select:focus {
     color: var(--darktext);
 }
 
+.action-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.action-row form {
+    flex: 1;
+    min-width: 210px;
+}
+
+.delete-btn {
+    width: 100%;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(177, 43, 43, 0.35);
+}
+
+.delete-btn:hover {
+    color: #ffffff;
+}
+
+.delete-meal-btn {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+}
+
+.delete-exercise-btn {
+    background: linear-gradient(135deg, #922b21, #7b241c);
+}
+
 .profile-empty {
     text-align: center;
     padding: 20px 18px;        

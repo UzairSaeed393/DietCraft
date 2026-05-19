@@ -145,6 +145,16 @@
                     <a href="?edit=true" class="submit-btn w-100 mt-3 edit-btn">
                         Edit Profile
                     </a>
+                    <div class="action-row mt-3 display-flex gap-10">
+                        <form method="post" action="{% url 'delete_meal_plan' %}" onsubmit="return confirm('Delete your current meal plan?');">
+                            {% csrf_token %}
+                            <button type="submit" class="submit-btn delete-btn delete-meal-btn">Delete Meal Plan</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_exercise_plan' %}" onsubmit="return confirm('Delete your current exercise plan?');">
+                            {% csrf_token %}
+                            <button type="submit" class="submit-btn delete-btn delete-exercise-btn">Delete Exercise Plan</button>
+                        </form>
+                    </div>
                 {% endif %}
             </form>
 
